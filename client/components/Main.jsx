@@ -34,18 +34,15 @@ class Main extends React.Component {
             <nav className="level is-mobile">
               <div className="level-left">
                 <a className="level-item">
-                  <span className="icon is-small">
+                  <span className="icon is-medium">
                     <i className="fas fa-reply" />
                   </span>
                 </a>
-                <a className="level-item">
-                  <span className="icon is-small">
-                    <i className="fas fa-retweet" />
-                  </span>
-                </a>
-                <a className="level-item">
-                  <span className="icon is-small">
-                    <i className="fas fa-heart" />
+
+                <a id="secondIcon" className="level-item">
+                  <span className="icon is-medium">
+                    <i id="like" className="fas fa-heart" />
+                    <strong id="votes">11</strong>
                   </span>
                 </a>
               </div>
@@ -71,18 +68,15 @@ class Main extends React.Component {
             <nav className="level is-mobile">
               <div className="level-left">
                 <a className="level-item">
-                  <span className="icon is-small">
+                  <span className="icon is-medium">
                     <i className="fas fa-reply" />
                   </span>
                 </a>
-                <a className="level-item">
-                  <span className="icon is-small">
-                    <i className="fas fa-retweet" />
-                  </span>
-                </a>
-                <a className="level-item">
-                  <span className="icon is-small">
-                    <i className="fas fa-heart" />
+
+                <a id="secondIcon" className="level-item">
+                  <span className="icon is-medium">
+                    <i id="like" className="fas fa-heart" />
+                    <strong id="votes">5</strong>
                   </span>
                 </a>
               </div>

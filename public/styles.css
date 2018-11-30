@@ -4,4 +4,17 @@
 
 #ideaTitle {
   color: #3273dc;
+  font-size: 1.2em;
+}
+
+#like {
+  color: red;
+}
+
+#secondIcon {
+  margin-left: 12%;
+}
+
+#votes {
+  margin-left: 13%;
 }

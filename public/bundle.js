@@ -14298,26 +14298,22 @@ var Main = function (_React$Component) {
                   { className: 'level-item' },
                   _react2.default.createElement(
                     'span',
-                    { className: 'icon is-small' },
+                    { className: 'icon is-medium' },
                     _react2.default.createElement('i', { className: 'fas fa-reply' })
                   )
                 ),
                 _react2.default.createElement(
                   'a',
-                  { className: 'level-item' },
+                  { id: 'secondIcon', className: 'level-item' },
                   _react2.default.createElement(
                     'span',
-                    { className: 'icon is-small' },
-                    _react2.default.createElement('i', { className: 'fas fa-retweet' })
-                  )
-                ),
-                _react2.default.createElement(
-                  'a',
-                  { className: 'level-item' },
-                  _react2.default.createElement(
-                    'span',
-                    { className: 'icon is-small' },
-                    _react2.default.createElement('i', { className: 'fas fa-heart' })
+                    { className: 'icon is-medium' },
+                    _react2.default.createElement('i', { id: 'like', className: 'fas fa-heart' }),
+                    _react2.default.createElement(
+                      'strong',
+                      { id: 'votes' },
+                      '11'
+                    )
                   )
                 )
               )
@@ -14365,26 +14361,22 @@ var Main = function (_React$Component) {
                   { className: 'level-item' },
                   _react2.default.createElement(
                     'span',
-                    { className: 'icon is-small' },
+                    { className: 'icon is-medium' },
                     _react2.default.createElement('i', { className: 'fas fa-reply' })
                   )
                 ),
                 _react2.default.createElement(
                   'a',
-                  { className: 'level-item' },
+                  { id: 'secondIcon', className: 'level-item' },
                   _react2.default.createElement(
                     'span',
-                    { className: 'icon is-small' },
-                    _react2.default.createElement('i', { className: 'fas fa-retweet' })
-                  )
-                ),
-                _react2.default.createElement(
-                  'a',
-                  { className: 'level-item' },
-                  _react2.default.createElement(
-                    'span',
-                    { className: 'icon is-small' },
-                    _react2.default.createElement('i', { className: 'fas fa-heart' })
+                    { className: 'icon is-medium' },
+                    _react2.default.createElement('i', { id: 'like', className: 'fas fa-heart' }),
+                    _react2.default.createElement(
+                      'strong',
+                      { id: 'votes' },
+                      '5'
+                    )
                   )
                 )
               )
