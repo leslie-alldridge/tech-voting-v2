@@ -13894,32 +13894,32 @@ var App = function App(_ref) {
     _reactRouterDom.HashRouter,
     null,
     _react2.default.createElement(
-      "div",
-      { className: "container has-text-centered" },
+      'div',
+      { className: 'container has-text-centered' },
       _react2.default.createElement(
-        "div",
-        { className: "hero is-small is-primary" },
+        'div',
+        { className: 'hero is-small is-primary' },
         _react2.default.createElement(
-          "div",
-          { className: "hero-body has-text-centered" },
+          'div',
+          { className: 'hero-body has-text-centered' },
           _react2.default.createElement(
             _reactRouterDom.Link,
-            { to: "/", className: "" },
+            { to: '/', className: '' },
             _react2.default.createElement(
-              "h1",
-              { className: "title is-1" },
-              "Auth React Redux Express Boilerplate"
+              'h1',
+              { className: 'title is-1' },
+              'CX-Tech Hub'
             )
           ),
           _react2.default.createElement(_Nav2.default, null)
         )
       ),
       _react2.default.createElement(
-        "div",
-        { className: "" },
-        !auth.isAuthenticated && _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: "/", component: _Login2.default }),
-        _react2.default.createElement(_reactRouterDom.Route, { path: "/login", component: _Login2.default }),
-        _react2.default.createElement(_reactRouterDom.Route, { path: "/register", component: _Register2.default })
+        'div',
+        { className: '' },
+        !auth.isAuthenticated && _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _Login2.default }),
+        _react2.default.createElement(_reactRouterDom.Route, { path: '/login', component: _Login2.default }),
+        _react2.default.createElement(_reactRouterDom.Route, { path: '/register', component: _Register2.default })
       )
     )
   );
@@ -14223,6 +14223,8 @@ var _reactRouterDom = __webpack_require__(109);
 
 var _logout = __webpack_require__(128);
 
+var _os = __webpack_require__(295);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -14268,9 +14270,23 @@ var Nav = function (_React$Component) {
           _react2.default.createElement(
             'div',
             { className: 'navbar-brand' },
+            auth.isAuthenticated ? _react2.default.createElement(
+              'p',
+              null,
+              'Logged in as: ',
+              auth.user.user_name
+            ) : _react2.default.createElement(
+              'p',
+              null,
+              'Please register or login'
+            ),
             _react2.default.createElement(
               'span',
-              { onClick: this.toggleBurger, className: 'navbar-burger burger ' + (showBurger ? 'is-active' : ''), 'data-target': 'navbarMenuHeroA' },
+              {
+                onClick: this.toggleBurger,
+                className: 'navbar-burger burger ' + (showBurger ? 'is-active' : ''),
+                'data-target': 'navbarMenuHeroA'
+              },
               _react2.default.createElement('span', null),
               _react2.default.createElement('span', null),
               _react2.default.createElement('span', null)
@@ -14278,7 +14294,10 @@ var Nav = function (_React$Component) {
           ),
           _react2.default.createElement(
             'div',
-            { id: 'navbarMenuHeroA', className: 'navbar-menu ' + (showBurger ? "is-active" : '') },
+            {
+              id: 'navbarMenuHeroA',
+              className: 'navbar-menu ' + (showBurger ? 'is-active' : '')
+            },
             _react2.default.createElement(
               'div',
               { className: 'navbar-end' },
@@ -14290,11 +14309,19 @@ var Nav = function (_React$Component) {
                 'Logout'
               ) : [_react2.default.createElement(
                 _reactRouterDom.Link,
-                { onClick: this.toggleBurger, className: 'navbar-item is-large', to: '/login' },
+                {
+                  onClick: this.toggleBurger,
+                  className: 'navbar-item is-large',
+                  to: '/login'
+                },
                 'Login'
               ), _react2.default.createElement(
                 _reactRouterDom.Link,
-                { onClick: this.toggleBurger, className: 'navbar-item', to: '/register' },
+                {
+                  onClick: this.toggleBurger,
+                  className: 'navbar-item',
+                  to: '/register'
+                },
                 'Register'
               )]
             )
@@ -14366,8 +14393,6 @@ var Register = function (_React$Component) {
 
     _this.state = {
       user_name: '',
-      first_name: '',
-      last_name: '',
       password: '',
       confirm_password: ''
     };
@@ -14394,9 +14419,7 @@ var Register = function (_React$Component) {
       var _state = this.state,
           user_name = _state.user_name,
           password = _state.password,
-          confirm_password = _state.confirm_password,
-          first_name = _state.first_name,
-          last_name = _state.last_name;
+          confirm_password = _state.confirm_password;
 
       if (confirm_password != password) return this.props.dispatch((0, _login.loginError)("Passwords don't match"));
       this.props.dispatch((0, _register.registerUserRequest)(this.state));
@@ -14424,23 +14447,14 @@ var Register = function (_React$Component) {
           'label',
           { className: 'column is-6 is-offset-one-quarter label is-large has-text-centered' },
           'Username',
-          _react2.default.createElement('input', { required: true, className: 'input is-large has-text-centered is-fullwidth', placeholder: 'User Name', type: 'text', name: 'user_name', onChange: this.updateDetails })
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'columns' },
-          _react2.default.createElement(
-            'label',
-            { className: 'column is-6 label is-large has-text-centered' },
-            'First Name',
-            _react2.default.createElement('input', { required: true, className: 'input is-large has-text-centered is-fullwidth', placeholder: 'First Name', type: 'text', name: 'first_name', onChange: this.updateDetails })
-          ),
-          _react2.default.createElement(
-            'label',
-            { className: 'column is-6 label is-large has-text-centered' },
-            'Last Name',
-            _react2.default.createElement('input', { required: true, className: 'input is-large has-text-centered is-fullwidth', placeholder: 'Last Name', type: 'text', name: 'last_name', onChange: this.updateDetails })
-          )
+          _react2.default.createElement('input', {
+            required: true,
+            className: 'input is-large has-text-centered is-fullwidth',
+            placeholder: 'User Name',
+            type: 'text',
+            name: 'user_name',
+            onChange: this.updateDetails
+          })
         ),
         _react2.default.createElement('br', null),
         _react2.default.createElement(
@@ -14450,16 +14464,34 @@ var Register = function (_React$Component) {
             'label',
             { className: 'column is-6 label is-large has-text-centered' },
             'Password',
-            _react2.default.createElement('input', { required: true, className: 'input is-large has-text-centered is-fullwidth', placeholder: 'Password', type: 'password', name: 'password', onChange: this.updateDetails })
+            _react2.default.createElement('input', {
+              required: true,
+              className: 'input is-large has-text-centered is-fullwidth',
+              placeholder: 'Password',
+              type: 'password',
+              name: 'password',
+              onChange: this.updateDetails
+            })
           ),
           _react2.default.createElement(
             'label',
             { className: 'column is-6 label is-large has-text-centered' },
             'Confirm Password',
-            _react2.default.createElement('input', { required: true, className: 'input is-large has-text-centered is-fullwidth', placeholder: 'Confirm Password', type: 'password', name: 'confirm_password', onChange: this.updateDetails })
+            _react2.default.createElement('input', {
+              required: true,
+              className: 'input is-large has-text-centered is-fullwidth',
+              placeholder: 'Confirm Password',
+              type: 'password',
+              name: 'confirm_password',
+              onChange: this.updateDetails
+            })
           )
         ),
-        _react2.default.createElement('input', { className: 'button is-success is-large is-fullwidth', value: 'Register', type: 'submit' })
+        _react2.default.createElement('input', {
+          className: 'button is-success is-large is-fullwidth',
+          value: 'Register',
+          type: 'submit'
+        })
       );
     }
   }]);
@@ -31272,6 +31304,61 @@ module.exports = function(originalModule) {
 		module.webpackPolyfill = 1;
 	}
 	return module;
+};
+
+
+/***/ }),
+/* 295 */
+/***/ (function(module, exports) {
+
+exports.endianness = function () { return 'LE' };
+
+exports.hostname = function () {
+    if (typeof location !== 'undefined') {
+        return location.hostname
+    }
+    else return '';
+};
+
+exports.loadavg = function () { return [] };
+
+exports.uptime = function () { return 0 };
+
+exports.freemem = function () {
+    return Number.MAX_VALUE;
+};
+
+exports.totalmem = function () {
+    return Number.MAX_VALUE;
+};
+
+exports.cpus = function () { return [] };
+
+exports.type = function () { return 'Browser' };
+
+exports.release = function () {
+    if (typeof navigator !== 'undefined') {
+        return navigator.appVersion;
+    }
+    return '';
+};
+
+exports.networkInterfaces
+= exports.getNetworkInterfaces
+= function () { return {} };
+
+exports.arch = function () { return 'javascript' };
+
+exports.platform = function () { return 'browser' };
+
+exports.tmpdir = exports.tmpDir = function () {
+    return '/tmp';
+};
+
+exports.EOL = '\n';
+
+exports.homedir = function () {
+	return '/'
 };
 
 
