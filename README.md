@@ -1,3 +1,17 @@
+## User Stories
+
+CX Tech Feedback
+
+- remove send feedback on the left
+- comments toggled 
+- user login for comments
+- laurence and leads to have a status/banner in progress etc 
+- link to confluence page for suggestions (left button at the top) 
+- one upvote per suggestion - i can use their unique id's for this
+- categories for (process updates, new ideas, team improvements) - drop down filter -> popular ideas (top 5) will be the default 
+- options will be categories or top 10. 
+- search (starting by name -> looking into search across other features such as completed, in progress). 
+
 ## Setup
 
 Run the following commands in your terminal:
