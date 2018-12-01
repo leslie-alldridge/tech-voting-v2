@@ -7494,6 +7494,7 @@ exports.receiveLike = receiveLike;
 exports.getSuggestionAction = getSuggestionAction;
 exports.addSuggestionAction = addSuggestionAction;
 exports.upVoteAction = upVoteAction;
+exports.addCommentAction = addCommentAction;
 
 var _api = __webpack_require__(72);
 
@@ -7564,6 +7565,17 @@ function upVoteAction(id) {
     return (0, _api2.default)('post', 'suggestion/upvote', { id: id }).then(function (response) {
       dispatch(receiveLike(response.body));
     });
+  };
+}
+
+function addCommentAction(comment, id) {
+  console.log(comment + 'is for' + id);
+
+  return function (dispatch) {
+    dispatch(requestSuggestion());
+    // return request('post', 'suggestion/upvote', { id }).then(response => {
+    //   dispatch(receiveLike(response.body));
+    // });
   };
 }
 
@@ -14580,6 +14592,8 @@ var Main = function (_React$Component) {
     _this.togglePage = _this.togglePage.bind(_this);
     _this.handleComment = _this.handleComment.bind(_this);
     _this.handleLike = _this.handleLike.bind(_this);
+    _this.submitComment = _this.submitComment.bind(_this);
+    _this.handleCommentEntry = _this.handleCommentEntry.bind(_this);
     return _this;
   }
 
@@ -14615,11 +14629,21 @@ var Main = function (_React$Component) {
           id: id
         });
       }
-      this.props.addComment(id);
     }
   }, {
-    key: 'handleCommentSubmit',
-    value: function handleCommentSubmit(id) {}
+    key: 'handleCommentEntry',
+    value: function handleCommentEntry(e) {
+      console.log(e.target.value);
+
+      this.setState({
+        userComment: [e.target.value]
+      });
+    }
+  }, {
+    key: 'submitComment',
+    value: function submitComment() {
+      this.props.addComment(this.state.userComment, this.state.id);
+    }
   }, {
     key: 'render',
     value: function render() {
@@ -14779,6 +14803,7 @@ var Main = function (_React$Component) {
                     'p',
                     { className: 'control' },
                     _react2.default.createElement('textarea', {
+                      onChange: _this2.handleCommentEntry,
                       className: 'textarea',
                       placeholder: 'Add a comment...'
                     })
@@ -14795,7 +14820,10 @@ var Main = function (_React$Component) {
                       { className: 'level-item' },
                       _react2.default.createElement(
                         'a',
-                        { className: 'button is-info' },
+                        {
+                          onClick: _this2.submitComment,
+                          className: 'button is-info'
+                        },
                         'Submit'
                       )
                     )
@@ -14830,6 +14858,9 @@ function mapDispatchToProps(dispatch) {
     },
     upVote: function upVote(id) {
       dispatch((0, _suggestions.upVoteAction)(id));
+    },
+    addComment: function addComment(comment, id) {
+      dispatch((0, _suggestions.addCommentAction)(comment, id));
     }
   };
 }

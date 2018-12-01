@@ -1,7 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { getSuggestionAction, upVoteAction } from '../actions/suggestions';
+import {
+  getSuggestionAction,
+  upVoteAction,
+  addCommentAction
+} from '../actions/suggestions';
 import AddPage from './AddPage';
 
 class Main extends React.Component {
@@ -16,6 +20,8 @@ class Main extends React.Component {
     this.togglePage = this.togglePage.bind(this);
     this.handleComment = this.handleComment.bind(this);
     this.handleLike = this.handleLike.bind(this);
+    this.submitComment = this.submitComment.bind(this);
+    this.handleCommentEntry = this.handleCommentEntry.bind(this);
   }
 
   componentDidMount() {
@@ -45,10 +51,19 @@ class Main extends React.Component {
         id: id
       });
     }
-    this.props.addComment(id);
   }
 
-  handleCommentSubmit(id) {}
+  handleCommentEntry(e) {
+    console.log(e.target.value);
+
+    this.setState({
+      userComment: [e.target.value]
+    });
+  }
+
+  submitComment() {
+    this.props.addComment(this.state.userComment, this.state.id);
+  }
 
   render() {
     const { suggestions } = this.props.suggestions;
@@ -142,6 +157,7 @@ class Main extends React.Component {
                       <div className="field">
                         <p className="control">
                           <textarea
+                            onChange={this.handleCommentEntry}
                             className="textarea"
                             placeholder="Add a comment..."
                           />
@@ -150,7 +166,12 @@ class Main extends React.Component {
                       <nav className="level">
                         <div className="level-left">
                           <div className="level-item">
-                            <a className="button is-info">Submit</a>
+                            <a
+                              onClick={this.submitComment}
+                              className="button is-info"
+                            >
+                              Submit
+                            </a>
                           </div>
                         </div>
                       </nav>
@@ -179,6 +200,9 @@ function mapDispatchToProps(dispatch) {
     },
     upVote: id => {
       dispatch(upVoteAction(id));
+    },
+    addComment: (comment, id) => {
+      dispatch(addCommentAction(comment, id));
     }
   };
 }
