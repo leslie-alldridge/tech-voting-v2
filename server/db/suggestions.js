@@ -21,8 +21,22 @@ function upVote(id) {
     });
 }
 
+function addComment(comment, id) {
+  console.log(comment, id);
+  let row = {
+    id,
+    comment: comment[0]
+  };
+  return db('comments')
+    .insert(row)
+    .then(data => {
+      return db('comments').select();
+    });
+}
+
 module.exports = {
   getSuggestions,
   addSuggestions,
-  upVote
+  upVote,
+  addComment
 };

@@ -7570,12 +7570,11 @@ function upVoteAction(id) {
 
 function addCommentAction(comment, id) {
   console.log(comment + 'is for' + id);
-
   return function (dispatch) {
     dispatch(requestSuggestion());
-    // return request('post', 'suggestion/upvote', { id }).then(response => {
-    //   dispatch(receiveLike(response.body));
-    // });
+    return (0, _api2.default)('post', 'suggestion/comment', { comment: comment, id: id }).then(function (response) {
+      dispatch(receiveLike(response.body));
+    });
   };
 }
 

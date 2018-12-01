@@ -1,6 +1,11 @@
 let router = require('express').Router();
 
-let { addSuggestions, getSuggestions, upVote } = require('../db/suggestions');
+let {
+  addSuggestions,
+  getSuggestions,
+  upVote,
+  addComment
+} = require('../db/suggestions');
 
 router.get('/all', (req, res) => {
   getSuggestions().then(response => {
@@ -25,6 +30,13 @@ router.post('/add', (req, res) => {
 router.post('/upvote', (req, res) => {
   const { id } = req.body;
   upVote(id).then(response => {
+    res.json(response);
+  });
+});
+
+router.post('/comment', (req, res) => {
+  const { comment, id } = req.body;
+  addComment(comment, id).then(response => {
     res.json(response);
   });
 });
