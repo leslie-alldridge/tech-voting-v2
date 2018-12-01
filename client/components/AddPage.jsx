@@ -8,7 +8,8 @@ class AddPage extends React.Component {
     this.state = {
       title: '',
       description: '',
-      category: 'none'
+      category: 'none',
+      user: '' || this.props.auth.user.user_name
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);

@@ -10,12 +10,13 @@ router.get('/all', (req, res) => {
 
 router.post('/add', (req, res) => {
   console.log(req.body);
-  const { title, description, category } = req.body;
+  const { title, description, category, user } = req.body;
   let data = {
     title,
     description,
     votes: 1,
-    category
+    category,
+    user
   };
   addSuggestions(data).then(response => {
     console.log(response);

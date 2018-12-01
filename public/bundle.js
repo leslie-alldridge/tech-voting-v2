@@ -14257,7 +14257,8 @@ var AddPage = function (_React$Component) {
     _this.state = {
       title: '',
       description: '',
-      category: 'none'
+      category: 'none',
+      user: '' || _this.props.auth.user.user_name
     };
     _this.handleSubmit = _this.handleSubmit.bind(_this);
     _this.handleChange = _this.handleChange.bind(_this);
