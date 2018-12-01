@@ -1,25 +1,58 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addSuggestionAction } from '../actions/suggestions';
+import { runInThisContext } from 'vm';
 
 class Main extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      addPage: false
+    };
+    this.togglePage = this.togglePage.bind(this);
   }
 
   componentDidMount() {
     this.props.addSuggestion();
   }
 
+  togglePage() {
+    this.setState({
+      addPage: true
+    });
+  }
+
   render() {
     const { suggestions } = this.props.suggestions;
-    suggestions.sort((a, b) => b.votes - a.votes);
+    suggestions
+      ? suggestions.sort((a, b) => b.votes - a.votes)
+      : suggestions == suggestions;
     return (
       <div className="container">
-        <h2 id="mainTitle" className="title is-2 has-text-centered">
-          Popular Improvements
-        </h2>
-        <hr />
+        {!this.state.addPage && (
+          <div>
+            <h2 id="mainTitle" className="title is-2 has-text-centered">
+              Popular Improvements
+            </h2>
+            <hr />
+            <div id="buttons" className="container has-text-centered">
+              <a
+                target="_blank"
+                href="https://www.atlassian.com/software/confluence"
+                className="button is-link is-rounded"
+              >
+                Send Feedback
+              </a>
+              <a
+                onClick={this.togglePage}
+                className="button is-link is-rounded"
+              >
+                Add Improvement
+              </a>
+            </div>
+            <hr />
+          </div>
+        )}
         {this.props.suggestions.suggestions &&
           suggestions.map(suggestion => {
             return (

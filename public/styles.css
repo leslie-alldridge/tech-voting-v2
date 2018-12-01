@@ -18,3 +18,8 @@
 #votes {
   margin-left: 13%;
 }
+
+#buttons a {
+  margin-left: 3%;
+  margin-right: 3%;
+}
