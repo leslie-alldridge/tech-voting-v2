@@ -35,8 +35,8 @@ router.post('/upvote', (req, res) => {
 });
 
 router.post('/comment', (req, res) => {
-  const { comment, id } = req.body;
-  addComment(comment, id).then(response => {
+  const { comment, id, name } = req.body;
+  addComment(comment, id, name).then(response => {
     res.json(response);
   });
 });

@@ -62,7 +62,13 @@ class Main extends React.Component {
   }
 
   submitComment() {
-    this.props.addComment(this.state.userComment, this.state.id);
+    console.log(this.props.auth.user.user_name);
+
+    this.props.addComment(
+      this.state.userComment,
+      this.state.id,
+      this.props.auth.user.user_name
+    );
   }
 
   render() {
@@ -201,8 +207,8 @@ function mapDispatchToProps(dispatch) {
     upVote: id => {
       dispatch(upVoteAction(id));
     },
-    addComment: (comment, id) => {
-      dispatch(addCommentAction(comment, id));
+    addComment: (comment, id, name) => {
+      dispatch(addCommentAction(comment, id, name));
     }
   };
 }

@@ -66,11 +66,11 @@ export function upVoteAction(id) {
   };
 }
 
-export function addCommentAction(comment, id) {
-  console.log(comment + 'is for' + id);
+export function addCommentAction(comment, id, name) {
+  console.log(comment + 'is for' + name);
   return function(dispatch) {
     dispatch(requestSuggestion());
-    return request('post', 'suggestion/comment', { comment, id }).then(
+    return request('post', 'suggestion/comment', { comment, id, name }).then(
       response => {
         dispatch(receiveLike(response.body));
       }

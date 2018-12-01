@@ -7568,11 +7568,11 @@ function upVoteAction(id) {
   };
 }
 
-function addCommentAction(comment, id) {
-  console.log(comment + 'is for' + id);
+function addCommentAction(comment, id, name) {
+  console.log(comment + 'is for' + name);
   return function (dispatch) {
     dispatch(requestSuggestion());
-    return (0, _api2.default)('post', 'suggestion/comment', { comment: comment, id: id }).then(function (response) {
+    return (0, _api2.default)('post', 'suggestion/comment', { comment: comment, id: id, name: name }).then(function (response) {
       dispatch(receiveLike(response.body));
     });
   };
@@ -14641,7 +14641,9 @@ var Main = function (_React$Component) {
   }, {
     key: 'submitComment',
     value: function submitComment() {
-      this.props.addComment(this.state.userComment, this.state.id);
+      console.log(this.props.auth.user.user_name);
+
+      this.props.addComment(this.state.userComment, this.state.id, this.props.auth.user.user_name);
     }
   }, {
     key: 'render',
@@ -14858,8 +14860,8 @@ function mapDispatchToProps(dispatch) {
     upVote: function upVote(id) {
       dispatch((0, _suggestions.upVoteAction)(id));
     },
-    addComment: function addComment(comment, id) {
-      dispatch((0, _suggestions.addCommentAction)(comment, id));
+    addComment: function addComment(comment, id, name) {
+      dispatch((0, _suggestions.addCommentAction)(comment, id, name));
     }
   };
 }
