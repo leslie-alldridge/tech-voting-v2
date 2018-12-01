@@ -73,6 +73,7 @@ class AddPage extends React.Component {
               <input type="submit" value="submit" />
             )}
         </form>
+        <button onClick={this.props.togglePage}>Back</button>
       </div>
     );
   }

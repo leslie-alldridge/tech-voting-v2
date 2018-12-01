@@ -20,7 +20,7 @@ class Main extends React.Component {
 
   togglePage() {
     this.setState({
-      addPage: true
+      addPage: !this.state.addPage
     });
   }
 

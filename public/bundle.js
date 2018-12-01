@@ -7532,7 +7532,6 @@ function getSuggestionAction() {
     dispatch(requestSuggestion());
     return (0, _api2.default)('get', 'suggestion/all').then(function (response) {
       dispatch(receiveSuggestion(response.body));
-      //document.location = '/#/';
     });
   };
 }
@@ -7543,7 +7542,6 @@ function addSuggestionAction(data) {
     dispatch(requestSuggestion());
     return (0, _api2.default)('post', 'suggestion/add', data).then(function (response) {
       dispatch(receiveSuggestion(response.body));
-      //document.location = '/#/';
     });
   };
 }
@@ -7554,7 +7552,6 @@ function upVoteAction(id) {
     dispatch(requestSuggestion());
     return (0, _api2.default)('post', 'suggestion/upvote', { id: id }).then(function (response) {
       dispatch(receiveSuggestion(response.body));
-      //document.location = '/#/';
     });
   };
 }
@@ -14372,6 +14369,11 @@ var AddPage = function (_React$Component) {
             )
           ),
           this.state.category !== 'none' && this.state.title !== '' && this.state.description !== 'none' && _react2.default.createElement('input', { type: 'submit', value: 'submit' })
+        ),
+        _react2.default.createElement(
+          'button',
+          { onClick: this.props.togglePage },
+          'Back'
         )
       );
     }
@@ -14575,13 +14577,12 @@ var Main = function (_React$Component) {
     key: 'togglePage',
     value: function togglePage() {
       this.setState({
-        addPage: true
+        addPage: !this.state.addPage
       });
     }
   }, {
     key: 'handleLike',
     value: function handleLike(id, e) {
-      console.log(e);
       e.preventDefault();
       this.props.upVote(id);
     }
@@ -14679,7 +14680,6 @@ var Main = function (_React$Component) {
                   _react2.default.createElement(
                     'a',
                     {
-                      href: 'javascript:void(0)',
                       onClick: function onClick(e) {
                         return _this2.handleLike(suggestion.id, e);
                       },
