@@ -7492,6 +7492,7 @@ exports.receiveSuggestion = receiveSuggestion;
 exports.suggestionErr = suggestionErr;
 exports.getSuggestionAction = getSuggestionAction;
 exports.addSuggestionAction = addSuggestionAction;
+exports.upVoteAction = upVoteAction;
 
 var _api = __webpack_require__(72);
 
@@ -7525,25 +7526,35 @@ function suggestionErr(message) {
   };
 }
 
+//Reading suggestions from DB
 function getSuggestionAction() {
   return function (dispatch) {
     dispatch(requestSuggestion());
     return (0, _api2.default)('get', 'suggestion/all').then(function (response) {
-      console.log(response);
-
       dispatch(receiveSuggestion(response.body));
       document.location = '/#/';
     });
   };
 }
 
+//Adding suggestions to DB
 function addSuggestionAction(data) {
-  console.log(data);
-
   return function (dispatch) {
     dispatch(requestSuggestion());
     return (0, _api2.default)('post', 'suggestion/add', data).then(function (response) {
-      console.log(response);
+      dispatch(receiveSuggestion(response.body));
+      document.location = '/#/';
+    });
+  };
+}
+
+//Up voting suggestion
+function upVoteAction(id) {
+  console.log(id);
+
+  return function (dispatch) {
+    dispatch(requestSuggestion());
+    return (0, _api2.default)('post', 'suggestion/upvote', id).then(function (response) {
       dispatch(receiveSuggestion(response.body));
       document.location = '/#/';
     });
@@ -14553,6 +14564,7 @@ var Main = function (_React$Component) {
       addPage: false
     };
     _this.togglePage = _this.togglePage.bind(_this);
+    _this.handleLike = _this.handleLike.bind(_this);
     return _this;
   }
 
@@ -14569,8 +14581,15 @@ var Main = function (_React$Component) {
       });
     }
   }, {
+    key: 'handleLike',
+    value: function handleLike(id) {
+      this.props.upVote(id);
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var _this2 = this;
+
       var suggestions = this.props.suggestions.suggestions;
 
       suggestions ? suggestions.sort(function (a, b) {
@@ -14659,7 +14678,14 @@ var Main = function (_React$Component) {
                   ),
                   _react2.default.createElement(
                     'a',
-                    { id: 'secondIcon', className: 'level-item' },
+                    {
+                      onClick: function onClick() {
+                        return _this2.handleLike(suggestion.id);
+                      },
+                      id: 'secondIcon',
+                      name: suggestion.id,
+                      className: 'level-item'
+                    },
                     _react2.default.createElement(
                       'span',
                       { className: 'icon is-medium' },
@@ -14713,6 +14739,9 @@ function mapDispatchToProps(dispatch) {
   return {
     getSuggestion: function getSuggestion() {
       dispatch((0, _suggestions.getSuggestionAction)());
+    },
+    upVote: function upVote(id) {
+      dispatch(upVoteAction(id));
     }
   };
 }
@@ -14741,8 +14770,6 @@ var _reactRedux = __webpack_require__(18);
 var _reactRouterDom = __webpack_require__(111);
 
 var _logout = __webpack_require__(130);
-
-var _os = __webpack_require__(171);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -18226,61 +18253,7 @@ function isObjectLike(value) {
 
 
 /***/ }),
-/* 171 */
-/***/ (function(module, exports) {
-
-exports.endianness = function () { return 'LE' };
-
-exports.hostname = function () {
-    if (typeof location !== 'undefined') {
-        return location.hostname
-    }
-    else return '';
-};
-
-exports.loadavg = function () { return [] };
-
-exports.uptime = function () { return 0 };
-
-exports.freemem = function () {
-    return Number.MAX_VALUE;
-};
-
-exports.totalmem = function () {
-    return Number.MAX_VALUE;
-};
-
-exports.cpus = function () { return [] };
-
-exports.type = function () { return 'Browser' };
-
-exports.release = function () {
-    if (typeof navigator !== 'undefined') {
-        return navigator.appVersion;
-    }
-    return '';
-};
-
-exports.networkInterfaces
-= exports.getNetworkInterfaces
-= function () { return {} };
-
-exports.arch = function () { return 'javascript' };
-
-exports.platform = function () { return 'browser' };
-
-exports.tmpdir = exports.tmpDir = function () {
-    return '/tmp';
-};
-
-exports.EOL = '\n';
-
-exports.homedir = function () {
-	return '/'
-};
-
-
-/***/ }),
+/* 171 */,
 /* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 

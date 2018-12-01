@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import { getSuggestionAction } from '../actions/suggestions';
 import AddPage from './AddPage';
 
@@ -10,6 +11,7 @@ class Main extends React.Component {
       addPage: false
     };
     this.togglePage = this.togglePage.bind(this);
+    this.handleLike = this.handleLike.bind(this);
   }
 
   componentDidMount() {
@@ -20,6 +22,10 @@ class Main extends React.Component {
     this.setState({
       addPage: true
     });
+  }
+
+  handleLike(id) {
+    this.props.upVote(id);
   }
 
   render() {
@@ -78,7 +84,12 @@ class Main extends React.Component {
                           <i className="fas fa-reply" />
                         </span>
                       </a>
-                      <a id="secondIcon" className="level-item">
+                      <a
+                        onClick={() => this.handleLike(suggestion.id)}
+                        id="secondIcon"
+                        name={suggestion.id}
+                        className="level-item"
+                      >
                         <span className="icon is-medium">
                           <i id="like" className="fas fa-heart" />
                           <strong id="votes">{suggestion.votes}</strong>
@@ -110,6 +121,9 @@ function mapDispatchToProps(dispatch) {
   return {
     getSuggestion: () => {
       dispatch(getSuggestionAction());
+    },
+    upVote: id => {
+      dispatch(upVoteAction(id));
     }
   };
 }

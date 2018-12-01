@@ -26,25 +26,35 @@ export function suggestionErr(message) {
   };
 }
 
+//Reading suggestions from DB
 export function getSuggestionAction() {
   return function(dispatch) {
     dispatch(requestSuggestion());
     return request('get', 'suggestion/all').then(response => {
-      console.log(response);
-
       dispatch(receiveSuggestion(response.body));
       document.location = '/#/';
     });
   };
 }
 
+//Adding suggestions to DB
 export function addSuggestionAction(data) {
-  console.log(data);
-
   return function(dispatch) {
     dispatch(requestSuggestion());
     return request('post', 'suggestion/add', data).then(response => {
-      console.log(response);
+      dispatch(receiveSuggestion(response.body));
+      document.location = '/#/';
+    });
+  };
+}
+
+//Up voting suggestion
+export function upVoteAction(id) {
+  console.log(id);
+
+  return function(dispatch) {
+    dispatch(requestSuggestion());
+    return request('post', 'suggestion/upvote', id).then(response => {
       dispatch(receiveSuggestion(response.body));
       document.location = '/#/';
     });
