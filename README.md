@@ -4,7 +4,7 @@ CX Tech Feedback
 
 ### In progress
 
-- comments toggled
+- comments counter unique to each suggestion
 - laurence and leads to have a status/banner in progress etc
 - one upvote per suggestion - i can use their unique id's for this
 - categories for (process updates, new ideas, team improvements) - drop down filter -> popular ideas (top 5) will be the default
@@ -14,6 +14,7 @@ CX Tech Feedback
 
 ### Done
 
+- comments toggled
 - remove send feedback on the left (removed and placed with confluence link)
 - user login for comments (login completed and ideas take the current logged in users name)
 - link to confluence page for suggestions (done - just needs the right link)
