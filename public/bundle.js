@@ -14501,7 +14501,7 @@ var Main = function (_React$Component) {
             )
           )
         ),
-        suggestions.map(function (suggestion) {
+        this.props.suggestions.suggestions && suggestions.map(function (suggestion) {
           return console.log(suggestion);
         })
       );
@@ -14522,8 +14522,6 @@ var mapStateToProps = function mapStateToProps(_ref) {
 };
 
 function mapDispatchToProps(dispatch) {
-  console.log('hit');
-
   return {
     addSuggestion: function addSuggestion() {
       dispatch((0, _suggestions.addSuggestionAction)());

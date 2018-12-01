@@ -89,9 +89,10 @@ class Main extends React.Component {
             </nav>
           </div>
         </article>
-        {suggestions.map(suggestion => {
-          return console.log(suggestion);
-        })}
+        {this.props.suggestions.suggestions &&
+          suggestions.map(suggestion => {
+            return console.log(suggestion);
+          })}
       </div>
     );
   }
@@ -104,8 +105,6 @@ const mapStateToProps = ({ auth, suggestions }) => {
 };
 
 function mapDispatchToProps(dispatch) {
-  console.log('hit');
-
   return {
     addSuggestion: () => {
       dispatch(addSuggestionAction());
