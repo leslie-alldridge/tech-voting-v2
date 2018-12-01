@@ -14375,134 +14375,70 @@ var Main = function (_React$Component) {
           'Popular Improvements'
         ),
         _react2.default.createElement('hr', null),
-        _react2.default.createElement(
-          'article',
-          { className: 'media' },
-          _react2.default.createElement(
-            'figure',
-            { className: 'media-left' },
-            _react2.default.createElement(
-              'p',
-              { className: 'image is-64x64' },
-              _react2.default.createElement('img', { src: '/idea.png' })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'media-content' },
-            _react2.default.createElement(
-              'div',
-              { className: 'content' },
-              _react2.default.createElement(
-                'p',
-                null,
-                _react2.default.createElement(
-                  'strong',
-                  { id: 'ideaTitle' },
-                  'Stop Salesforce from freezing'
-                ),
-                _react2.default.createElement('br', null),
-                'To help us serve our current customers better and scale to five million users we will need a support interface that allows us to handle multiple cases with ease. Our current set up freezes often, causing our agents to wait a long time before then can send an email.'
-              )
-            ),
-            _react2.default.createElement(
-              'nav',
-              { className: 'level is-mobile' },
-              _react2.default.createElement(
-                'div',
-                { className: 'level-left' },
-                _react2.default.createElement(
-                  'a',
-                  { className: 'level-item' },
-                  _react2.default.createElement(
-                    'span',
-                    { className: 'icon is-medium' },
-                    _react2.default.createElement('i', { className: 'fas fa-reply' })
-                  )
-                ),
-                _react2.default.createElement(
-                  'a',
-                  { id: 'secondIcon', className: 'level-item' },
-                  _react2.default.createElement(
-                    'span',
-                    { className: 'icon is-medium' },
-                    _react2.default.createElement('i', { id: 'like', className: 'fas fa-heart' }),
-                    _react2.default.createElement(
-                      'strong',
-                      { id: 'votes' },
-                      '11'
-                    )
-                  )
-                )
-              )
-            )
-          )
-        ),
-        _react2.default.createElement(
-          'article',
-          { className: 'media' },
-          _react2.default.createElement(
-            'figure',
-            { className: 'media-left' },
-            _react2.default.createElement(
-              'p',
-              { className: 'image is-64x64' },
-              _react2.default.createElement('img', { src: '/improvement.png' })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'media-content' },
-            _react2.default.createElement(
-              'div',
-              { className: 'content' },
-              _react2.default.createElement(
-                'p',
-                null,
-                _react2.default.createElement(
-                  'strong',
-                  { id: 'ideaTitle' },
-                  'New wording for Status Page'
-                ),
-                _react2.default.createElement('br', null),
-                'Provide a #human experience for our users. We\'ve received multiple complaints about our status page wording being a copy paste effort between outages.'
-              )
-            ),
-            _react2.default.createElement(
-              'nav',
-              { className: 'level is-mobile' },
-              _react2.default.createElement(
-                'div',
-                { className: 'level-left' },
-                _react2.default.createElement(
-                  'a',
-                  { className: 'level-item' },
-                  _react2.default.createElement(
-                    'span',
-                    { className: 'icon is-medium' },
-                    _react2.default.createElement('i', { className: 'fas fa-reply' })
-                  )
-                ),
-                _react2.default.createElement(
-                  'a',
-                  { id: 'secondIcon', className: 'level-item' },
-                  _react2.default.createElement(
-                    'span',
-                    { className: 'icon is-medium' },
-                    _react2.default.createElement('i', { id: 'like', className: 'fas fa-heart' }),
-                    _react2.default.createElement(
-                      'strong',
-                      { id: 'votes' },
-                      '5'
-                    )
-                  )
-                )
-              )
-            )
-          )
-        ),
         this.props.suggestions.suggestions && suggestions.map(function (suggestion) {
-          return console.log(suggestion);
+          return _react2.default.createElement(
+            'article',
+            { className: 'media' },
+            _react2.default.createElement(
+              'figure',
+              { className: 'media-left' },
+              _react2.default.createElement(
+                'p',
+                { className: 'image is-64x64' },
+                _react2.default.createElement('img', { src: '/' + suggestion.category + '.png' })
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'media-content' },
+              _react2.default.createElement(
+                'div',
+                { className: 'content' },
+                _react2.default.createElement(
+                  'p',
+                  null,
+                  _react2.default.createElement(
+                    'strong',
+                    { id: 'ideaTitle' },
+                    suggestion.title
+                  ),
+                  _react2.default.createElement('br', null),
+                  suggestion.description
+                )
+              ),
+              _react2.default.createElement(
+                'nav',
+                { className: 'level is-mobile' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'level-left' },
+                  _react2.default.createElement(
+                    'a',
+                    { className: 'level-item' },
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'icon is-medium' },
+                      _react2.default.createElement('i', { className: 'fas fa-reply' })
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'a',
+                    { id: 'secondIcon', className: 'level-item' },
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'icon is-medium' },
+                      _react2.default.createElement('i', { id: 'like', className: 'fas fa-heart' }),
+                      _react2.default.createElement(
+                        'strong',
+                        { id: 'votes' },
+                        suggestion.votes
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          );
         })
       );
     }
