@@ -14708,6 +14708,14 @@ var Main = function (_React$Component) {
       suggestions ? suggestions.sort(function (a, b) {
         return b.votes - a.votes;
       }) : suggestions == suggestions;
+      var count = 0;
+      this.props.suggestions.comments.map(function (comment) {
+        if (comment.id === _this2.state.id) {
+          return count++;
+        }
+      });
+      console.log(count);
+
       return _react2.default.createElement(
         'div',
         { className: 'container' },
@@ -14847,7 +14855,7 @@ var Main = function (_React$Component) {
                         _react2.default.createElement(
                           'strong',
                           { id: 'votes' },
-                          '0'
+                          count
                         )
                       )
                     )
@@ -14912,30 +14920,32 @@ var Main = function (_React$Component) {
               )
             ),
             _this2.state.showComment && _this2.state.id == suggestion.id && _this2.props.suggestions.comments && _this2.props.suggestions.comments.map(function (comment) {
-              return _react2.default.createElement(
-                'article',
-                { key: comment.comment, className: 'media' },
-                _react2.default.createElement(
-                  'div',
-                  { className: 'media-content' },
+              if (comment.id === _this2.state.id) {
+                return _react2.default.createElement(
+                  'article',
+                  { key: comment.comment, className: 'media' },
                   _react2.default.createElement(
                     'div',
-                    { className: 'content' },
+                    { className: 'media-content' },
                     _react2.default.createElement(
-                      'p',
-                      null,
+                      'div',
+                      { className: 'content' },
                       _react2.default.createElement(
-                        'strong',
+                        'p',
                         null,
-                        comment.user
-                      ),
-                      _react2.default.createElement('br', null),
-                      comment.comment,
-                      _react2.default.createElement('br', null)
+                        _react2.default.createElement(
+                          'strong',
+                          null,
+                          comment.user
+                        ),
+                        _react2.default.createElement('br', null),
+                        comment.comment,
+                        _react2.default.createElement('br', null)
+                      )
                     )
                   )
-                )
-              );
+                );
+              }
             })
           );
         }),

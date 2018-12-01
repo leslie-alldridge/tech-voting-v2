@@ -98,6 +98,14 @@ class Main extends React.Component {
     suggestions
       ? suggestions.sort((a, b) => b.votes - a.votes)
       : suggestions == suggestions;
+    let count = 0;
+    this.props.suggestions.comments.map(comment => {
+      if (comment.id === this.state.id) {
+        return count++;
+      }
+    });
+    console.log(count);
+
     return (
       <div className="container">
         {!this.state.addPage && (
@@ -184,7 +192,7 @@ class Main extends React.Component {
                         >
                           <span className="icon is-medium">
                             <i id="like" className="fas fa-comments" />
-                            <strong id="votes">0</strong>
+                            <strong id="votes">{count}</strong>
                           </span>
                         </a>
                       </div>
@@ -226,20 +234,22 @@ class Main extends React.Component {
                   this.state.id == suggestion.id &&
                   this.props.suggestions.comments &&
                   this.props.suggestions.comments.map(comment => {
-                    return (
-                      <article key={comment.comment} className="media">
-                        <div className="media-content">
-                          <div className="content">
-                            <p>
-                              <strong>{comment.user}</strong>
-                              <br />
-                              {comment.comment}
-                              <br />
-                            </p>
+                    if (comment.id === this.state.id) {
+                      return (
+                        <article key={comment.comment} className="media">
+                          <div className="media-content">
+                            <div className="content">
+                              <p>
+                                <strong>{comment.user}</strong>
+                                <br />
+                                {comment.comment}
+                                <br />
+                              </p>
+                            </div>
                           </div>
-                        </div>
-                      </article>
-                    );
+                        </article>
+                      );
+                    }
                   })}
               </div>
             );
