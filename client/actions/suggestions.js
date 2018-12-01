@@ -31,6 +31,8 @@ export function addSuggestionAction() {
     dispatch(requestSuggestion());
     return request('get', 'suggestion/all')
       .then(response => {
+        console.log(response);
+
         dispatch(receiveSuggestion(response.body));
         document.location = '/#/';
       })
