@@ -8,9 +8,13 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      addPage: false
+      addPage: false,
+      id: '',
+      comment: false,
+      userComment: ''
     };
     this.togglePage = this.togglePage.bind(this);
+    this.handleComment = this.handleComment.bind(this);
     this.handleLike = this.handleLike.bind(this);
   }
 
@@ -28,6 +32,23 @@ class Main extends React.Component {
     e.preventDefault();
     this.props.upVote(id);
   }
+
+  handleComment(id, e) {
+    e.preventDefault();
+    if (id == this.state.id) {
+      this.setState({
+        comment: !this.state.comment
+      });
+    } else {
+      this.setState({
+        comment: true,
+        id: id
+      });
+    }
+    this.props.addComment(id);
+  }
+
+  handleCommentSubmit(id) {}
 
   render() {
     const { suggestions } = this.props.suggestions;
@@ -69,46 +90,74 @@ class Main extends React.Component {
           !this.state.addPage &&
           suggestions.map(suggestion => {
             return (
-              <article key={suggestion.id} className="media">
-                <figure className="media-left">
-                  <p className="image is-64x64">
-                    <img src={`/${suggestion.category}.png`} />
-                  </p>
-                </figure>
-                <div className="media-content">
-                  <div className="content">
-                    <p>
-                      <strong id="ideaTitle">{suggestion.title}</strong>
-                      <br />
-                      {suggestion.description}
+              <div>
+                <article key={suggestion.id} className="media">
+                  <figure className="media-left">
+                    <p className="image is-64x64">
+                      <img src={`/${suggestion.category}.png`} />
                     </p>
-                  </div>
-                  <nav className="level is-mobile">
-                    <div className="level-left">
-                      <a className="level-item">
-                        <span className="icon is-medium">
-                          <i className="fas fa-reply" />
-                        </span>
-                      </a>
-                      <a
-                        onClick={e => this.handleLike(suggestion.id, e)}
-                        id="secondIcon"
-                        name={suggestion.id}
-                        className="level-item"
-                      >
-                        <span className="icon is-medium">
-                          <i id="like" className="fas fa-heart" />
-                          <strong id="votes">{suggestion.votes}</strong>
-                        </span>
-                      </a>
+                  </figure>
+                  <div className="media-content">
+                    <div className="content">
+                      <p>
+                        <strong id="ideaTitle">{suggestion.title}</strong>
+                        <br />
+                        {suggestion.description}
+                      </p>
                     </div>
-                    <p>
-                      <i id="submittedBy">Submitted by:</i>{' '}
-                      <b id="submittedBy">{suggestion.user}</b>
-                    </p>
-                  </nav>
-                </div>
-              </article>
+                    <nav className="level is-mobile">
+                      <div className="level-left">
+                        <a
+                          onClick={e => this.handleComment(suggestion.id, e)}
+                          id="secondIcon"
+                          name={suggestion.id}
+                          className="level-item"
+                        >
+                          <span className="icon is-medium">
+                            <i className="fas fa-reply" />
+                          </span>
+                        </a>
+                        <a
+                          onClick={e => this.handleLike(suggestion.id, e)}
+                          id="secondIcon"
+                          name={suggestion.id}
+                          className="level-item"
+                        >
+                          <span className="icon is-medium">
+                            <i id="like" className="fas fa-heart" />
+                            <strong id="votes">{suggestion.votes}</strong>
+                          </span>
+                        </a>
+                      </div>
+                      <p>
+                        <i id="submittedBy">Submitted by:</i>{' '}
+                        <b id="submittedBy">{suggestion.user}</b>
+                      </p>
+                    </nav>
+                  </div>
+                </article>
+                {this.state.comment && this.state.id == suggestion.id && (
+                  <article className="media">
+                    <div className="media-content">
+                      <div className="field">
+                        <p className="control">
+                          <textarea
+                            className="textarea"
+                            placeholder="Add a comment..."
+                          />
+                        </p>
+                      </div>
+                      <nav className="level">
+                        <div className="level-left">
+                          <div className="level-item">
+                            <a className="button is-info">Submit</a>
+                          </div>
+                        </div>
+                      </nav>
+                    </div>
+                  </article>
+                )}
+              </div>
             );
           })}
         {this.state.addPage && <AddPage togglePage={this.togglePage} />}

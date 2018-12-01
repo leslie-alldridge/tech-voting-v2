@@ -14572,9 +14572,13 @@ var Main = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this, props));
 
     _this.state = {
-      addPage: false
+      addPage: false,
+      id: '',
+      comment: false,
+      userComment: ''
     };
     _this.togglePage = _this.togglePage.bind(_this);
+    _this.handleComment = _this.handleComment.bind(_this);
     _this.handleLike = _this.handleLike.bind(_this);
     return _this;
   }
@@ -14597,6 +14601,25 @@ var Main = function (_React$Component) {
       e.preventDefault();
       this.props.upVote(id);
     }
+  }, {
+    key: 'handleComment',
+    value: function handleComment(id, e) {
+      e.preventDefault();
+      if (id == this.state.id) {
+        this.setState({
+          comment: !this.state.comment
+        });
+      } else {
+        this.setState({
+          comment: true,
+          id: id
+        });
+      }
+      this.props.addComment(id);
+    }
+  }, {
+    key: 'handleCommentSubmit',
+    value: function handleCommentSubmit(id) {}
   }, {
     key: 'render',
     value: function render() {
@@ -14649,85 +14672,133 @@ var Main = function (_React$Component) {
         ),
         this.props.suggestions.suggestions && !this.state.addPage && suggestions.map(function (suggestion) {
           return _react2.default.createElement(
-            'article',
-            { key: suggestion.id, className: 'media' },
+            'div',
+            null,
             _react2.default.createElement(
-              'figure',
-              { className: 'media-left' },
+              'article',
+              { key: suggestion.id, className: 'media' },
               _react2.default.createElement(
-                'p',
-                { className: 'image is-64x64' },
-                _react2.default.createElement('img', { src: '/' + suggestion.category + '.png' })
-              )
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'media-content' },
-              _react2.default.createElement(
-                'div',
-                { className: 'content' },
+                'figure',
+                { className: 'media-left' },
                 _react2.default.createElement(
                   'p',
-                  null,
-                  _react2.default.createElement(
-                    'strong',
-                    { id: 'ideaTitle' },
-                    suggestion.title
-                  ),
-                  _react2.default.createElement('br', null),
-                  suggestion.description
+                  { className: 'image is-64x64' },
+                  _react2.default.createElement('img', { src: '/' + suggestion.category + '.png' })
                 )
               ),
               _react2.default.createElement(
-                'nav',
-                { className: 'level is-mobile' },
+                'div',
+                { className: 'media-content' },
                 _react2.default.createElement(
                   'div',
-                  { className: 'level-left' },
+                  { className: 'content' },
                   _react2.default.createElement(
-                    'a',
-                    { className: 'level-item' },
+                    'p',
+                    null,
                     _react2.default.createElement(
-                      'span',
-                      { className: 'icon is-medium' },
-                      _react2.default.createElement('i', { className: 'fas fa-reply' })
-                    )
-                  ),
-                  _react2.default.createElement(
-                    'a',
-                    {
-                      onClick: function onClick(e) {
-                        return _this2.handleLike(suggestion.id, e);
-                      },
-                      id: 'secondIcon',
-                      name: suggestion.id,
-                      className: 'level-item'
-                    },
-                    _react2.default.createElement(
-                      'span',
-                      { className: 'icon is-medium' },
-                      _react2.default.createElement('i', { id: 'like', className: 'fas fa-heart' }),
-                      _react2.default.createElement(
-                        'strong',
-                        { id: 'votes' },
-                        suggestion.votes
-                      )
-                    )
+                      'strong',
+                      { id: 'ideaTitle' },
+                      suggestion.title
+                    ),
+                    _react2.default.createElement('br', null),
+                    suggestion.description
                   )
                 ),
                 _react2.default.createElement(
-                  'p',
-                  null,
+                  'nav',
+                  { className: 'level is-mobile' },
                   _react2.default.createElement(
-                    'i',
-                    { id: 'submittedBy' },
-                    'Submitted by:'
+                    'div',
+                    { className: 'level-left' },
+                    _react2.default.createElement(
+                      'a',
+                      {
+                        onClick: function onClick(e) {
+                          return _this2.handleComment(suggestion.id, e);
+                        },
+                        id: 'secondIcon',
+                        name: suggestion.id,
+                        className: 'level-item'
+                      },
+                      _react2.default.createElement(
+                        'span',
+                        { className: 'icon is-medium' },
+                        _react2.default.createElement('i', { className: 'fas fa-reply' })
+                      )
+                    ),
+                    _react2.default.createElement(
+                      'a',
+                      {
+                        onClick: function onClick(e) {
+                          return _this2.handleLike(suggestion.id, e);
+                        },
+                        id: 'secondIcon',
+                        name: suggestion.id,
+                        className: 'level-item'
+                      },
+                      _react2.default.createElement(
+                        'span',
+                        { className: 'icon is-medium' },
+                        _react2.default.createElement('i', { id: 'like', className: 'fas fa-heart' }),
+                        _react2.default.createElement(
+                          'strong',
+                          { id: 'votes' },
+                          suggestion.votes
+                        )
+                      )
+                    )
                   ),
-                  ' ',
                   _react2.default.createElement(
-                    'b',
-                    { id: 'submittedBy' },
-                    suggestion.user
+                    'p',
+                    null,
+                    _react2.default.createElement(
+                      'i',
+                      { id: 'submittedBy' },
+                      'Submitted by:'
+                    ),
+                    ' ',
+                    _react2.default.createElement(
+                      'b',
+                      { id: 'submittedBy' },
+                      suggestion.user
+                    )
+                  )
+                )
+              )
+            ),
+            _this2.state.comment && _this2.state.id == suggestion.id && _react2.default.createElement(
+              'article',
+              { className: 'media' },
+              _react2.default.createElement(
+                'div',
+                { className: 'media-content' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'field' },
+                  _react2.default.createElement(
+                    'p',
+                    { className: 'control' },
+                    _react2.default.createElement('textarea', {
+                      className: 'textarea',
+                      placeholder: 'Add a comment...'
+                    })
+                  )
+                ),
+                _react2.default.createElement(
+                  'nav',
+                  { className: 'level' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'level-left' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'level-item' },
+                      _react2.default.createElement(
+                        'a',
+                        { className: 'button is-info' },
+                        'Submit'
+                      )
+                    )
                   )
                 )
               )
