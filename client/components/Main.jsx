@@ -85,6 +85,10 @@ class Main extends React.Component {
                         </span>
                       </a>
                     </div>
+                    <p>
+                      <i id="submittedBy">Submitted by:</i>{' '}
+                      <b id="submittedBy">{suggestion.user}</b>
+                    </p>
                   </nav>
                 </div>
               </article>

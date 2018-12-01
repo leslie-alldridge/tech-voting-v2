@@ -5,6 +5,7 @@ exports.up = function(knex, Promise) {
     table.text('description');
     table.integer('votes');
     table.string('category');
+    table.string('user');
   });
 };
 

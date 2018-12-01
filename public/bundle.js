@@ -14670,6 +14670,21 @@ var Main = function (_React$Component) {
                       )
                     )
                   )
+                ),
+                _react2.default.createElement(
+                  'p',
+                  null,
+                  _react2.default.createElement(
+                    'i',
+                    { id: 'submittedBy' },
+                    'Submitted by:'
+                  ),
+                  ' ',
+                  _react2.default.createElement(
+                    'b',
+                    { id: 'submittedBy' },
+                    suggestion.user
+                  )
                 )
               )
             )
