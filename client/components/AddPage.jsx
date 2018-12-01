@@ -8,7 +8,7 @@ class AddPage extends React.Component {
     this.state = {
       title: '',
       description: '',
-      category: ''
+      category: 'none'
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -16,7 +16,8 @@ class AddPage extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log('submitted');
+    this.props.addSuggestion(this.state);
+    this.props.togglePage();
   }
 
   handleChange(event) {
@@ -57,15 +58,19 @@ class AddPage extends React.Component {
             <div className="control">
               <div className="select is-primary">
                 <select name="category" onChange={this.handleChange}>
-                  <option>Pick a Category</option>
-                  <option>New Ideas</option>
-                  <option>Process Updates</option>
-                  <option>Team Improvements</option>
+                  <option value="none">Pick a Category</option>
+                  <option value="idea">New Ideas</option>
+                  <option value="improvement">Process Updates</option>
+                  <option value="team">Team Improvements</option>
                 </select>
               </div>
             </div>
           </div>
-          <input type="submit" value="submit" />
+          {this.state.category !== 'none' &&
+            this.state.title !== '' &&
+            this.state.description !== 'none' && (
+              <input type="submit" value="submit" />
+            )}
         </form>
       </div>
     );
@@ -80,8 +85,8 @@ const mapStateToProps = ({ auth, suggestions }) => {
 
 function mapDispatchToProps(dispatch) {
   return {
-    addSuggestion: () => {
-      dispatch(addSuggestionAction());
+    addSuggestion: data => {
+      dispatch(addSuggestionAction(data));
     }
   };
 }

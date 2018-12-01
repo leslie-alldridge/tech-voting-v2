@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addSuggestionAction } from '../actions/suggestions';
+import { getSuggestionAction } from '../actions/suggestions';
 import AddPage from './AddPage';
 
 class Main extends React.Component {
@@ -13,7 +13,7 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
-    this.props.addSuggestion();
+    this.props.getSuggestion();
   }
 
   togglePage() {
@@ -90,7 +90,7 @@ class Main extends React.Component {
               </article>
             );
           })}
-        {this.state.addPage && <AddPage />}
+        {this.state.addPage && <AddPage togglePage={this.togglePage} />}
       </div>
     );
   }
@@ -104,8 +104,8 @@ const mapStateToProps = ({ auth, suggestions }) => {
 
 function mapDispatchToProps(dispatch) {
   return {
-    addSuggestion: () => {
-      dispatch(addSuggestionAction());
+    getSuggestion: () => {
+      dispatch(getSuggestionAction());
     }
   };
 }

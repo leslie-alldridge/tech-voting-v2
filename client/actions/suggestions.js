@@ -26,12 +26,25 @@ export function suggestionErr(message) {
   };
 }
 
-export function addSuggestionAction() {
+export function getSuggestionAction() {
   return function(dispatch) {
     dispatch(requestSuggestion());
     return request('get', 'suggestion/all').then(response => {
       console.log(response);
 
+      dispatch(receiveSuggestion(response.body));
+      document.location = '/#/';
+    });
+  };
+}
+
+export function addSuggestionAction(data) {
+  console.log(data);
+
+  return function(dispatch) {
+    dispatch(requestSuggestion());
+    return request('post', 'suggestion/add', data).then(response => {
+      console.log(response);
       dispatch(receiveSuggestion(response.body));
       document.location = '/#/';
     });
