@@ -33,6 +33,13 @@ export default function auth(state = initialState, action) {
         suggestions: action.data,
         liked: action.liked
       };
+    case 'ITEM_COMMENTED':
+      return {
+        isFetching: false,
+        isAuthenticated: true,
+        suggestions: action.data,
+        commented: action.commented
+      };
     default:
       return state;
   }

@@ -31,7 +31,7 @@ function addComment(comment, id, name) {
   return db('comments')
     .insert(row)
     .then(data => {
-      return db('comments').select();
+      return db('ideas').select();
     });
 }
 

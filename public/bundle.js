@@ -7491,6 +7491,7 @@ exports.requestSuggestion = requestSuggestion;
 exports.receiveSuggestion = receiveSuggestion;
 exports.suggestionErr = suggestionErr;
 exports.receiveLike = receiveLike;
+exports.receiveComment = receiveComment;
 exports.getSuggestionAction = getSuggestionAction;
 exports.addSuggestionAction = addSuggestionAction;
 exports.upVoteAction = upVoteAction;
@@ -7538,6 +7539,16 @@ function receiveLike(data) {
   };
 }
 
+function receiveComment(data) {
+  return {
+    type: 'ITEM_COMMENTED',
+    isFetching: false,
+    isAuthenticated: true,
+    data: data,
+    commented: true
+  };
+}
+
 //Reading suggestions from DB
 function getSuggestionAction() {
   return function (dispatch) {
@@ -7573,7 +7584,7 @@ function addCommentAction(comment, id, name) {
   return function (dispatch) {
     dispatch(requestSuggestion());
     return (0, _api2.default)('post', 'suggestion/comment', { comment: comment, id: id, name: name }).then(function (response) {
-      dispatch(receiveLike(response.body));
+      dispatch(receiveComment(response.body));
     });
   };
 }
@@ -14586,7 +14597,8 @@ var Main = function (_React$Component) {
       addPage: false,
       id: '',
       comment: false,
-      userComment: ''
+      userComment: '',
+      showComment: false
     };
     _this.togglePage = _this.togglePage.bind(_this);
     _this.handleComment = _this.handleComment.bind(_this);
@@ -14620,20 +14632,20 @@ var Main = function (_React$Component) {
       e.preventDefault();
       if (id == this.state.id) {
         this.setState({
-          comment: !this.state.comment
+          comment: !this.state.comment,
+          showComment: false
         });
       } else {
         this.setState({
           comment: true,
-          id: id
+          id: id,
+          showComment: false
         });
       }
     }
   }, {
     key: 'handleCommentEntry',
     value: function handleCommentEntry(e) {
-      console.log(e.target.value);
-
       this.setState({
         userComment: [e.target.value]
       });
@@ -14641,9 +14653,24 @@ var Main = function (_React$Component) {
   }, {
     key: 'submitComment',
     value: function submitComment() {
-      console.log(this.props.auth.user.user_name);
-
       this.props.addComment(this.state.userComment, this.state.id, this.props.auth.user.user_name);
+    }
+  }, {
+    key: 'toggleComments',
+    value: function toggleComments(id, e) {
+      e.preventDefault();
+      if (id == this.state.id) {
+        this.setState({
+          showComment: !this.state.showComment,
+          comment: false
+        });
+      } else {
+        this.setState({
+          showComment: true,
+          id: id,
+          comment: false
+        });
+      }
     }
   }, {
     key: 'render',
@@ -14693,12 +14720,17 @@ var Main = function (_React$Component) {
             'p',
             { className: 'likeMessage animated3', id: 'likeMessage' },
             'Item Liked! Thanks for your feedback.'
+          ),
+          this.props.suggestions.commented && _react2.default.createElement(
+            'p',
+            { className: 'likeMessage animated3', id: 'likeMessage' },
+            'Comment Saved! Thanks for your feedback.'
           )
         ),
         this.props.suggestions.suggestions && !this.state.addPage && suggestions.map(function (suggestion) {
           return _react2.default.createElement(
             'div',
-            null,
+            { key: suggestion.id },
             _react2.default.createElement(
               'article',
               { key: suggestion.id, className: 'media' },
@@ -14771,6 +14803,27 @@ var Main = function (_React$Component) {
                           suggestion.votes
                         )
                       )
+                    ),
+                    _react2.default.createElement(
+                      'a',
+                      {
+                        onClick: function onClick(e) {
+                          return _this2.toggleComments(suggestion.id, e);
+                        },
+                        id: 'secondIcon',
+                        name: suggestion.id,
+                        className: 'level-item'
+                      },
+                      _react2.default.createElement(
+                        'span',
+                        { className: 'icon is-medium' },
+                        _react2.default.createElement('i', { id: 'like', className: 'fas fa-comments' }),
+                        _react2.default.createElement(
+                          'strong',
+                          { id: 'votes' },
+                          '0'
+                        )
+                      )
                     )
                   ),
                   _react2.default.createElement(
@@ -14828,6 +14881,30 @@ var Main = function (_React$Component) {
                         'Submit'
                       )
                     )
+                  )
+                )
+              )
+            ),
+            _this2.state.showComment && _this2.state.id == suggestion.id && _react2.default.createElement(
+              'article',
+              { className: 'media' },
+              _react2.default.createElement(
+                'div',
+                { className: 'media-content' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'content' },
+                  _react2.default.createElement(
+                    'p',
+                    null,
+                    _react2.default.createElement(
+                      'strong',
+                      null,
+                      'Barbara Middleton'
+                    ),
+                    _react2.default.createElement('br', null),
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in tempus turpis.',
+                    _react2.default.createElement('br', null)
                   )
                 )
               )
@@ -15337,6 +15414,13 @@ function auth() {
         isAuthenticated: true,
         suggestions: action.data,
         liked: action.liked
+      };
+    case 'ITEM_COMMENTED':
+      return {
+        isFetching: false,
+        isAuthenticated: true,
+        suggestions: action.data,
+        commented: action.commented
       };
     default:
       return state;

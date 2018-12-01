@@ -15,7 +15,8 @@ class Main extends React.Component {
       addPage: false,
       id: '',
       comment: false,
-      userComment: ''
+      userComment: '',
+      showComment: false
     };
     this.togglePage = this.togglePage.bind(this);
     this.handleComment = this.handleComment.bind(this);
@@ -43,32 +44,46 @@ class Main extends React.Component {
     e.preventDefault();
     if (id == this.state.id) {
       this.setState({
-        comment: !this.state.comment
+        comment: !this.state.comment,
+        showComment: false
       });
     } else {
       this.setState({
         comment: true,
-        id: id
+        id: id,
+        showComment: false
       });
     }
   }
 
   handleCommentEntry(e) {
-    console.log(e.target.value);
-
     this.setState({
       userComment: [e.target.value]
     });
   }
 
   submitComment() {
-    console.log(this.props.auth.user.user_name);
-
     this.props.addComment(
       this.state.userComment,
       this.state.id,
       this.props.auth.user.user_name
     );
+  }
+
+  toggleComments(id, e) {
+    e.preventDefault();
+    if (id == this.state.id) {
+      this.setState({
+        showComment: !this.state.showComment,
+        comment: false
+      });
+    } else {
+      this.setState({
+        showComment: true,
+        id: id,
+        comment: false
+      });
+    }
   }
 
   render() {
@@ -105,13 +120,18 @@ class Main extends React.Component {
                 Item Liked! Thanks for your feedback.
               </p>
             )}
+            {this.props.suggestions.commented && (
+              <p className="likeMessage animated3" id="likeMessage">
+                Comment Saved! Thanks for your feedback.
+              </p>
+            )}
           </div>
         )}
         {this.props.suggestions.suggestions &&
           !this.state.addPage &&
           suggestions.map(suggestion => {
             return (
-              <div>
+              <div key={suggestion.id}>
                 <article key={suggestion.id} className="media">
                   <figure className="media-left">
                     <p className="image is-64x64">
@@ -149,6 +169,17 @@ class Main extends React.Component {
                             <strong id="votes">{suggestion.votes}</strong>
                           </span>
                         </a>
+                        <a
+                          onClick={e => this.toggleComments(suggestion.id, e)}
+                          id="secondIcon"
+                          name={suggestion.id}
+                          className="level-item"
+                        >
+                          <span className="icon is-medium">
+                            <i id="like" className="fas fa-comments" />
+                            <strong id="votes">0</strong>
+                          </span>
+                        </a>
                       </div>
                       <p>
                         <i id="submittedBy">Submitted by:</i>{' '}
@@ -181,6 +212,23 @@ class Main extends React.Component {
                           </div>
                         </div>
                       </nav>
+                    </div>
+                  </article>
+                )}
+                {this.state.showComment && this.state.id == suggestion.id && (
+                  <article className="media">
+                    <div className="media-content">
+                      <div className="content">
+                        <p>
+                          <strong>Barbara Middleton</strong>
+                          <br />
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit. Duis porta eros lacus, nec ultricies elit
+                          blandit non. Suspendisse pellentesque mauris sit amet
+                          dolor blandit rutrum. Nunc in tempus turpis.
+                          <br />
+                        </p>
+                      </div>
                     </div>
                   </article>
                 )}
