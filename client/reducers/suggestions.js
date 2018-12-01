@@ -17,7 +17,7 @@ export default function auth(state = initialState, action) {
       return {
         isFetching: false,
         isAuthenticated: true,
-        suggestions: data
+        suggestions: action.data
       };
     case 'ITEM_ERROR':
       return {

@@ -14197,8 +14197,6 @@ function addSuggestionAction() {
 
       dispatch(receiveSuggestion(response.body));
       document.location = '/#/';
-    }).catch(function (err) {
-      dispatch(suggestionErr(err.response.body.message));
     });
   };
 }
@@ -14994,7 +14992,7 @@ function auth() {
       return {
         isFetching: false,
         isAuthenticated: true,
-        suggestions: data
+        suggestions: action.data
       };
     case 'ITEM_ERROR':
       return _extends({}, state, {

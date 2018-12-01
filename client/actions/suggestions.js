@@ -29,15 +29,11 @@ export function suggestionErr(message) {
 export function addSuggestionAction() {
   return function(dispatch) {
     dispatch(requestSuggestion());
-    return request('get', 'suggestion/all')
-      .then(response => {
-        console.log(response);
+    return request('get', 'suggestion/all').then(response => {
+      console.log(response);
 
-        dispatch(receiveSuggestion(response.body));
-        document.location = '/#/';
-      })
-      .catch(err => {
-        dispatch(suggestionErr(err.response.body.message));
-      });
+      dispatch(receiveSuggestion(response.body));
+      document.location = '/#/';
+    });
   };
 }
