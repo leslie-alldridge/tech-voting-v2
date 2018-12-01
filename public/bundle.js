@@ -14366,6 +14366,9 @@ var Main = function (_React$Component) {
     value: function render() {
       var suggestions = this.props.suggestions.suggestions;
 
+      suggestions.sort(function (a, b) {
+        return b.votes - a.votes;
+      });
       return _react2.default.createElement(
         'div',
         { className: 'container' },
@@ -14378,7 +14381,7 @@ var Main = function (_React$Component) {
         this.props.suggestions.suggestions && suggestions.map(function (suggestion) {
           return _react2.default.createElement(
             'article',
-            { className: 'media' },
+            { key: suggestion.id, className: 'media' },
             _react2.default.createElement(
               'figure',
               { className: 'media-left' },
@@ -14807,9 +14810,7 @@ var _App2 = _interopRequireDefault(_App);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var store = (0, _redux.createStore)(_reducers2.default, (0, _redux.compose)((0, _redux.applyMiddleware)(_reduxThunk2.default), window.devToolsExtension ? window.devToolsExtension() : function (f) {
-  return f;
-}));
+var store = (0, _redux.createStore)(_reducers2.default, (0, _redux.compose)((0, _redux.applyMiddleware)(_reduxThunk2.default), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
 
 document.addEventListener('DOMContentLoaded', function () {
   (0, _reactDom.render)(_react2.default.createElement(

@@ -13,6 +13,7 @@ class Main extends React.Component {
 
   render() {
     const { suggestions } = this.props.suggestions;
+    suggestions.sort((a, b) => b.votes - a.votes);
     return (
       <div className="container">
         <h2 id="mainTitle" className="title is-2 has-text-centered">
@@ -22,7 +23,7 @@ class Main extends React.Component {
         {this.props.suggestions.suggestions &&
           suggestions.map(suggestion => {
             return (
-              <article className="media">
+              <article key={suggestion.id} className="media">
                 <figure className="media-left">
                   <p className="image is-64x64">
                     <img src={`/${suggestion.category}.png`} />
@@ -43,7 +44,6 @@ class Main extends React.Component {
                           <i className="fas fa-reply" />
                         </span>
                       </a>
-
                       <a id="secondIcon" className="level-item">
                         <span className="icon is-medium">
                           <i id="like" className="fas fa-heart" />

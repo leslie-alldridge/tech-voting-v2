@@ -18,6 +18,14 @@ exports.seed = function(knex, Promise) {
             "Provide a #human experience for our users. We've received multiple complaints about our status page wording being a copy paste effort between outages.",
           votes: 10,
           category: 'improvement'
+        },
+        {
+          id: 3,
+          title: 'Morning sit down sessions with the team',
+          description:
+            'Provide a safe place for the team to relax with each other away from the stress of work.',
+          votes: 3,
+          category: 'team'
         }
       ]);
     });
