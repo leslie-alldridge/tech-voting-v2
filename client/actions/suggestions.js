@@ -32,7 +32,6 @@ export function getSuggestionAction() {
     dispatch(requestSuggestion());
     return request('get', 'suggestion/all').then(response => {
       dispatch(receiveSuggestion(response.body));
-      document.location = '/#/';
     });
   };
 }
@@ -43,7 +42,6 @@ export function addSuggestionAction(data) {
     dispatch(requestSuggestion());
     return request('post', 'suggestion/add', data).then(response => {
       dispatch(receiveSuggestion(response.body));
-      document.location = '/#/';
     });
   };
 }
@@ -54,7 +52,6 @@ export function upVoteAction(id) {
     dispatch(requestSuggestion());
     return request('post', 'suggestion/upvote', { id }).then(response => {
       dispatch(receiveSuggestion(response.body));
-      document.location = '/#/';
     });
   };
 }

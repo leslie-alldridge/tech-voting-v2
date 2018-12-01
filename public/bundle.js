@@ -7532,7 +7532,7 @@ function getSuggestionAction() {
     dispatch(requestSuggestion());
     return (0, _api2.default)('get', 'suggestion/all').then(function (response) {
       dispatch(receiveSuggestion(response.body));
-      document.location = '/#/';
+      //document.location = '/#/';
     });
   };
 }
@@ -7543,7 +7543,7 @@ function addSuggestionAction(data) {
     dispatch(requestSuggestion());
     return (0, _api2.default)('post', 'suggestion/add', data).then(function (response) {
       dispatch(receiveSuggestion(response.body));
-      document.location = '/#/';
+      //document.location = '/#/';
     });
   };
 }
@@ -7554,7 +7554,7 @@ function upVoteAction(id) {
     dispatch(requestSuggestion());
     return (0, _api2.default)('post', 'suggestion/upvote', { id: id }).then(function (response) {
       dispatch(receiveSuggestion(response.body));
-      document.location = '/#/';
+      //document.location = '/#/';
     });
   };
 }
@@ -14580,7 +14580,9 @@ var Main = function (_React$Component) {
     }
   }, {
     key: 'handleLike',
-    value: function handleLike(id) {
+    value: function handleLike(id, e) {
+      console.log(e);
+      e.preventDefault();
       this.props.upVote(id);
     }
   }, {
@@ -14677,8 +14679,9 @@ var Main = function (_React$Component) {
                   _react2.default.createElement(
                     'a',
                     {
-                      onClick: function onClick() {
-                        return _this2.handleLike(suggestion.id);
+                      href: 'javascript:void(0)',
+                      onClick: function onClick(e) {
+                        return _this2.handleLike(suggestion.id, e);
                       },
                       id: 'secondIcon',
                       name: suggestion.id,

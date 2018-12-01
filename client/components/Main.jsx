@@ -24,7 +24,8 @@ class Main extends React.Component {
     });
   }
 
-  handleLike(id) {
+  handleLike(id, e) {
+    e.preventDefault();
     this.props.upVote(id);
   }
 
@@ -85,7 +86,7 @@ class Main extends React.Component {
                         </span>
                       </a>
                       <a
-                        onClick={() => this.handleLike(suggestion.id)}
+                        onClick={e => this.handleLike(suggestion.id, e)}
                         id="secondIcon"
                         name={suggestion.id}
                         className="level-item"

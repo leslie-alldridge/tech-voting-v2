@@ -23,13 +23,8 @@ router.post('/add', (req, res) => {
 });
 
 router.post('/upvote', (req, res) => {
-  console.log('hit');
-
-  console.log(req);
   const { id } = req.body;
   upVote(id).then(response => {
-    console.log(response);
-
     res.json(response);
   });
 });
