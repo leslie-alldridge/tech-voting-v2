@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addSuggestionAction } from '../actions/suggestions';
-import { runInThisContext } from 'vm';
+import AddPage from './AddPage';
 
 class Main extends React.Component {
   constructor(props) {
@@ -54,6 +54,7 @@ class Main extends React.Component {
           </div>
         )}
         {this.props.suggestions.suggestions &&
+          !this.state.addPage &&
           suggestions.map(suggestion => {
             return (
               <article key={suggestion.id} className="media">
@@ -89,6 +90,7 @@ class Main extends React.Component {
               </article>
             );
           })}
+        {this.state.addPage && <AddPage />}
       </div>
     );
   }
