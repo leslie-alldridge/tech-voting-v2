@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { getSuggestionAction } from '../actions/suggestions';
+import { getSuggestionAction, upVoteAction } from '../actions/suggestions';
 import AddPage from './AddPage';
 
 class Main extends React.Component {

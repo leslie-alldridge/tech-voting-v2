@@ -9,7 +9,6 @@ router.get('/all', (req, res) => {
 });
 
 router.post('/add', (req, res) => {
-  console.log(req.body);
   const { title, description, category, user } = req.body;
   let data = {
     title,
@@ -19,14 +18,14 @@ router.post('/add', (req, res) => {
     user
   };
   addSuggestions(data).then(response => {
-    console.log(response);
-
     res.json(response);
   });
 });
 
 router.post('/upvote', (req, res) => {
-  console.log(req.body);
+  console.log('hit');
+
+  console.log(req);
   const { id } = req.body;
   upVote(id).then(response => {
     console.log(response);

@@ -50,11 +50,9 @@ export function addSuggestionAction(data) {
 
 //Up voting suggestion
 export function upVoteAction(id) {
-  console.log(id);
-
   return function(dispatch) {
     dispatch(requestSuggestion());
-    return request('post', 'suggestion/upvote', id).then(response => {
+    return request('post', 'suggestion/upvote', { id }).then(response => {
       dispatch(receiveSuggestion(response.body));
       document.location = '/#/';
     });
