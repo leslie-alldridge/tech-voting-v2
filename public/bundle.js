@@ -7490,6 +7490,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.requestSuggestion = requestSuggestion;
 exports.receiveSuggestion = receiveSuggestion;
 exports.suggestionErr = suggestionErr;
+exports.receiveLike = receiveLike;
 exports.getSuggestionAction = getSuggestionAction;
 exports.addSuggestionAction = addSuggestionAction;
 exports.upVoteAction = upVoteAction;
@@ -7526,6 +7527,16 @@ function suggestionErr(message) {
   };
 }
 
+function receiveLike(data) {
+  return {
+    type: 'ITEM_LIKED',
+    isFetching: false,
+    isAuthenticated: true,
+    data: data,
+    liked: true
+  };
+}
+
 //Reading suggestions from DB
 function getSuggestionAction() {
   return function (dispatch) {
@@ -7551,7 +7562,7 @@ function upVoteAction(id) {
   return function (dispatch) {
     dispatch(requestSuggestion());
     return (0, _api2.default)('post', 'suggestion/upvote', { id: id }).then(function (response) {
-      dispatch(receiveSuggestion(response.body));
+      dispatch(receiveLike(response.body));
     });
   };
 }
@@ -14629,7 +14640,12 @@ var Main = function (_React$Component) {
               'Add Improvement'
             )
           ),
-          _react2.default.createElement('hr', null)
+          _react2.default.createElement('hr', null),
+          this.props.suggestions.liked && _react2.default.createElement(
+            'p',
+            { className: 'likeMessage animated3', id: 'likeMessage' },
+            'Item Liked! Thanks for your feedback.'
+          )
         ),
         this.props.suggestions.suggestions && !this.state.addPage && suggestions.map(function (suggestion) {
           return _react2.default.createElement(
@@ -15212,6 +15228,13 @@ function auth() {
         isAuthenticated: false,
         errorMessage: action.message
       });
+    case 'ITEM_LIKED':
+      return {
+        isFetching: false,
+        isAuthenticated: true,
+        suggestions: action.data,
+        liked: action.liked
+      };
     default:
       return state;
   }

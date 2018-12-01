@@ -26,6 +26,16 @@ export function suggestionErr(message) {
   };
 }
 
+export function receiveLike(data) {
+  return {
+    type: 'ITEM_LIKED',
+    isFetching: false,
+    isAuthenticated: true,
+    data,
+    liked: true
+  };
+}
+
 //Reading suggestions from DB
 export function getSuggestionAction() {
   return function(dispatch) {
@@ -51,7 +61,7 @@ export function upVoteAction(id) {
   return function(dispatch) {
     dispatch(requestSuggestion());
     return request('post', 'suggestion/upvote', { id }).then(response => {
-      dispatch(receiveSuggestion(response.body));
+      dispatch(receiveLike(response.body));
     });
   };
 }

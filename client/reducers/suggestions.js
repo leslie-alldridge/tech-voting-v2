@@ -26,6 +26,13 @@ export default function auth(state = initialState, action) {
         isAuthenticated: false,
         errorMessage: action.message
       };
+    case 'ITEM_LIKED':
+      return {
+        isFetching: false,
+        isAuthenticated: true,
+        suggestions: action.data,
+        liked: action.liked
+      };
     default:
       return state;
   }

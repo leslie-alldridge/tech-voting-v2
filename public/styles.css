@@ -31,3 +31,109 @@
 #submittedBy {
   font-size: 0.8em;
 }
+
+#likeMessage {
+  color: #00d1b2;
+  text-align: center;
+}
+
+.animated3 {
+  -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  -ms-animation-fill-mode: both;
+  -o-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-duration: 2s;
+  -moz-animation-duration: 2s;
+  -ms-animation-duration: 2s;
+  -o-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-delay: 1s;
+  -moz-animation-delay: 1s;
+  -ms-animation-delay: 1s;
+  -o-animation-delay: 1s;
+  animation-delay: 1s;
+}
+
+@-webkit-keyframes likeMessage {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-20px);
+  }
+  25% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+  }
+  75% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateX(20px);
+  }
+}
+
+@-moz-keyframes likeMessage {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-20px);
+  }
+  25% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+  }
+  75% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateX(20px);
+  }
+}
+
+@-o-keyframes likeMessage {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-20px);
+  }
+  25% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+  }
+  75% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateX(20px);
+  }
+}
+
+@keyframes likeMessage {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-20px);
+  }
+  25% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+  }
+  75% {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translateX(20px);
+  }
+}
+
+.likeMessage {
+  -webkit-animation-name: likeMessage;
+  -moz-animation-name: likeMessage;
+  -o-animation-name: likeMessage;
+  animation-name: likeMessage;
+}

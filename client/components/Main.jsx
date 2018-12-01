@@ -58,6 +58,11 @@ class Main extends React.Component {
               </a>
             </div>
             <hr />
+            {this.props.suggestions.liked && (
+              <p className="likeMessage animated3" id="likeMessage">
+                Item Liked! Thanks for your feedback.
+              </p>
+            )}
           </div>
         )}
         {this.props.suggestions.suggestions &&
