@@ -1,12 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { addSuggestionAction } from '../actions/suggestions';
 
 class Main extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  componentDidMount() {
+    this.props.addSuggestion();
+  }
+
   render() {
+    const { suggestions } = this.props.suggestions;
     return (
       <div className="container">
         <h2 id="mainTitle" className="title is-2 has-text-centered">
@@ -83,14 +89,31 @@ class Main extends React.Component {
             </nav>
           </div>
         </article>
+        {suggestions.map(suggestion => {
+          return console.log(suggestion);
+        })}
       </div>
     );
   }
 }
-const mapStateToProps = ({ auth }) => {
+const mapStateToProps = ({ auth, suggestions }) => {
   return {
-    auth
+    auth,
+    suggestions
   };
 };
 
-export default connect(mapStateToProps)(Main);
+function mapDispatchToProps(dispatch) {
+  console.log('hit');
+
+  return {
+    addSuggestion: () => {
+      dispatch(addSuggestionAction());
+    }
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Main);

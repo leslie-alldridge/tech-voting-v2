@@ -13961,10 +13961,15 @@ var _auth = __webpack_require__(135);
 
 var _auth2 = _interopRequireDefault(_auth);
 
+var _suggestions = __webpack_require__(297);
+
+var _suggestions2 = _interopRequireDefault(_suggestions);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _redux.combineReducers)({
-  auth: _auth2.default
+  auth: _auth2.default,
+  suggestions: _suggestions2.default
 });
 
 /***/ }),
@@ -14228,6 +14233,8 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = __webpack_require__(20);
 
+var _suggestions = __webpack_require__(298);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -14246,8 +14253,15 @@ var Main = function (_React$Component) {
   }
 
   _createClass(Main, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.props.addSuggestion();
+    }
+  }, {
     key: 'render',
     value: function render() {
+      var suggestions = this.props.suggestions.suggestions;
+
       return _react2.default.createElement(
         'div',
         { className: 'container' },
@@ -14382,7 +14396,10 @@ var Main = function (_React$Component) {
               )
             )
           )
-        )
+        ),
+        suggestions.map(function (suggestion) {
+          return console.log(suggestion);
+        })
       );
     }
   }]);
@@ -14391,14 +14408,26 @@ var Main = function (_React$Component) {
 }(_react2.default.Component);
 
 var mapStateToProps = function mapStateToProps(_ref) {
-  var auth = _ref.auth;
+  var auth = _ref.auth,
+      suggestions = _ref.suggestions;
 
   return {
-    auth: auth
+    auth: auth,
+    suggestions: suggestions
   };
 };
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps)(Main);
+function mapDispatchToProps(dispatch) {
+  console.log('hit');
+
+  return {
+    addSuggestion: function addSuggestion() {
+      dispatch((0, _suggestions.addSuggestionAction)());
+    }
+  };
+}
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Main);
 
 /***/ }),
 /* 132 */
@@ -31561,6 +31590,115 @@ module.exports = function(originalModule) {
 	return module;
 };
 
+
+/***/ }),
+/* 297 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = auth;
+
+var _auth = __webpack_require__(26);
+
+var initialState = {
+  isFetching: false,
+  isAuthenticated: (0, _auth.isAuthenticated)(),
+  suggestions: []
+};
+
+function auth() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case 'ADD_ITEM_REQ':
+      return {
+        isFetching: true,
+        isAuthenticated: true
+      };
+    case 'ITEM_ADDED':
+      return {
+        isFetching: false,
+        isAuthenticated: true,
+        suggestions: data
+      };
+    case 'ITEM_ERROR':
+      return _extends({}, state, {
+        isFetching: false,
+        isAuthenticated: false,
+        errorMessage: action.message
+      });
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+/* 298 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.requestSuggestion = requestSuggestion;
+exports.receiveSuggestion = receiveSuggestion;
+exports.suggestionErr = suggestionErr;
+exports.addSuggestionAction = addSuggestionAction;
+
+var _api = __webpack_require__(136);
+
+var _api2 = _interopRequireDefault(_api);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function requestSuggestion() {
+  return {
+    type: 'ADD_ITEM_REQ',
+    isFetching: true,
+    isAuthenticated: true
+  };
+}
+
+function receiveSuggestion(data) {
+  return {
+    type: 'ITEM_ADDED',
+    isFetching: false,
+    isAuthenticated: true,
+    data: data
+  };
+}
+
+function suggestionErr(message) {
+  return {
+    type: 'ITEM_ERROR',
+    isFetching: false,
+    isAuthenticated: true,
+    message: message
+  };
+}
+
+function addSuggestionAction() {
+  return function (dispatch) {
+    dispatch(requestSuggestion());
+    return (0, _api2.default)('get', 'suggestion/all').then(function (response) {
+      dispatch(receiveSuggestion(response.body));
+      document.location = '/#/';
+    }).catch(function (err) {
+      dispatch(suggestionErr(err.response.body.message));
+    });
+  };
+}
 
 /***/ })
 /******/ ]);
