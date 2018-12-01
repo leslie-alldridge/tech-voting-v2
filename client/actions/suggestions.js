@@ -46,6 +46,15 @@ export function receiveComment(data) {
   };
 }
 
+export function receiveComments(data) {
+  return {
+    type: 'ALL_COMMENTS',
+    isFetching: false,
+    isAuthenticated: true,
+    data
+  };
+}
+
 //Reading suggestions from DB
 export function getSuggestionAction() {
   return function(dispatch) {
@@ -85,5 +94,14 @@ export function addCommentAction(comment, id, name) {
         dispatch(receiveComment(response.body));
       }
     );
+  };
+}
+
+export function getCommentsAction() {
+  return function(dispatch) {
+    dispatch(requestSuggestion());
+    return request('get', 'suggestion/comments').then(response => {
+      dispatch(receiveComments(response.body));
+    });
   };
 }

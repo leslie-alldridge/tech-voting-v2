@@ -7492,10 +7492,12 @@ exports.receiveSuggestion = receiveSuggestion;
 exports.suggestionErr = suggestionErr;
 exports.receiveLike = receiveLike;
 exports.receiveComment = receiveComment;
+exports.receiveComments = receiveComments;
 exports.getSuggestionAction = getSuggestionAction;
 exports.addSuggestionAction = addSuggestionAction;
 exports.upVoteAction = upVoteAction;
 exports.addCommentAction = addCommentAction;
+exports.getCommentsAction = getCommentsAction;
 
 var _api = __webpack_require__(72);
 
@@ -7549,6 +7551,15 @@ function receiveComment(data) {
   };
 }
 
+function receiveComments(data) {
+  return {
+    type: 'ALL_COMMENTS',
+    isFetching: false,
+    isAuthenticated: true,
+    data: data
+  };
+}
+
 //Reading suggestions from DB
 function getSuggestionAction() {
   return function (dispatch) {
@@ -7585,6 +7596,15 @@ function addCommentAction(comment, id, name) {
     dispatch(requestSuggestion());
     return (0, _api2.default)('post', 'suggestion/comment', { comment: comment, id: id, name: name }).then(function (response) {
       dispatch(receiveComment(response.body));
+    });
+  };
+}
+
+function getCommentsAction() {
+  return function (dispatch) {
+    dispatch(requestSuggestion());
+    return (0, _api2.default)('get', 'suggestion/comments').then(function (response) {
+      dispatch(receiveComments(response.body));
     });
   };
 }
@@ -14598,7 +14618,8 @@ var Main = function (_React$Component) {
       id: '',
       comment: false,
       userComment: '',
-      showComment: false
+      showComment: false,
+      commentData: [] || suggestions.comments
     };
     _this.togglePage = _this.togglePage.bind(_this);
     _this.handleComment = _this.handleComment.bind(_this);
@@ -14612,6 +14633,7 @@ var Main = function (_React$Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       this.props.getSuggestion();
+      this.props.getComments();
     }
   }, {
     key: 'togglePage',
@@ -14633,13 +14655,15 @@ var Main = function (_React$Component) {
       if (id == this.state.id) {
         this.setState({
           comment: !this.state.comment,
-          showComment: false
+          showComment: false,
+          commentData: suggestions.comments
         });
       } else {
         this.setState({
           comment: true,
           id: id,
-          showComment: false
+          showComment: false,
+          commentData: suggestions.comments
         });
       }
     }
@@ -14676,6 +14700,8 @@ var Main = function (_React$Component) {
     key: 'render',
     value: function render() {
       var _this2 = this;
+
+      console.log(this.props.suggestions.comments);
 
       var suggestions = this.props.suggestions.suggestions;
 
@@ -14885,30 +14911,32 @@ var Main = function (_React$Component) {
                 )
               )
             ),
-            _this2.state.showComment && _this2.state.id == suggestion.id && _react2.default.createElement(
-              'article',
-              { className: 'media' },
-              _react2.default.createElement(
-                'div',
-                { className: 'media-content' },
+            _this2.state.showComment && _this2.state.id == suggestion.id && _this2.props.suggestions.comments && _this2.props.suggestions.comments.map(function (comment) {
+              return _react2.default.createElement(
+                'article',
+                { key: comment.comment, className: 'media' },
                 _react2.default.createElement(
                   'div',
-                  { className: 'content' },
+                  { className: 'media-content' },
                   _react2.default.createElement(
-                    'p',
-                    null,
+                    'div',
+                    { className: 'content' },
                     _react2.default.createElement(
-                      'strong',
+                      'p',
                       null,
-                      'Barbara Middleton'
-                    ),
-                    _react2.default.createElement('br', null),
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in tempus turpis.',
-                    _react2.default.createElement('br', null)
+                      _react2.default.createElement(
+                        'strong',
+                        null,
+                        comment.user
+                      ),
+                      _react2.default.createElement('br', null),
+                      comment.comment,
+                      _react2.default.createElement('br', null)
+                    )
                   )
                 )
-              )
-            )
+              );
+            })
           );
         }),
         this.state.addPage && _react2.default.createElement(_AddPage2.default, { togglePage: this.togglePage })
@@ -14939,6 +14967,9 @@ function mapDispatchToProps(dispatch) {
     },
     addComment: function addComment(comment, id, name) {
       dispatch((0, _suggestions.addCommentAction)(comment, id, name));
+    },
+    getComments: function getComments() {
+      dispatch((0, _suggestions.getCommentsAction)());
     }
   };
 }
@@ -15383,7 +15414,8 @@ var _auth = __webpack_require__(21);
 var initialState = {
   isFetching: false,
   isAuthenticated: (0, _auth.isAuthenticated)(),
-  suggestions: []
+  suggestions: [],
+  comments: []
 };
 
 function auth() {
@@ -15397,11 +15429,11 @@ function auth() {
         isAuthenticated: true
       };
     case 'ITEM_ADDED':
-      return {
+      return _extends({}, state, {
         isFetching: false,
         isAuthenticated: true,
         suggestions: action.data
-      };
+      });
     case 'ITEM_ERROR':
       return _extends({}, state, {
         isFetching: false,
@@ -15409,19 +15441,25 @@ function auth() {
         errorMessage: action.message
       });
     case 'ITEM_LIKED':
-      return {
+      return _extends({}, state, {
         isFetching: false,
         isAuthenticated: true,
         suggestions: action.data,
         liked: action.liked
-      };
+      });
     case 'ITEM_COMMENTED':
-      return {
+      return _extends({}, state, {
         isFetching: false,
         isAuthenticated: true,
         suggestions: action.data,
         commented: action.commented
-      };
+      });
+    case 'ALL_COMMENTS':
+      return _extends({}, state, {
+        isFetching: false,
+        isAuthenticated: true,
+        comments: action.data
+      });
     default:
       return state;
   }

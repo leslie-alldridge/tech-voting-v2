@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import {
   getSuggestionAction,
   upVoteAction,
-  addCommentAction
+  addCommentAction,
+  getCommentsAction
 } from '../actions/suggestions';
 import AddPage from './AddPage';
 
@@ -16,7 +17,8 @@ class Main extends React.Component {
       id: '',
       comment: false,
       userComment: '',
-      showComment: false
+      showComment: false,
+      commentData: [] || suggestions.comments
     };
     this.togglePage = this.togglePage.bind(this);
     this.handleComment = this.handleComment.bind(this);
@@ -27,6 +29,7 @@ class Main extends React.Component {
 
   componentDidMount() {
     this.props.getSuggestion();
+    this.props.getComments();
   }
 
   togglePage() {
@@ -45,13 +48,15 @@ class Main extends React.Component {
     if (id == this.state.id) {
       this.setState({
         comment: !this.state.comment,
-        showComment: false
+        showComment: false,
+        commentData: suggestions.comments
       });
     } else {
       this.setState({
         comment: true,
         id: id,
-        showComment: false
+        showComment: false,
+        commentData: suggestions.comments
       });
     }
   }
@@ -87,6 +92,8 @@ class Main extends React.Component {
   }
 
   render() {
+    console.log(this.props.suggestions.comments);
+
     const { suggestions } = this.props.suggestions;
     suggestions
       ? suggestions.sort((a, b) => b.votes - a.votes)
@@ -215,26 +222,29 @@ class Main extends React.Component {
                     </div>
                   </article>
                 )}
-                {this.state.showComment && this.state.id == suggestion.id && (
-                  <article className="media">
-                    <div className="media-content">
-                      <div className="content">
-                        <p>
-                          <strong>Barbara Middleton</strong>
-                          <br />
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit. Duis porta eros lacus, nec ultricies elit
-                          blandit non. Suspendisse pellentesque mauris sit amet
-                          dolor blandit rutrum. Nunc in tempus turpis.
-                          <br />
-                        </p>
-                      </div>
-                    </div>
-                  </article>
-                )}
+                {this.state.showComment &&
+                  this.state.id == suggestion.id &&
+                  this.props.suggestions.comments &&
+                  this.props.suggestions.comments.map(comment => {
+                    return (
+                      <article key={comment.comment} className="media">
+                        <div className="media-content">
+                          <div className="content">
+                            <p>
+                              <strong>{comment.user}</strong>
+                              <br />
+                              {comment.comment}
+                              <br />
+                            </p>
+                          </div>
+                        </div>
+                      </article>
+                    );
+                  })}
               </div>
             );
           })}
+
         {this.state.addPage && <AddPage togglePage={this.togglePage} />}
       </div>
     );
@@ -257,6 +267,9 @@ function mapDispatchToProps(dispatch) {
     },
     addComment: (comment, id, name) => {
       dispatch(addCommentAction(comment, id, name));
+    },
+    getComments: () => {
+      dispatch(getCommentsAction());
     }
   };
 }

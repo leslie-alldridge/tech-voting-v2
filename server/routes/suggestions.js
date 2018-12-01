@@ -4,7 +4,8 @@ let {
   addSuggestions,
   getSuggestions,
   upVote,
-  addComment
+  addComment,
+  getComments
 } = require('../db/suggestions');
 
 router.get('/all', (req, res) => {
@@ -37,6 +38,12 @@ router.post('/upvote', (req, res) => {
 router.post('/comment', (req, res) => {
   const { comment, id, name } = req.body;
   addComment(comment, id, name).then(response => {
+    res.json(response);
+  });
+});
+
+router.get('/comments', (req, res) => {
+  getComments().then(response => {
     res.json(response);
   });
 });

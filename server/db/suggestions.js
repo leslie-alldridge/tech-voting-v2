@@ -35,9 +35,14 @@ function addComment(comment, id, name) {
     });
 }
 
+function getComments() {
+  return db('comments').select();
+}
+
 module.exports = {
   getSuggestions,
   addSuggestions,
   upVote,
-  addComment
+  addComment,
+  getComments
 };

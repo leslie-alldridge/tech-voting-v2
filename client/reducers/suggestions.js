@@ -3,7 +3,8 @@ import { isAuthenticated } from '../utils/auth';
 const initialState = {
   isFetching: false,
   isAuthenticated: isAuthenticated(),
-  suggestions: []
+  suggestions: [],
+  comments: []
 };
 
 export default function auth(state = initialState, action) {
@@ -15,6 +16,7 @@ export default function auth(state = initialState, action) {
       };
     case 'ITEM_ADDED':
       return {
+        ...state,
         isFetching: false,
         isAuthenticated: true,
         suggestions: action.data
@@ -28,6 +30,7 @@ export default function auth(state = initialState, action) {
       };
     case 'ITEM_LIKED':
       return {
+        ...state,
         isFetching: false,
         isAuthenticated: true,
         suggestions: action.data,
@@ -35,10 +38,18 @@ export default function auth(state = initialState, action) {
       };
     case 'ITEM_COMMENTED':
       return {
+        ...state,
         isFetching: false,
         isAuthenticated: true,
         suggestions: action.data,
         commented: action.commented
+      };
+    case 'ALL_COMMENTS':
+      return {
+        ...state,
+        isFetching: false,
+        isAuthenticated: true,
+        comments: action.data
       };
     default:
       return state;
