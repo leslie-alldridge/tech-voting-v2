@@ -10,6 +10,7 @@ CX Tech Feedback
 - categories for (process updates, new ideas, team improvements) - drop down filter -> popular ideas (top 5) will be the default
 - options will be categories or top 10.
 - search (starting by name -> looking into search across other features such as completed, in progress).
+^^ https://medium.com/@yaoxiao1222/implementing-search-filter-a-list-on-redux-react-bb5de8d0a3ad
 - enhanced styling
 
 ### Done
