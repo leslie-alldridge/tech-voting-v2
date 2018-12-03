@@ -6,6 +6,7 @@ exports.up = function(knex, Promise) {
     table.integer('votes');
     table.string('category');
     table.string('user');
+    table.integer('commentcount');
   });
 };
 

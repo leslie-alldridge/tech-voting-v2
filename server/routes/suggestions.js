@@ -10,6 +10,8 @@ let {
 
 router.get('/all', (req, res) => {
   getSuggestions().then(response => {
+    console.log(response);
+
     res.json(response);
   });
 });

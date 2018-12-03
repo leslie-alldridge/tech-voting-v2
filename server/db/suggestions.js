@@ -1,7 +1,7 @@
 const db = require('./connection');
 
 function getSuggestions() {
-  return db('ideas').select();
+  return db('ideas');
 }
 
 function addSuggestions(data) {
