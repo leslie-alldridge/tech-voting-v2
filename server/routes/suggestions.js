@@ -40,12 +40,16 @@ router.post('/upvote', (req, res) => {
 router.post('/comment', (req, res) => {
   const { comment, id, name } = req.body;
   addComment(comment, id, name).then(response => {
+    console.log(response);
+
     res.json(response);
   });
 });
 
 router.get('/comments', (req, res) => {
   getComments().then(response => {
+    console.log(response);
+
     res.json(response);
   });
 });

@@ -18,18 +18,46 @@ class Main extends React.Component {
       comment: false,
       userComment: '',
       showComment: false,
-      commentData: [] || suggestions.comments
+      commentData: [] || suggestions.comments,
+      commentCount: []
     };
     this.togglePage = this.togglePage.bind(this);
     this.handleComment = this.handleComment.bind(this);
     this.handleLike = this.handleLike.bind(this);
     this.submitComment = this.submitComment.bind(this);
     this.handleCommentEntry = this.handleCommentEntry.bind(this);
+    this.countComments = this.countComments.bind(this);
   }
 
   componentDidMount() {
     this.props.getComments();
     this.props.getSuggestion();
+    this.countComments();
+  }
+  componentDidUpdate() {
+    this.countComments();
+  }
+
+  countComments() {
+    let count = 0;
+    const commentData = this.props.suggestions.comments;
+    const suggestionData = this.props.suggestions.suggestion;
+
+    console.log(suggestionData);
+
+    console.log(commentData);
+
+    // this iterates over the comments and ideas to find a matching ID and logs when it finds one
+    commentData.length > 0 &&
+      commentData.map(comment => {
+        suggestionData.map(idea => {
+          if (comment.id === idea.id) {
+            console.log('found a match' + idea.id);
+          }
+        });
+      });
+    console.log(count);
+    console.log(this.state.showComment);
   }
 
   togglePage() {
