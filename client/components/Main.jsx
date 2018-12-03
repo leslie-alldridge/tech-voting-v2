@@ -28,8 +28,8 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getSuggestion();
     this.props.getComments();
+    this.props.getSuggestion();
   }
 
   togglePage() {
@@ -49,14 +49,14 @@ class Main extends React.Component {
       this.setState({
         comment: !this.state.comment,
         showComment: false,
-        commentData: suggestions.comments
+        commentData: this.props.suggestions.comments
       });
     } else {
       this.setState({
         comment: true,
         id: id,
         showComment: false,
-        commentData: suggestions.comments
+        commentData: this.props.suggestions.comments
       });
     }
   }
@@ -73,6 +73,8 @@ class Main extends React.Component {
       this.state.id,
       this.props.auth.user.user_name
     );
+    this.props.getSuggestion();
+    this.props.getComments();
   }
 
   toggleComments(id, e) {
@@ -94,16 +96,21 @@ class Main extends React.Component {
   render() {
     console.log(this.props.suggestions.comments);
 
-    const { suggestions } = this.props.suggestions;
+    const suggestions = this.props.suggestions.suggestion;
+    console.log(suggestions);
+
     suggestions
       ? suggestions.sort((a, b) => b.votes - a.votes)
       : suggestions == suggestions;
     let count = 0;
-    this.props.suggestions.comments.map(comment => {
-      if (comment.id === this.state.id) {
-        return count++;
-      }
-    });
+    {
+      this.props.suggestions.comments.length > 0 &&
+        this.props.suggestions.comments.map(comment => {
+          if (comment.id === this.state.id) {
+            return count++;
+          }
+        });
+    }
     console.log(count);
 
     return (
@@ -142,7 +149,7 @@ class Main extends React.Component {
             )}
           </div>
         )}
-        {this.props.suggestions.suggestions &&
+        {this.props.suggestions.suggestion &&
           !this.state.addPage &&
           suggestions.map(suggestion => {
             return (
@@ -234,6 +241,8 @@ class Main extends React.Component {
                   this.state.id == suggestion.id &&
                   this.props.suggestions.comments &&
                   this.props.suggestions.comments.map(comment => {
+                    console.log(comment);
+
                     if (comment.id === this.state.id) {
                       return (
                         <article key={comment.comment} className="media">
