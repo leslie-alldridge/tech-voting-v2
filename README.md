@@ -4,7 +4,8 @@ CX Tech Feedback
 
 ### In progress
 
-- comments counter unique to each suggestion
+- comments counter unique to each suggestion  <- possibly need more logic in routes/db 
+- increase number of seeds
 - laurence and leads to have a status/banner in progress etc
 - one upvote per suggestion - i can use their unique id's for this
 - categories for (process updates, new ideas, team improvements) - drop down filter -> popular ideas (top 5) will be the default
