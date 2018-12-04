@@ -11,7 +11,8 @@ exports.seed = function(knex, Promise) {
           votes: 20,
           category: 'idea',
           user: 'Vinh',
-          commentcount: 0
+          commentcount: 0,
+          status: 'consideration'
         },
         {
           id: 2,
@@ -21,7 +22,8 @@ exports.seed = function(knex, Promise) {
           votes: 10,
           category: 'improvement',
           user: 'Leslie',
-          commentcount: 0
+          commentcount: 0,
+          status: 'progress'
         },
         {
           id: 3,
@@ -31,7 +33,8 @@ exports.seed = function(knex, Promise) {
           votes: 3,
           category: 'team',
           user: 'Hayley',
-          commentcount: 0
+          commentcount: 0,
+          status: 'completed'
         }
       ]);
     });

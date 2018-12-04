@@ -7,6 +7,7 @@ exports.up = function(knex, Promise) {
     table.string('category');
     table.string('user');
     table.integer('commentcount');
+    table.string('status');
   });
 };
 

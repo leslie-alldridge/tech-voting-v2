@@ -144,7 +144,11 @@ class Main extends React.Component {
           !this.state.addPage &&
           suggestions.map(suggestion => {
             return (
-              <div key={suggestion.id}>
+              <div
+                data-aos="zoom-in"
+                data-aos-duration="6000"
+                key={suggestion.id}
+              >
                 <article key={suggestion.id} className="media">
                   <figure className="media-left">
                     <p className="image is-64x64">
@@ -156,10 +160,16 @@ class Main extends React.Component {
                       <p>
                         <strong id="ideaTitle">{suggestion.title}</strong>{' '}
                         <span
-                          className="button is-primary is-rounded"
-                          id="completed"
+                          data-aos="zoom-in"
+                          data-aos-duration="3000"
+                          className="button is-primary is-rounded "
+                          id={suggestion.status}
                         >
-                          Under Consideration
+                          {suggestion.status == 'completed'
+                            ? 'Completed'
+                            : suggestion.status == 'consideration'
+                            ? 'Under Consideration'
+                            : 'In Progress'}
                         </span>
                         <br />
                         {suggestion.description}
