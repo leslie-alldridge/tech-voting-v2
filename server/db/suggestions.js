@@ -22,7 +22,6 @@ function upVote(id) {
 }
 
 function addComment(comment, id, name) {
-  console.log(comment, id);
   let row = {
     id,
     user: name,

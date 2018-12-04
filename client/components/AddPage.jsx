@@ -70,10 +70,21 @@ class AddPage extends React.Component {
           {this.state.category !== 'none' &&
             this.state.title !== '' &&
             this.state.description !== 'none' && (
-              <input type="submit" value="submit" />
+              <input
+                className="button is-primary"
+                type="submit"
+                value="Submit"
+              />
             )}
         </form>
-        <button onClick={this.props.togglePage}>Back</button>
+        <button
+          id="backBtn"
+          className="tooltip button is-link"
+          onClick={this.props.togglePage}
+        >
+          Back
+          <span className="tooltiptext">To homepage</span>
+        </button>
       </div>
     );
   }

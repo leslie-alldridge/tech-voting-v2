@@ -82,8 +82,6 @@ class Main extends React.Component {
   }
 
   toggleComments(id, e) {
-    console.log(id, e);
-
     e.preventDefault();
     if (id == this.state.id) {
       this.setState({
@@ -156,7 +154,8 @@ class Main extends React.Component {
                   <div className="media-content">
                     <div className="content">
                       <p>
-                        <strong id="ideaTitle">{suggestion.title}</strong>
+                        <strong id="ideaTitle">{suggestion.title}</strong>{' '}
+                        <span id="consideration">Under Consideration</span>
                         <br />
                         {suggestion.description}
                       </p>
@@ -236,8 +235,6 @@ class Main extends React.Component {
                   this.state.id == suggestion.id &&
                   this.props.suggestions.comments &&
                   this.props.suggestions.comments.map(comment => {
-                    console.log(comment);
-
                     if (comment.id === this.state.id) {
                       return (
                         <article key={comment.comment} className="media">
