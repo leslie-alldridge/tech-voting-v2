@@ -10,7 +10,8 @@ exports.seed = function(knex, Promise) {
             'To help us serve our current customers better and scale to five million users we will need a support interface that allows us to handle multiple cases with ease. Our current set up freezes often, causing our agents to wait a long time before then can send an email.',
           votes: 20,
           category: 'idea',
-          user: 'Vinh'
+          user: 'Vinh',
+          commentcount: 0
         },
         {
           id: 2,
@@ -19,7 +20,8 @@ exports.seed = function(knex, Promise) {
             "Provide a #human experience for our users. We've received multiple complaints about our status page wording being a copy paste effort between outages.",
           votes: 10,
           category: 'improvement',
-          user: 'Leslie'
+          user: 'Leslie',
+          commentcount: 0
         },
         {
           id: 3,
@@ -28,7 +30,8 @@ exports.seed = function(knex, Promise) {
             'Provide a safe place for the team to relax with each other away from the stress of work.',
           votes: 3,
           category: 'team',
-          user: 'Hayley'
+          user: 'Hayley',
+          commentcount: 0
         }
       ]);
     });
