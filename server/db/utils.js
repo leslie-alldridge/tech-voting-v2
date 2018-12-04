@@ -1,20 +1,22 @@
-const _ = require('lodash');
-
 module.exports = {
-  convertArrayToCamelCase,
-  convertObjectToSnakeCase
+  counter
 };
 
-function convertArrayToCamelCase(arr) {
-  return arr.map(element => {
-    return _.mapKeys(element, (value, key) => {
-      return _.camelCase(key);
-    });
-  });
-}
+function counter(arr) {
+  var a = [],
+    b = [],
+    prev;
 
-function convertObjectToSnakeCase(obj) {
-  return _.mapKeys(obj, (value, key) => {
-    return _.snakeCase(key);
-  });
+  arr.sort();
+  for (var i = 0; i < arr.length; i++) {
+    if (arr[i] !== prev) {
+      a.push(arr[i]);
+      b.push(1);
+    } else {
+      b[b.length - 1]++;
+    }
+    prev = arr[i];
+  }
+
+  return [a, b];
 }

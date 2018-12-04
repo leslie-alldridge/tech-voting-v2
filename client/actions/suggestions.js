@@ -60,6 +60,8 @@ export function getSuggestionAction() {
   return function(dispatch) {
     dispatch(requestSuggestion());
     return request('get', 'suggestion/all').then(response => {
+      console.log(response);
+
       dispatch(receiveSuggestion(response.body));
     });
   };
