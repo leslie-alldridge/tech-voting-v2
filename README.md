@@ -3,9 +3,6 @@
 CX Tech Feedback
 
 ### In progress
-
-- comments counter unique to each suggestion  <- possibly need more logic in routes/db 
-- increase number of seeds
 - laurence and leads to have a status/banner in progress etc
 - one upvote per suggestion - i can use their unique id's for this
 - categories for (process updates, new ideas, team improvements) - drop down filter -> popular ideas (top 5) will be the default
@@ -15,7 +12,8 @@ CX Tech Feedback
 - enhanced styling
 
 ### Done
-
+- increase number of seeds
+- comments counter unique to each suggestion  <- possibly need more logic in routes/db 
 - comments toggled
 - remove send feedback on the left (removed and placed with confluence link)
 - user login for comments (login completed and ideas take the current logged in users name)
