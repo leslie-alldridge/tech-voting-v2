@@ -50,7 +50,8 @@ router.post('/add', (req, res) => {
     description,
     votes: 1,
     category,
-    user
+    user,
+    commentcount: 0
   };
   addSuggestions(data).then(response => {
     res.json(response);

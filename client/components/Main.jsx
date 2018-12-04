@@ -68,6 +68,10 @@ class Main extends React.Component {
   }
 
   submitComment() {
+    this.setState({
+      showComment: false,
+      comment: !this.state.comment
+    });
     this.props.addComment(
       this.state.userComment,
       this.state.id,
