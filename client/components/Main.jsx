@@ -162,7 +162,7 @@ class Main extends React.Component {
                         <span
                           data-aos="zoom-in"
                           data-aos-duration="3000"
-                          className="button is-primary is-rounded "
+                          className="button is-primary is-rounded is-pulled-right"
                           id={suggestion.status}
                         >
                           {suggestion.status == 'completed'

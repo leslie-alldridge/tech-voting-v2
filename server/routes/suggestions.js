@@ -51,7 +51,8 @@ router.post('/add', (req, res) => {
     votes: 1,
     category,
     user,
-    commentcount: 0
+    commentcount: 0,
+    status: 'consideration'
   };
   addSuggestions(data).then(response => {
     res.json(response);

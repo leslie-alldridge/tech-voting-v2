@@ -10,7 +10,7 @@ import Main from './Main';
 const App = ({ auth }) => (
   <Router>
     <div>
-      <div className="container has-text-centered">
+      <div className=" has-text-centered">
         <div className="hero is-small is-primary">
           <div className="hero-body has-text-centered">
             <Link to="/" className="">
