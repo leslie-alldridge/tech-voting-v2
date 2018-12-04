@@ -59,8 +59,39 @@ router.post('/add', (req, res) => {
 
 router.post('/upvote', (req, res) => {
   const { id } = req.body;
-  upVote(id).then(response => {
-    res.json(response);
+  upVote(id).then(response2 => {
+    getSuggestions().then(response => {
+      let ideaData = response;
+      getComments().then(resp => {
+        let commentData = resp;
+        // we now have all the comments and ideas in here
+        let count = [];
+        //map over ideas
+        ideaData.map(idea => {
+          //map over comments too
+          return commentData.map(comment => {
+            if (idea.id == comment.id) {
+              count.push(idea.id);
+            }
+          });
+        });
+        // counts occurences
+        result = {};
+        for (var i = 0; i < count.length; ++i) {
+          if (!result[count[i]]) result[count[i]] = 0;
+          ++result[count[i]];
+        }
+        //matches keys and inserts values into old object with ideas
+        Object.keys(result).forEach(function(key, index) {
+          ideaData.map(idea => {
+            if (idea.id == key) {
+              idea.commentcount = result[key];
+            }
+          });
+        });
+        res.json(ideaData);
+      });
+    });
   });
 });
 

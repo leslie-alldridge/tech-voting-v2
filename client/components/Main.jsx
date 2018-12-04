@@ -25,6 +25,7 @@ class Main extends React.Component {
     this.handleLike = this.handleLike.bind(this);
     this.submitComment = this.submitComment.bind(this);
     this.handleCommentEntry = this.handleCommentEntry.bind(this);
+    this.toggleComments = this.toggleComments.bind(this);
   }
 
   componentDidMount() {
@@ -77,6 +78,8 @@ class Main extends React.Component {
   }
 
   toggleComments(id, e) {
+    console.log(id, e);
+
     e.preventDefault();
     if (id == this.state.id) {
       this.setState({

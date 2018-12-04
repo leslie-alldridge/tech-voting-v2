@@ -60,8 +60,6 @@ export function getSuggestionAction() {
   return function(dispatch) {
     dispatch(requestSuggestion());
     return request('get', 'suggestion/all').then(response => {
-      console.log(response);
-
       dispatch(receiveSuggestion(response.body));
     });
   };
@@ -88,7 +86,6 @@ export function upVoteAction(id) {
 }
 
 export function addCommentAction(comment, id, name) {
-  console.log(comment + 'is for' + name);
   return function(dispatch) {
     dispatch(requestSuggestion());
     return request('post', 'suggestion/comment', { comment, id, name }).then(
