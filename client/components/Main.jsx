@@ -155,7 +155,12 @@ class Main extends React.Component {
                     <div className="content">
                       <p>
                         <strong id="ideaTitle">{suggestion.title}</strong>{' '}
-                        <span id="consideration">Under Consideration</span>
+                        <span
+                          className="button is-primary is-rounded"
+                          id="completed"
+                        >
+                          Under Consideration
+                        </span>
                         <br />
                         {suggestion.description}
                       </p>

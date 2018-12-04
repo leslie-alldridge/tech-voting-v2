@@ -138,10 +138,40 @@
   animation-name: likeMessage;
 }
 
+/* Consideration Styles */
+
+#consideration:hover {
+  cursor: default;
+}
+
 #consideration {
-  border: 1px solid orange;
-  border-radius: 10%;
-  padding: 10px;
+  background-color: orange;
+  margin-left: 5%;
+  font-size: 0.7em;
+}
+
+/* Completed Styles */
+
+#completed:hover {
+  cursor: default;
+}
+
+#completed {
+  background-color: #00d1b2;
+  margin-left: 5%;
+  font-size: 0.7em;
+}
+
+/* In Progress Styles */
+
+#progress:hover {
+  cursor: default;
+}
+
+#progress {
+  background-color: #ffdd57;
+  margin-left: 5%;
+  font-size: 0.7em;
 }
 
 .tooltip {
