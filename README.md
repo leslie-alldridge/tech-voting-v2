@@ -3,9 +3,10 @@
 CX Tech Feedback
 
 ### In progress
-- laurence and leads to have a status/banner in progress etc
-- one upvote per suggestion - i can use their unique id's for this
-- categories for (process updates, new ideas, team improvements) - drop down filter -> popular ideas (top 5) will be the default
+- create lead functions based off the username Rob and Laurence - as they can be reserved names
+- laurence and leads to have a status/banner in progress etc (banners ready just need option set up to flag for leaders)
+- one upvote per suggestion per user - i can use their unique id's for this (ideally not local cache)
+- categories for (process updates, new ideas, team improvements) - drop down filter -> popular ideas (top 5) will be the default (could have a link saying 'see more' than will then load up all results.) 
 - options will be categories or top 10.
 - search (starting by name -> looking into search across other features such as completed, in progress).
 ^^ https://medium.com/@yaoxiao1222/implementing-search-filter-a-list-on-redux-react-bb5de8d0a3ad
