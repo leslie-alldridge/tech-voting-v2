@@ -19,7 +19,9 @@ class Main extends React.Component {
       comment: false,
       userComment: '',
       showComment: false,
-      commentData: [] || suggestions.comments
+      commentData: [] || suggestions.comments,
+      dropdown: 'dropdown',
+      filter: ''
     };
     [
       'togglePage',
@@ -28,7 +30,9 @@ class Main extends React.Component {
       'submitComment',
       'handleCommentEntry',
       'toggleComments',
-      'handleStatusUpdate'
+      'handleStatusUpdate',
+      'toggleDrop',
+      'filterIdeas'
     ].forEach(method => {
       this[method] = this[method].bind(this);
     });
@@ -121,6 +125,23 @@ class Main extends React.Component {
     this.props.updateStatus(formattedText, id);
   }
 
+  toggleDrop() {
+    this.state.dropdown === 'dropdown'
+      ? this.setState({
+          dropdown: 'dropdown is-active'
+        })
+      : this.setState({
+          dropdown: 'dropdown'
+        });
+  }
+
+  filterIdeas(e) {
+    console.log(e.target.innerText);
+    this.setState({
+      dropdown: 'dropdown'
+    });
+  }
+
   render() {
     const suggestions = this.props.suggestions.suggestion;
 
@@ -136,6 +157,47 @@ class Main extends React.Component {
               Popular Improvements
             </h2>
             <hr />
+            <div className={this.state.dropdown}>
+              <div className="dropdown-trigger">
+                <button
+                  className="button"
+                  aria-haspopup="true"
+                  aria-controls="dropdown-menu3"
+                  onClick={this.toggleDrop}
+                >
+                  <span>Filter Results</span>
+                  <span className="icon is-small">
+                    <i className="fas fa-angle-down" aria-hidden="true" />
+                  </span>
+                </button>
+              </div>
+              <div className="dropdown-menu" id="dropdown-menu3" role="menu">
+                <div className="dropdown-content">
+                  <a
+                    onClick={this.filterIdeas}
+                    href="#"
+                    className="dropdown-item"
+                  >
+                    Under Consideration
+                  </a>
+                  <a
+                    onClick={this.filterIdeas}
+                    href="#"
+                    className="dropdown-item"
+                  >
+                    In Progress
+                  </a>
+                  <a
+                    onClick={this.filterIdeas}
+                    href="#"
+                    className="dropdown-item"
+                  >
+                    Completed
+                  </a>
+                </div>
+              </div>
+            </div>
+
             <div id="buttons" className="container has-text-centered">
               <a
                 target="_blank"

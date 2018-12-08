@@ -5,7 +5,6 @@ CX Tech Feedback
 ### In progress
 
 - create a status for 'closed' and allow admins to delete the idea.
-- create lead functions based off the username Rob and Laurence - as they can be reserved names
 - one upvote per suggestion per user - i can use their unique id's for this (ideally not local cache)
 - categories for (process updates, new ideas, team improvements) - drop down filter -> popular ideas (top 5) will be the default (could have a link saying 'see more' than will then load up all results.)
 - options will be categories or top 10.
