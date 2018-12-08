@@ -121,10 +121,16 @@ router.post('/status', (req, res) => {
 });
 
 router.get('/status', (req, res) => {
-  getSuggestions().then(response => {
-    console.log(response);
+  console.log(req.query);
 
-    res.json(response);
+  getSuggestions().then(response => {
+    //console.log(response);
+    let newArr = response.filter(item => {
+      return item.status == req.query.status;
+    });
+    console.log(newArr);
+
+    res.json(newArr);
     //comments are vanishing from the response
   });
 });
