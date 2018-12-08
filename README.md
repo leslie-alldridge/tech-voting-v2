@@ -5,9 +5,11 @@ CX Tech Feedback
 ### Todo
 
 - Loading all results should be fine, but see if laurence wants a 'see more' option and only 10 or so to display
-- Admin comments - do we want a badge to say an admin has commented?
+
 
 ### In progress
+- Admin comments - do we want a badge to say an admin has commented? decided to add badge, just need to change it so badges show on page load, instead of toggle
+
 
 - create a status for 'closed' and allow admins to delete the idea.
 - one upvote per suggestion per user - i can use their unique id's for this (ideally not local cache)
