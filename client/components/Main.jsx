@@ -111,9 +111,16 @@ class Main extends React.Component {
 
   handleStatusUpdate(e, id) {
     console.log(e.target.value);
-    console.log(id);
+    let formattedText = '';
+    if (e.target.value === 'Under Consideration') {
+      formattedText = 'consideration';
+    } else if (e.target.value === 'Completed') {
+      formattedText = 'completed';
+    } else {
+      formattedText = 'progress';
+    }
 
-    this.props.updateStatus(e.target.value, id);
+    this.props.updateStatus(formattedText, id);
   }
 
   render() {
@@ -201,9 +208,12 @@ class Main extends React.Component {
                               this.handleStatusUpdate(e, suggestion.id)
                             }
                           >
-                            <option>Completed</option>
-                            <option>Under Consideration</option>
-                            <option>In Progress</option>
+                            <option>Pick a new status</option>
+                            <option name="completed">Completed</option>
+                            <option name="consideration">
+                              Under Consideration
+                            </option>
+                            <option name="progress">In Progress</option>
                           </select>
                         </span>
                         <br />

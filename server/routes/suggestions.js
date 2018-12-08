@@ -116,7 +116,9 @@ router.post('/status', (req, res) => {
 
   console.log(req.body);
   updateStatus(req.body.status, req.body.id).then(data => {
-    getComments().then(response => {
+    getSuggestions().then(response => {
+      console.log(response);
+
       res.json(response);
     });
   });
