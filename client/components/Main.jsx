@@ -24,7 +24,8 @@ class Main extends React.Component {
       dropdown: 'dropdown',
       filter: '',
       category: 'all',
-      dropdownCat: 'dropdown'
+      dropdownCat: 'dropdown',
+      adminComment: []
     };
     [
       'togglePage',
@@ -45,6 +46,7 @@ class Main extends React.Component {
 
   componentDidMount() {
     this.props.getSuggestion();
+    this.props.getComments();
   }
 
   togglePage() {
@@ -60,6 +62,7 @@ class Main extends React.Component {
 
   handleComment(id, e) {
     e.preventDefault();
+
     if (id == this.state.id) {
       this.setState({
         comment: !this.state.comment,
@@ -74,6 +77,9 @@ class Main extends React.Component {
         commentData: this.props.suggestions.comments
       });
     }
+    // if (this.props.suggestions.comments) {
+    console.log(this.props.suggestions.comments);
+    // }
   }
 
   handleCommentEntry(e) {
@@ -98,6 +104,13 @@ class Main extends React.Component {
 
   toggleComments(id, e) {
     e.preventDefault();
+    this.props.suggestions.comments.map(comment => {
+      if (comment.id === id && comment.user === 'Laurence') {
+        this.setState({
+          adminComment: [...this.state.adminComment, id]
+        });
+      }
+    });
     if (id == this.state.id) {
       this.setState({
         showComment: !this.state.showComment,
@@ -348,6 +361,17 @@ class Main extends React.Component {
                       </div>
                       <nav className="level is-mobile">
                         <div className="level-left">
+                          {this.state.adminComment.includes(suggestion.id) && (
+                            <a
+                              id="secondIcon"
+                              name={suggestion.id}
+                              className="level-item"
+                            >
+                              <span className="icon is-medium">
+                                <i id="admin" className="fas fa-trophy" />{' '}
+                              </span>
+                            </a>
+                          )}
                           <a
                             onClick={e => this.handleComment(suggestion.id, e)}
                             id="secondIcon"
@@ -421,6 +445,8 @@ class Main extends React.Component {
                     this.state.id == suggestion.id &&
                     this.props.suggestions.comments &&
                     this.props.suggestions.comments.map(comment => {
+                      console.log(comment);
+
                       if (comment.id === this.state.id) {
                         return (
                           <article key={comment.comment} className="media">
