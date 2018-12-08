@@ -109,9 +109,11 @@ class Main extends React.Component {
     }
   }
 
-  handleStatusUpdate(e) {
+  handleStatusUpdate(e, id) {
     console.log(e.target.value);
-    this.props.updateStatus(e.target.value);
+    console.log(id);
+
+    this.props.updateStatus(e.target.value, id);
   }
 
   render() {
@@ -194,7 +196,11 @@ class Main extends React.Component {
                         {/* Laurence should have a selector to pick the right status */}
                         <span>
                           Status: {suggestion.status}
-                          <select onChange={this.handleStatusUpdate}>
+                          <select
+                            onChange={e =>
+                              this.handleStatusUpdate(e, suggestion.id)
+                            }
+                          >
                             <option>Completed</option>
                             <option>Under Consideration</option>
                             <option>In Progress</option>
@@ -326,8 +332,8 @@ function mapDispatchToProps(dispatch) {
     getComments: () => {
       dispatch(getCommentsAction());
     },
-    updateStatus: status => {
-      dispatch(updateStatusAction(status));
+    updateStatus: (status, id) => {
+      dispatch(updateStatusAction(status, id));
     }
   };
 }

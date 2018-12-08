@@ -5,7 +5,8 @@ let {
   getSuggestions,
   upVote,
   addComment,
-  getComments
+  getComments,
+  updateStatus
 } = require('../db/suggestions');
 
 router.get('/all', (req, res) => {
@@ -112,11 +113,13 @@ router.get('/comments', (req, res) => {
 
 router.post('/status', (req, res) => {
   // const { comment, id, name } = req.body;
-  console.log(req.body);
 
-  // addComment(comment, id, name).then(response => {
-  //   res.json(response);
-  // });
+  console.log(req.body);
+  updateStatus(req.body.status, req.body.id).then(data => {
+    getComments().then(response => {
+      res.json(response);
+    });
+  });
 });
 
 module.exports = router;

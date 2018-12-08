@@ -105,11 +105,13 @@ export function getCommentsAction() {
   };
 }
 
-export function updateStatusAction(status) {
+export function updateStatusAction(status, id) {
   return function(dispatch) {
     dispatch(requestSuggestion());
-    return request('post', 'suggestion/status', { status }).then(response => {
-      dispatch(receiveSuggestion(response.body));
-    });
+    return request('post', 'suggestion/status', { status, id }).then(
+      response => {
+        dispatch(receiveSuggestion(response.body));
+      }
+    );
   };
 }

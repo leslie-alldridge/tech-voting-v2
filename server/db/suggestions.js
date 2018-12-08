@@ -38,8 +38,19 @@ function getComments() {
   return db('comments').select();
 }
 
+function updateStatus(status, id) {
+  console.log(status, id);
+  return db('ideas')
+    .where('id', id)
+    .update({ status: status })
+    .then(data => {
+      return db('ideas');
+    });
+}
+
 module.exports = {
   getSuggestions,
+  updateStatus,
   addSuggestions,
   upVote,
   addComment,
