@@ -22,7 +22,8 @@ class Main extends React.Component {
       showComment: false,
       commentData: [] || suggestions.comments,
       dropdown: 'dropdown',
-      filter: ''
+      filter: '',
+      category: 'all'
     };
     [
       'togglePage',
@@ -37,12 +38,6 @@ class Main extends React.Component {
     ].forEach(method => {
       this[method] = this[method].bind(this);
     });
-    // this.togglePage = this.togglePage.bind(this);
-    // this.handleComment = this.handleComment.bind(this);
-    // this.handleLike = this.handleLike.bind(this);
-    // this.submitComment = this.submitComment.bind(this);
-    // this.handleCommentEntry = this.handleCommentEntry.bind(this);
-    // this.toggleComments = this.toggleComments.bind(this);
   }
 
   componentDidMount() {
@@ -137,7 +132,6 @@ class Main extends React.Component {
   }
 
   filterIdeas(e) {
-    console.log(e.target.name);
     this.setState({
       dropdown: 'dropdown'
     });
@@ -169,7 +163,7 @@ class Main extends React.Component {
                     aria-controls="dropdown-menu3"
                     onClick={this.toggleDrop}
                   >
-                    <span>Filter Results</span>
+                    <span>Filter Status</span>
                     <span className="icon is-small">
                       <i className="fas fa-angle-down" aria-hidden="true" />
                     </span>
@@ -235,6 +229,7 @@ class Main extends React.Component {
         {suggestions.length === 0 ? <p>No results</p> : null}
         {this.props.suggestions.suggestion &&
           !this.state.addPage &&
+          this.state.category === 'all' &&
           suggestions.map(suggestion => {
             return (
               <div
