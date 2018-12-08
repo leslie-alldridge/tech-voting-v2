@@ -110,7 +110,6 @@ class Main extends React.Component {
   }
 
   handleStatusUpdate(e, id) {
-    console.log(e.target.value);
     let formattedText = '';
     if (e.target.value === 'Under Consideration') {
       formattedText = 'consideration';
@@ -119,7 +118,6 @@ class Main extends React.Component {
     } else {
       formattedText = 'progress';
     }
-
     this.props.updateStatus(formattedText, id);
   }
 
@@ -201,21 +199,23 @@ class Main extends React.Component {
                           </span>
                         )}
                         {/* Laurence should have a selector to pick the right status */}
-                        <span>
-                          Status: {suggestion.status}
-                          <select
-                            onChange={e =>
-                              this.handleStatusUpdate(e, suggestion.id)
-                            }
-                          >
-                            <option>Pick a new status</option>
-                            <option name="completed">Completed</option>
-                            <option name="consideration">
-                              Under Consideration
-                            </option>
-                            <option name="progress">In Progress</option>
-                          </select>
-                        </span>
+                        {this.props.auth.user.user_name === 'Laurence' && (
+                          <span>
+                            Status: {suggestion.status}
+                            <select
+                              onChange={e =>
+                                this.handleStatusUpdate(e, suggestion.id)
+                              }
+                            >
+                              <option>Pick a new status</option>
+                              <option name="completed">Completed</option>
+                              <option name="consideration">
+                                Under Consideration
+                              </option>
+                              <option name="progress">In Progress</option>
+                            </select>
+                          </span>
+                        )}
                         <br />
                         {suggestion.description}
                       </p>
