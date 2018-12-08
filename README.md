@@ -3,18 +3,21 @@
 CX Tech Feedback
 
 ### In progress
+
+- create a status for 'closed' and allow admins to delete the idea.
 - create lead functions based off the username Rob and Laurence - as they can be reserved names
-- laurence and leads to have a status/banner in progress etc (banners ready just need option set up to flag for leaders)
 - one upvote per suggestion per user - i can use their unique id's for this (ideally not local cache)
-- categories for (process updates, new ideas, team improvements) - drop down filter -> popular ideas (top 5) will be the default (could have a link saying 'see more' than will then load up all results.) 
+- categories for (process updates, new ideas, team improvements) - drop down filter -> popular ideas (top 5) will be the default (could have a link saying 'see more' than will then load up all results.)
 - options will be categories or top 10.
 - search (starting by name -> looking into search across other features such as completed, in progress).
-^^ https://medium.com/@yaoxiao1222/implementing-search-filter-a-list-on-redux-react-bb5de8d0a3ad
+  ^^ https://medium.com/@yaoxiao1222/implementing-search-filter-a-list-on-redux-react-bb5de8d0a3ad
 - enhanced styling
 
 ### Done
+
+- laurence and leads to have a status/banner in progress etc (banners ready just need option set up to flag for leaders)
 - increase number of seeds
-- comments counter unique to each suggestion  <- possibly need more logic in routes/db 
+- comments counter unique to each suggestion <- possibly need more logic in routes/db
 - comments toggled
 - remove send feedback on the left (removed and placed with confluence link)
 - user login for comments (login completed and ideas take the current logged in users name)
