@@ -125,12 +125,48 @@ router.get('/status', (req, res) => {
 
   getSuggestions().then(response => {
     //console.log(response);
-    let newArr = response.filter(item => {
-      return item.status == req.query.status;
-    });
-    console.log(newArr);
+    let ideaData = response;
 
-    res.json(newArr);
+    getComments().then(resp => {
+      let commentData = resp;
+      // we now have all the comments and ideas in here
+      let count = [];
+      //map over ideas
+      ideaData.map(idea => {
+        //map over comments too
+        return commentData.map(comment => {
+          if (idea.id == comment.id) {
+            count.push(idea.id);
+          }
+        });
+      });
+      // counts occurences
+      result = {};
+      for (var i = 0; i < count.length; ++i) {
+        if (!result[count[i]]) result[count[i]] = 0;
+        ++result[count[i]];
+      }
+      //matches keys and inserts values into old object with ideas
+      Object.keys(result).forEach(function(key, index) {
+        ideaData.map(idea => {
+          if (idea.id == key) {
+            idea.commentcount = result[key];
+          }
+        });
+      });
+      let newArr = response.filter(item => {
+        return item.status == req.query.status;
+      });
+      console.log(newArr);
+
+      res.json(newArr);
+    });
+    // let newArr = response.filter(item => {
+    //   return item.status == req.query.status;
+    // });
+    // console.log(newArr);
+
+    // res.json(newArr);
     //comments are vanishing from the response
   });
 });
