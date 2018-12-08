@@ -232,6 +232,7 @@ class Main extends React.Component {
             )}
           </div>
         )}
+        {suggestions.length === 0 ? <p>No results</p> : null}
         {this.props.suggestions.suggestion &&
           !this.state.addPage &&
           suggestions.map(suggestion => {
