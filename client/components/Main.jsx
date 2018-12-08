@@ -115,7 +115,7 @@ class Main extends React.Component {
             <div id="buttons" className="container has-text-centered">
               <a
                 target="_blank"
-                href="https://www.atlassian.com/software/confluence"
+                href="https://confluence.teamxero.com/pages/viewpage.action?pageId=194813287"
                 className="button is-link is-rounded"
               >
                 Send Feedback
