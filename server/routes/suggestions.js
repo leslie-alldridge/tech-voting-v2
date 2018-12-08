@@ -112,15 +112,20 @@ router.get('/comments', (req, res) => {
 });
 
 router.post('/status', (req, res) => {
-  // const { comment, id, name } = req.body;
-
-  console.log(req.body);
   updateStatus(req.body.status, req.body.id).then(data => {
     getSuggestions().then(response => {
-      console.log(response);
-
       res.json(response);
     });
+    //might need to retrieve comments here too, haven't tested yet
+  });
+});
+
+router.get('/status', (req, res) => {
+  getSuggestions().then(response => {
+    console.log(response);
+
+    res.json(response);
+    //comments are vanishing from the response
   });
 });
 

@@ -6,7 +6,8 @@ import {
   upVoteAction,
   addCommentAction,
   getCommentsAction,
-  updateStatusAction
+  updateStatusAction,
+  filterIdeasAction
 } from '../actions/suggestions';
 import AddPage from './AddPage';
 
@@ -136,10 +137,11 @@ class Main extends React.Component {
   }
 
   filterIdeas(e) {
-    console.log(e.target.innerText);
+    console.log(e.target.name);
     this.setState({
       dropdown: 'dropdown'
     });
+    this.props.filterIdeas(e.target.name);
   }
 
   render() {
@@ -157,48 +159,52 @@ class Main extends React.Component {
               Popular Improvements
             </h2>
             <hr />
-            <div className={this.state.dropdown}>
-              <div className="dropdown-trigger">
-                <button
-                  className="button"
-                  aria-haspopup="true"
-                  aria-controls="dropdown-menu3"
-                  onClick={this.toggleDrop}
-                >
-                  <span>Filter Results</span>
-                  <span className="icon is-small">
-                    <i className="fas fa-angle-down" aria-hidden="true" />
-                  </span>
-                </button>
-              </div>
-              <div className="dropdown-menu" id="dropdown-menu3" role="menu">
-                <div className="dropdown-content">
-                  <a
-                    onClick={this.filterIdeas}
-                    href="#"
-                    className="dropdown-item"
+
+            <div id="buttons" className="container ">
+              <div className={this.state.dropdown}>
+                <div className="dropdown-trigger">
+                  <button
+                    className="button"
+                    aria-haspopup="true"
+                    aria-controls="dropdown-menu3"
+                    onClick={this.toggleDrop}
                   >
-                    Under Consideration
-                  </a>
-                  <a
-                    onClick={this.filterIdeas}
-                    href="#"
-                    className="dropdown-item"
-                  >
-                    In Progress
-                  </a>
-                  <a
-                    onClick={this.filterIdeas}
-                    href="#"
-                    className="dropdown-item"
-                  >
-                    Completed
-                  </a>
+                    <span>Filter Results</span>
+                    <span className="icon is-small">
+                      <i className="fas fa-angle-down" aria-hidden="true" />
+                    </span>
+                  </button>
+                </div>
+                <div className="dropdown-menu" id="dropdown-menu3" role="menu">
+                  <div className="dropdown-content">
+                    <a
+                      onClick={this.filterIdeas}
+                      href="#"
+                      className="dropdown-item"
+                      name="consideration"
+                    >
+                      Under Consideration
+                    </a>
+                    <a
+                      onClick={this.filterIdeas}
+                      href="#"
+                      className="dropdown-item"
+                      name="progress"
+                    >
+                      In Progress
+                    </a>
+                    <a
+                      onClick={this.filterIdeas}
+                      href="#"
+                      className="dropdown-item"
+                      name="completed"
+                    >
+                      Completed
+                    </a>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div id="buttons" className="container has-text-centered">
               <a
                 target="_blank"
                 href="https://confluence.teamxero.com/pages/viewpage.action?pageId=194813287"
@@ -406,6 +412,9 @@ function mapDispatchToProps(dispatch) {
     },
     updateStatus: (status, id) => {
       dispatch(updateStatusAction(status, id));
+    },
+    filterIdeas: category => {
+      dispatch(filterIdeasAction(category));
     }
   };
 }

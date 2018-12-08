@@ -115,3 +115,12 @@ export function updateStatusAction(status, id) {
     );
   };
 }
+
+export function filterIdeasAction(status) {
+  return function(dispatch) {
+    dispatch(requestSuggestion());
+    return request('get', 'suggestion/status', { status }).then(response => {
+      dispatch(receiveSuggestion(response.body));
+    });
+  };
+}
