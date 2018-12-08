@@ -5,7 +5,8 @@ import {
   getSuggestionAction,
   upVoteAction,
   addCommentAction,
-  getCommentsAction
+  getCommentsAction,
+  updateStatusAction
 } from '../actions/suggestions';
 import AddPage from './AddPage';
 
@@ -20,12 +21,23 @@ class Main extends React.Component {
       showComment: false,
       commentData: [] || suggestions.comments
     };
-    this.togglePage = this.togglePage.bind(this);
-    this.handleComment = this.handleComment.bind(this);
-    this.handleLike = this.handleLike.bind(this);
-    this.submitComment = this.submitComment.bind(this);
-    this.handleCommentEntry = this.handleCommentEntry.bind(this);
-    this.toggleComments = this.toggleComments.bind(this);
+    [
+      'togglePage',
+      'handleComment',
+      'handleLike',
+      'submitComment',
+      'handleCommentEntry',
+      'toggleComments',
+      'handleStatusUpdate'
+    ].forEach(method => {
+      this[method] = this[method].bind(this);
+    });
+    // this.togglePage = this.togglePage.bind(this);
+    // this.handleComment = this.handleComment.bind(this);
+    // this.handleLike = this.handleLike.bind(this);
+    // this.submitComment = this.submitComment.bind(this);
+    // this.handleCommentEntry = this.handleCommentEntry.bind(this);
+    // this.toggleComments = this.toggleComments.bind(this);
   }
 
   componentDidMount() {
@@ -97,6 +109,11 @@ class Main extends React.Component {
     }
   }
 
+  handleStatusUpdate(e) {
+    console.log(e.target.value);
+    this.props.updateStatus(e.target.value);
+  }
+
   render() {
     const suggestions = this.props.suggestions.suggestion;
 
@@ -159,17 +176,29 @@ class Main extends React.Component {
                     <div className="content">
                       <p>
                         <strong id="ideaTitle">{suggestion.title}</strong>{' '}
-                        <span
-                          data-aos="zoom-in"
-                          data-aos-duration="3000"
-                          className="button is-primary is-rounded is-pulled-right"
-                          id={suggestion.status}
-                        >
-                          {suggestion.status == 'completed'
-                            ? 'Completed'
-                            : suggestion.status == 'consideration'
-                            ? 'Under Consideration'
-                            : 'In Progress'}
+                        {/* Remove the statuses for Laurence */}
+                        {this.props.auth.user.user_name !== 'Laurence' && (
+                          <span
+                            data-aos="zoom-in"
+                            data-aos-duration="3000"
+                            className="button is-primary is-rounded is-pulled-right"
+                            id={suggestion.status}
+                          >
+                            {suggestion.status == 'completed'
+                              ? 'Completed'
+                              : suggestion.status == 'consideration'
+                              ? 'Under Consideration'
+                              : 'In Progress'}
+                          </span>
+                        )}
+                        {/* Laurence should have a selector to pick the right status */}
+                        <span>
+                          Status: {suggestion.status}
+                          <select onChange={this.handleStatusUpdate}>
+                            <option>Completed</option>
+                            <option>Under Consideration</option>
+                            <option>In Progress</option>
+                          </select>
                         </span>
                         <br />
                         {suggestion.description}
@@ -296,6 +325,9 @@ function mapDispatchToProps(dispatch) {
     },
     getComments: () => {
       dispatch(getCommentsAction());
+    },
+    updateStatus: status => {
+      dispatch(updateStatusAction(status));
     }
   };
 }

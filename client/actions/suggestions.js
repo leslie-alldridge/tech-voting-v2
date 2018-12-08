@@ -104,3 +104,12 @@ export function getCommentsAction() {
     });
   };
 }
+
+export function updateStatusAction(status) {
+  return function(dispatch) {
+    dispatch(requestSuggestion());
+    return request('post', 'suggestion/status', { status }).then(response => {
+      dispatch(receiveSuggestion(response.body));
+    });
+  };
+}

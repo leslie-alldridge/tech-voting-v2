@@ -110,4 +110,13 @@ router.get('/comments', (req, res) => {
   });
 });
 
+router.post('/status', (req, res) => {
+  // const { comment, id, name } = req.body;
+  console.log(req.body);
+
+  // addComment(comment, id, name).then(response => {
+  //   res.json(response);
+  // });
+});
+
 module.exports = router;
