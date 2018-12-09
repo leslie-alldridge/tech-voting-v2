@@ -5,21 +5,22 @@ CX Tech Feedback
 ### Todo
 
 - Loading all results should be fine, but see if laurence wants a 'see more' option and only 10 or so to display
+- Do you want the search to be title only or include the description text?
+- Admin comments - do we want a badge to say an admin has commented?
 
 ### In progress
 
 Notes: - denotes more work to do on the feature and \* denotes an untouched user story.
 
-- Admin comments - do we want a badge to say an admin has commented? decided to add badge, just need to change it so badges show on page load, instead of toggle
+- decided to add badge, just need to change it so badges show on page load, instead of toggle
 
 * create a status for 'closed' and allow admins to delete the idea.
 
-* search (starting by name -> looking into search across other features such as completed, in progress).
-  ^^ https://medium.com/@yaoxiao1222/implementing-search-filter-a-list-on-redux-react-bb5de8d0a3ad
 * enhanced styling
 
 ### Done
 
+- search (starting by name -> looking into search across other features such as completed, in progress). Title search is completed.
 - one upvote per suggestion per user - i can use their unique id's for this (ideally not local cache)
 - categories for (process updates, new ideas, team improvements) - drop down filter -> popular ideas (top 5) will be the default (could have a link saying 'see more' than will then load up all results.)
 - laurence and leads to have a status/banner in progress etc (banners ready just need option set up to flag for leaders)
