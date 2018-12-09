@@ -114,3 +114,5 @@ npm run h:rollback
 ### Ta-Da!
 
 Your app should be deployed!
+
+Deployed at cxtech-wlg.herokuapp.com
