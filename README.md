@@ -8,6 +8,8 @@ CX Tech Feedback
 
 ### In progress
 
+Notes: - denotes more work to do on the feature and \* denotes an untouched user story.
+
 - Admin comments - do we want a badge to say an admin has commented? decided to add badge, just need to change it so badges show on page load, instead of toggle
 
 * create a status for 'closed' and allow admins to delete the idea.
