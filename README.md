@@ -10,7 +10,7 @@ CX Tech Feedback
 
 ### In progress
 
-- need to have the category drop down closing once I've clicked on an option
+- need to have the category drop down closing once I've clicked on an option and the styling needs to maintain when filtering by category (just need to add the ID) 
 
 Notes: - denotes more work to do on the feature and \* denotes an untouched user story.
 
