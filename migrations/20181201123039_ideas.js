@@ -8,6 +8,7 @@ exports.up = function(knex, Promise) {
     table.string('user');
     table.integer('commentcount');
     table.string('status');
+    table.text('voters');
   });
 };
 

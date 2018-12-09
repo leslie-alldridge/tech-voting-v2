@@ -12,12 +12,34 @@ function addSuggestions(data) {
     });
 }
 
-function upVote(id) {
+function upVote(id, name) {
+  let names = [];
   return db('ideas')
     .where('id', id)
-    .update({ votes: db.raw('votes + 1') })
     .then(data => {
-      return db('ideas').select();
+      if (!data[0].voters) {
+        names = name;
+      } else {
+        console.log('elsed');
+        console.log(data[0].voters.includes(name));
+
+        if (data[0].voters.includes(name)) names = data[0].voters;
+        else {
+          names = data[0].voters + ',' + name;
+        }
+      }
+
+      //data[0].voters ? console.log('true') : console.log('false');
+
+      console.log(names);
+
+      console.log(data);
+      return db('ideas')
+        .where('id', id)
+        .update({ votes: db.raw('votes + 1'), voters: names })
+        .then(data => {
+          return db('ideas').select();
+        });
     });
 }
 

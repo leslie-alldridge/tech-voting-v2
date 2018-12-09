@@ -61,8 +61,8 @@ router.post('/add', (req, res) => {
 });
 
 router.post('/upvote', (req, res) => {
-  const { id } = req.body;
-  upVote(id).then(response2 => {
+  const { id, name } = req.body;
+  upVote(id, name).then(response2 => {
     getSuggestions().then(response => {
       let ideaData = response;
       getComments().then(resp => {

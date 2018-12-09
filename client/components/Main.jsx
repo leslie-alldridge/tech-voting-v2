@@ -57,7 +57,7 @@ class Main extends React.Component {
 
   handleLike(id, e) {
     e.preventDefault();
-    this.props.upVote(id);
+    this.props.upVote(id, this.props.auth.user.user_name);
   }
 
   handleComment(id, e) {
@@ -635,8 +635,8 @@ function mapDispatchToProps(dispatch) {
     getSuggestion: () => {
       dispatch(getSuggestionAction());
     },
-    upVote: id => {
-      dispatch(upVoteAction(id));
+    upVote: (id, name) => {
+      dispatch(upVoteAction(id, name));
     },
     addComment: (comment, id, name) => {
       dispatch(addCommentAction(comment, id, name));

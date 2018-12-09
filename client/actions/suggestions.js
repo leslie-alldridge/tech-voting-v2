@@ -76,10 +76,10 @@ export function addSuggestionAction(data) {
 }
 
 //Up voting suggestion
-export function upVoteAction(id) {
+export function upVoteAction(id, name) {
   return function(dispatch) {
     dispatch(requestSuggestion());
-    return request('post', 'suggestion/upvote', { id }).then(response => {
+    return request('post', 'suggestion/upvote', { id, name }).then(response => {
       dispatch(receiveLike(response.body));
     });
   };
