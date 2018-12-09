@@ -19,6 +19,12 @@ function upVote(id, name) {
     .then(data => {
       if (!data[0].voters) {
         names = name;
+        return db('ideas')
+          .where('id', id)
+          .update({ votes: db.raw('votes + 1'), voters: names })
+          .then(data => {
+            return db('ideas').select();
+          });
       } else {
         console.log('elsed');
         console.log(data[0].voters.includes(name));
@@ -26,6 +32,12 @@ function upVote(id, name) {
         if (data[0].voters.includes(name)) names = data[0].voters;
         else {
           names = data[0].voters + ',' + name;
+          return db('ideas')
+            .where('id', id)
+            .update({ votes: db.raw('votes + 1'), voters: names })
+            .then(data => {
+              return db('ideas').select();
+            });
         }
       }
 
@@ -34,12 +46,6 @@ function upVote(id, name) {
       console.log(names);
 
       console.log(data);
-      return db('ideas')
-        .where('id', id)
-        .update({ votes: db.raw('votes + 1'), voters: names })
-        .then(data => {
-          return db('ideas').select();
-        });
     });
 }
 
