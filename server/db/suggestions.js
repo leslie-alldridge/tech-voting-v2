@@ -26,9 +26,6 @@ function upVote(id, name) {
             return db('ideas').select();
           });
       } else {
-        console.log('elsed');
-        console.log(data[0].voters.includes(name));
-
         if (data[0].voters.includes(name)) names = data[0].voters;
         else {
           names = data[0].voters + ',' + name;
@@ -40,12 +37,6 @@ function upVote(id, name) {
             });
         }
       }
-
-      //data[0].voters ? console.log('true') : console.log('false');
-
-      console.log(names);
-
-      console.log(data);
     });
 }
 
@@ -67,7 +58,6 @@ function getComments() {
 }
 
 function updateStatus(status, id) {
-  console.log(status, id);
   return db('ideas')
     .where('id', id)
     .update({ status: status })

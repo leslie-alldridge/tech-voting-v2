@@ -121,10 +121,7 @@ router.post('/status', (req, res) => {
 });
 
 router.get('/status', (req, res) => {
-  console.log(req.query);
-
   getSuggestions().then(response => {
-    //console.log(response);
     let ideaData = response;
 
     getComments().then(resp => {
@@ -157,17 +154,9 @@ router.get('/status', (req, res) => {
       let newArr = response.filter(item => {
         return item.status == req.query.status;
       });
-      console.log(newArr);
 
       res.json(newArr);
     });
-    // let newArr = response.filter(item => {
-    //   return item.status == req.query.status;
-    // });
-    // console.log(newArr);
-
-    // res.json(newArr);
-    //comments are vanishing from the response
   });
 });
 

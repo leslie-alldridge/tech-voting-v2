@@ -13,6 +13,7 @@ Notes: - denotes more work to do on the feature and \* denotes an untouched user
 - Admin comments - do we want a badge to say an admin has commented? decided to add badge, just need to change it so badges show on page load, instead of toggle
 
 * create a status for 'closed' and allow admins to delete the idea.
+
 * search (starting by name -> looking into search across other features such as completed, in progress).
   ^^ https://medium.com/@yaoxiao1222/implementing-search-filter-a-list-on-redux-react-bb5de8d0a3ad
 * enhanced styling
