@@ -10,6 +10,8 @@ CX Tech Feedback
 
 ### In progress
 
+- need to have the category drop down closing once I've clicked on an option
+
 Notes: - denotes more work to do on the feature and \* denotes an untouched user story.
 
 - decided to add badge, just need to change it so badges show on page load, instead of toggle
