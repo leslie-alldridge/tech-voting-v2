@@ -231,3 +231,40 @@
 #commentBtn {
   margin-bottom: 20%;
 }
+
+#commentList {
+  margin-bottom: 2%;
+}
+
+#commentHead {
+  padding-left: 0.8%;
+}
+
+#bgTitle {
+  background-image: url('/bg.jpg');
+}
+
+#techHub {
+  text-shadow: 1.5px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+}
+
+#loggedInText {
+  text-shadow: 1.5px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+  font-size: 1.3em;
+}
+
+/* .navbar-item {
+  background-color: #3273dc;
+} */
+
+.navbar-item:hover {
+  background-color: #3273dc !important;
+  border: 1px solid blue;
+  border-radius: 5%;
+}
+
+#logoutIcon {
+  margin-left: 10%;
+  text-shadow: 0px 0px 1px red, 0px 0px 1px red;
+  color: white;
+}

@@ -11,10 +11,12 @@ const App = ({ auth }) => (
   <Router>
     <div>
       <div className=" has-text-centered">
-        <div className="hero is-small is-primary">
+        <div id="bgTitle" className="hero is-small is-primary">
           <div className="hero-body has-text-centered">
             <Link to="/" className="">
-              <h1 className="title is-1">CX-Tech Hub</h1>
+              <h1 id="techHub" className="title is-1">
+                CX-Tech Hub
+              </h1>
             </Link>
             <Nav />
           </div>

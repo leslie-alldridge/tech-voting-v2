@@ -190,7 +190,7 @@ class Main extends React.Component {
       <div className="container">
         {!this.state.addPage && (
           <div>
-            <h2 id="mainTitle" className="title is-2 has-text-centered">
+            <h2 className="title is-2 has-text-centered">
               Popular Improvements
             </h2>
             <hr />
@@ -493,18 +493,36 @@ class Main extends React.Component {
                         this.props.suggestions.comments.map(comment => {
                           if (comment.id === this.state.id) {
                             return (
-                              <article key={comment.comment} className="media">
-                                <div className="media-content">
-                                  <div className="content">
-                                    <p>
-                                      <strong>{comment.user}</strong>
-                                      <br />
-                                      {comment.comment}
-                                      <br />
-                                    </p>
-                                  </div>
+                              <article
+                                id="commentList"
+                                className="message is-success"
+                              >
+                                <div className="message-header">
+                                  <p id="commentHead">
+                                    Posted by: {comment.user}
+                                  </p>
+                                  <button
+                                    className="delete"
+                                    aria-label="delete"
+                                  />
+                                </div>
+                                <div className="message-body">
+                                  {comment.comment}
                                 </div>
                               </article>
+
+                              // <article key={comment.comment} className="media">
+                              //   <div className="media-content">
+                              //     <div className="content">
+                              //       <p>
+                              //         <strong>{comment.user}</strong>
+                              //         <br />
+                              //         {comment.comment}
+                              //         <br />
+                              //       </p>
+                              //     </div>
+                              //   </div>
+                              // </article>
                             );
                           }
                         })}
@@ -667,16 +685,17 @@ class Main extends React.Component {
                       this.props.suggestions.comments.map(comment => {
                         if (comment.id === this.state.id) {
                           return (
-                            <article key={comment.comment} className="media">
-                              <div className="media-content">
-                                <div className="content">
-                                  <p>
-                                    <strong>{comment.user}</strong>
-                                    <br />
-                                    {comment.comment}
-                                    <br />
-                                  </p>
-                                </div>
+                            <article
+                              id="commentList"
+                              className="message is-success"
+                            >
+                              <div className="message-header">
+                                <p id="commentHead">
+                                  Posted by: {comment.user}
+                                </p>
+                              </div>
+                              <div className="message-body">
+                                {comment.comment}
                               </div>
                             </article>
                           );
@@ -834,16 +853,21 @@ class Main extends React.Component {
                         this.props.suggestions.comments.map(comment => {
                           if (comment.id === this.state.id) {
                             return (
-                              <article key={comment.comment} className="media">
-                                <div className="media-content">
-                                  <div className="content">
-                                    <p>
-                                      <strong>{comment.user}</strong>
-                                      <br />
-                                      {comment.comment}
-                                      <br />
-                                    </p>
-                                  </div>
+                              <article
+                                id="commentList"
+                                className="message is-success"
+                              >
+                                <div className="message-header">
+                                  <p id="commentHead">
+                                    Posted by: {comment.user}
+                                  </p>
+                                  <button
+                                    className="delete"
+                                    aria-label="delete"
+                                  />
+                                </div>
+                                <div className="message-body">
+                                  {comment.comment}
                                 </div>
                               </article>
                             );
@@ -995,16 +1019,17 @@ class Main extends React.Component {
                       this.props.suggestions.comments.map(comment => {
                         if (comment.id === this.state.id) {
                           return (
-                            <article key={comment.comment} className="media">
-                              <div className="media-content">
-                                <div className="content">
-                                  <p>
-                                    <strong>{comment.user}</strong>
-                                    <br />
-                                    {comment.comment}
-                                    <br />
-                                  </p>
-                                </div>
+                            <article
+                              id="commentList"
+                              className="message is-success"
+                            >
+                              <div className="message-header">
+                                <p id="commentHead">
+                                  Posted by: {comment.user}
+                                </p>
+                              </div>
+                              <div className="message-body">
+                                {comment.comment}
                               </div>
                             </article>
                           );

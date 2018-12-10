@@ -23,7 +23,9 @@ class Nav extends React.Component {
         <div className="container">
           <div className="navbar-brand">
             {auth.isAuthenticated ? (
-              <p>Logged in as: {auth.user.user_name}</p>
+              <p id="loggedInText">
+                <b>Logged in as: {auth.user.user_name}</b>
+              </p>
             ) : (
               <p>Please register or login</p>
             )}
@@ -45,8 +47,13 @@ class Nav extends React.Component {
           >
             <div className="navbar-end">
               {auth.isAuthenticated ? (
-                <Link to="/" className="navbar-item" onClick={() => logout()}>
-                  Logout
+                <Link
+                  id="loggedInText"
+                  to="/"
+                  className="navbar-item"
+                  onClick={() => logout()}
+                >
+                  Logout <i id="logoutIcon" className="fas fa-sign-out-alt" />
                 </Link>
               ) : (
                 [
