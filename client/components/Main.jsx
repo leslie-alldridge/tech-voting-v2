@@ -88,17 +88,21 @@ class Main extends React.Component {
   }
 
   submitComment() {
-    this.setState({
-      showComment: false,
-      comment: !this.state.comment
-    });
-    this.props.addComment(
-      this.state.userComment,
-      this.state.id,
-      this.props.auth.user.user_name
-    );
-    this.props.getSuggestion();
-    this.props.getComments();
+    if (this.state.userComment[0].length < 5) {
+      alert('Please enter a suitable comment.');
+    } else {
+      this.setState({
+        showComment: false,
+        comment: !this.state.comment
+      });
+      this.props.addComment(
+        this.state.userComment,
+        this.state.id,
+        this.props.auth.user.user_name
+      );
+      this.props.getSuggestion();
+      this.props.getComments();
+    }
   }
 
   toggleComments(id, e) {
@@ -408,8 +412,11 @@ class Main extends React.Component {
                                 name={suggestion.id}
                                 className="level-item"
                               >
-                                <span className="icon is-medium">
-                                  <i className="fas fa-reply" />
+                                <span className="icon is-medium tooltip">
+                                  <span className="tooltiptext">
+                                    Add Comment
+                                  </span>
+                                  <i className="fas fa-reply " />
                                 </span>
                               </a>
                               <a
@@ -418,7 +425,8 @@ class Main extends React.Component {
                                 name={suggestion.id}
                                 className="level-item"
                               >
-                                <span className="icon is-medium">
+                                <span className="icon is-medium tooltip">
+                                  <span className="tooltiptext">Add Vote</span>
                                   <i id="like" className="fas fa-heart" />
                                   <strong id="votes">{suggestion.votes}</strong>
                                 </span>
@@ -431,7 +439,10 @@ class Main extends React.Component {
                                 name={suggestion.id}
                                 className="level-item"
                               >
-                                <span className="icon is-medium">
+                                <span className="icon is-medium tooltip">
+                                  <span className="tooltiptext">
+                                    All Comments
+                                  </span>
                                   <i id="like" className="fas fa-comments" />
                                   <strong id="votes">
                                     {suggestion.commentcount}
@@ -458,18 +469,21 @@ class Main extends React.Component {
                                 />
                               </p>
                             </div>
-                            <nav className="level">
-                              <div className="level-left">
-                                <div className="level-item">
-                                  <a
-                                    onClick={this.submitComment}
-                                    className="button is-info"
-                                  >
-                                    Submit
-                                  </a>
+                            {this.state.userComment !== '' && (
+                              <nav className="level">
+                                <div className="level-left">
+                                  <div className="level-item">
+                                    <a
+                                      onClick={this.submitComment}
+                                      className="button is-link"
+                                      id="commentBtn"
+                                    >
+                                      Submit
+                                    </a>
+                                  </div>
                                 </div>
-                              </div>
-                            </nav>
+                              </nav>
+                            )}
                           </div>
                         </article>
                       )}
@@ -574,8 +588,9 @@ class Main extends React.Component {
                               name={suggestion.id}
                               className="level-item"
                             >
-                              <span className="icon is-medium">
-                                <i className="fas fa-reply" />
+                              <span className="icon is-medium tooltip">
+                                <span className="tooltiptext">Add Comment</span>
+                                <i className="fas fa-reply " />
                               </span>
                             </a>
                             <a
@@ -584,7 +599,8 @@ class Main extends React.Component {
                               name={suggestion.id}
                               className="level-item"
                             >
-                              <span className="icon is-medium">
+                              <span className="icon is-medium tooltip">
+                                <span className="tooltiptext">Add Vote</span>
                                 <i id="like" className="fas fa-heart" />
                                 <strong id="votes">{suggestion.votes}</strong>
                               </span>
@@ -597,7 +613,10 @@ class Main extends React.Component {
                               name={suggestion.id}
                               className="level-item"
                             >
-                              <span className="icon is-medium">
+                              <span className="icon is-medium tooltip">
+                                <span className="tooltiptext">
+                                  All Comments
+                                </span>
                                 <i id="like" className="fas fa-comments" />
                                 <strong id="votes">
                                   {suggestion.commentcount}
@@ -624,18 +643,21 @@ class Main extends React.Component {
                               />
                             </p>
                           </div>
-                          <nav className="level">
-                            <div className="level-left">
-                              <div className="level-item">
-                                <a
-                                  onClick={this.submitComment}
-                                  className="button is-info"
-                                >
-                                  Submit
-                                </a>
+                          {this.state.userComment !== '' && (
+                            <nav className="level">
+                              <div className="level-left">
+                                <div className="level-item">
+                                  <a
+                                    onClick={this.submitComment}
+                                    className="button is-link"
+                                    id="commentBtn"
+                                  >
+                                    Submit
+                                  </a>
+                                </div>
                               </div>
-                            </div>
-                          </nav>
+                            </nav>
+                          )}
                         </div>
                       </article>
                     )}
@@ -731,8 +753,11 @@ class Main extends React.Component {
                                 name={suggestion.id}
                                 className="level-item"
                               >
-                                <span className="icon is-medium">
-                                  <i className="fas fa-reply" />
+                                <span className="icon is-medium tooltip">
+                                  <span className="tooltiptext">
+                                    Add Comment
+                                  </span>
+                                  <i className="fas fa-reply " />
                                 </span>
                               </a>
                               <a
@@ -741,7 +766,8 @@ class Main extends React.Component {
                                 name={suggestion.id}
                                 className="level-item"
                               >
-                                <span className="icon is-medium">
+                                <span className="icon is-medium tooltip">
+                                  <span className="tooltiptext">Add Vote</span>
                                   <i id="like" className="fas fa-heart" />
                                   <strong id="votes">{suggestion.votes}</strong>
                                 </span>
@@ -754,7 +780,10 @@ class Main extends React.Component {
                                 name={suggestion.id}
                                 className="level-item"
                               >
-                                <span className="icon is-medium">
+                                <span className="icon is-medium tooltip">
+                                  <span className="tooltiptext">
+                                    All Comments
+                                  </span>
                                   <i id="like" className="fas fa-comments" />
                                   <strong id="votes">
                                     {suggestion.commentcount}
@@ -781,18 +810,21 @@ class Main extends React.Component {
                                 />
                               </p>
                             </div>
-                            <nav className="level">
-                              <div className="level-left">
-                                <div className="level-item">
-                                  <a
-                                    onClick={this.submitComment}
-                                    className="button is-info"
-                                  >
-                                    Submit
-                                  </a>
+                            {this.state.userComment !== '' && (
+                              <nav className="level">
+                                <div className="level-left">
+                                  <div className="level-item">
+                                    <a
+                                      onClick={this.submitComment}
+                                      className="button is-link"
+                                      id="commentBtn"
+                                    >
+                                      Submit
+                                    </a>
+                                  </div>
                                 </div>
-                              </div>
-                            </nav>
+                              </nav>
+                            )}
                           </div>
                         </article>
                       )}
@@ -884,8 +916,9 @@ class Main extends React.Component {
                               name={suggestion.id}
                               className="level-item"
                             >
-                              <span className="icon is-medium">
-                                <i className="fas fa-reply" />
+                              <span className="icon is-medium tooltip">
+                                <span className="tooltiptext">Add Comment</span>
+                                <i className="fas fa-reply " />
                               </span>
                             </a>
                             <a
@@ -894,7 +927,8 @@ class Main extends React.Component {
                               name={suggestion.id}
                               className="level-item"
                             >
-                              <span className="icon is-medium">
+                              <span className="icon is-medium tooltip">
+                                <span className="tooltiptext">Add Vote</span>
                                 <i id="like" className="fas fa-heart" />
                                 <strong id="votes">{suggestion.votes}</strong>
                               </span>
@@ -907,7 +941,10 @@ class Main extends React.Component {
                               name={suggestion.id}
                               className="level-item"
                             >
-                              <span className="icon is-medium">
+                              <span className="icon is-medium tooltip">
+                                <span className="tooltiptext">
+                                  All Comments
+                                </span>
                                 <i id="like" className="fas fa-comments" />
                                 <strong id="votes">
                                   {suggestion.commentcount}
@@ -934,18 +971,21 @@ class Main extends React.Component {
                               />
                             </p>
                           </div>
-                          <nav className="level">
-                            <div className="level-left">
-                              <div className="level-item">
-                                <a
-                                  onClick={this.submitComment}
-                                  className="button is-info"
-                                >
-                                  Submit
-                                </a>
+                          {this.state.userComment !== '' && (
+                            <nav className="level">
+                              <div className="level-left">
+                                <div className="level-item">
+                                  <a
+                                    onClick={this.submitComment}
+                                    className="button is-link"
+                                    id="commentBtn"
+                                  >
+                                    Submit
+                                  </a>
+                                </div>
                               </div>
-                            </div>
-                          </nav>
+                            </nav>
+                          )}
                         </div>
                       </article>
                     )}

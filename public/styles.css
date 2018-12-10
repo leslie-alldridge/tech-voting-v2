@@ -176,8 +176,8 @@
 
 .tooltip {
   position: relative;
-  display: inline-block;
-  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+  /* display: inline-block;
+  border-bottom: 1px dotted black; If you want dots under the hoverable text */
 }
 
 /* Tooltip text */
@@ -193,8 +193,8 @@
   /* Position the tooltip */
   position: absolute;
   z-index: 1;
-  top: -5px;
-  left: 105%;
+  top: -35px;
+  left: 30%;
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */
@@ -226,4 +226,8 @@
   text-justify: initial;
   width: 85%;
   overflow-wrap: normal;
+}
+
+#commentBtn {
+  margin-bottom: 20%;
 }
