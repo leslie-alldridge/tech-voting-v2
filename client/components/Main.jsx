@@ -382,7 +382,7 @@ class Main extends React.Component {
                                 </span>
                               )}
                               <br />
-                              {suggestion.description}
+                              <div id="desc">{suggestion.description}</div>
                             </p>
                           </div>
                           <nav className="level is-mobile">
@@ -548,7 +548,7 @@ class Main extends React.Component {
                               </span>
                             )}
                             <br />
-                            {suggestion.description}
+                            <div id="desc">{suggestion.description}</div>
                           </p>
                         </div>
                         <nav className="level is-mobile">
@@ -718,7 +718,7 @@ class Main extends React.Component {
                                 </span>
                               )}
                               <br />
-                              {suggestion.description}
+                              <div id="desc">{suggestion.description}</div>
                             </p>
                           </div>
                           <nav className="level is-mobile">
@@ -871,7 +871,7 @@ class Main extends React.Component {
                               </span>
                             )}
                             <br />
-                            {suggestion.description}
+                            <div id="desc">{suggestion.description}</div>
                           </p>
                         </div>
                         <nav className="level is-mobile">
