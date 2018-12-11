@@ -750,7 +750,11 @@ class Main extends React.Component {
                       data-aos-duration="6000"
                       key={suggestion.id}
                     >
-                      <article key={suggestion.id} className="media">
+                      <article
+                        id="rowIdea"
+                        key={suggestion.id}
+                        className="media"
+                      >
                         <figure className="media-left">
                           <p className="image is-64x64">
                             <img src={`/${suggestion.category}.png`} />
@@ -923,7 +927,7 @@ class Main extends React.Component {
                     data-aos-duration="6000"
                     key={suggestion.id}
                   >
-                    <article key={suggestion.id} className="media">
+                    <article id="rowIdea" key={suggestion.id} className="media">
                       <figure className="media-left">
                         <p className="image is-64x64">
                           <img src={`/${suggestion.category}.png`} />
