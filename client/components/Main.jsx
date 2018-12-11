@@ -237,6 +237,14 @@ class Main extends React.Component {
                     >
                       Completed
                     </a>
+                    <a
+                      onClick={this.filterIdeas}
+                      href="#"
+                      className="dropdown-item"
+                      name=""
+                    >
+                      All
+                    </a>
                   </div>
                 </div>
               </div>
@@ -279,6 +287,14 @@ class Main extends React.Component {
                       name="idea"
                     >
                       New Ideas
+                    </a>
+                    <a
+                      onClick={this.changeCategory}
+                      href="#"
+                      className="dropdown-item"
+                      name="all"
+                    >
+                      All
                     </a>
                   </div>
                 </div>

@@ -53,7 +53,8 @@ class Nav extends React.Component {
                   className="navbar-item"
                   onClick={() => logout()}
                 >
-                  Logout <i id="logoutIcon" className="fas fa-sign-out-alt" />
+                  <b>Logout</b>{' '}
+                  <i id="logoutIcon" className="fas fa-sign-out-alt" />
                 </Link>
               ) : (
                 [
