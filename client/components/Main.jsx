@@ -169,6 +169,7 @@ class Main extends React.Component {
 
   changeCategory(e) {
     this.setState({
+      dropdownCat: 'dropdown',
       category: e.target.name
     });
   }
@@ -190,7 +191,7 @@ class Main extends React.Component {
       <div className="container">
         {!this.state.addPage && (
           <div>
-            <h2 className="title is-2 has-text-centered">
+            <h2 id="title2" className="title is-2 has-text-centered">
               Popular Improvements
             </h2>
             <hr />

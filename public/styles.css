@@ -268,3 +268,13 @@
   text-shadow: 0px 0px 1px red, 0px 0px 1px red;
   color: white;
 }
+
+.hero.is-small .hero-body {
+  padding-bottom: 1rem;
+  padding-top: 1rem;
+}
+
+#title2 {
+  margin-top: 2%;
+  color: #2b3b4c;
+}
