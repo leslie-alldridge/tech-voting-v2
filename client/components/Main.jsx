@@ -161,10 +161,18 @@ class Main extends React.Component {
   }
 
   filterIdeas(e) {
-    this.setState({
-      dropdown: 'dropdown'
-    });
-    this.props.filterIdeas(e.target.name);
+    if (e.target.name === '') {
+      this.setState({
+        dropdown: 'dropdown'
+      });
+      this.props.getSuggestion();
+      this.props.getComments();
+    } else {
+      this.setState({
+        dropdown: 'dropdown'
+      });
+      this.props.filterIdeas(e.target.name);
+    }
   }
 
   changeCategory(e) {
