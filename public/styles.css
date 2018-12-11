@@ -236,6 +236,10 @@ select:active {
   position: relative;
 }
 
+.hero.is-primary .navbar-menu {
+  background-color: #4e8ef3 !important;
+}
+
 /* Tooltip text */
 .tooltip .tooltiptext {
   visibility: hidden;
