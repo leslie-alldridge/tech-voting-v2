@@ -26,7 +26,8 @@ class Main extends React.Component {
       category: 'all',
       dropdownCat: 'dropdown',
       adminComment: [],
-      searchEntry: ''
+      searchEntry: '',
+      filterActive: 'Filter Status'
     };
     [
       'togglePage',
@@ -163,13 +164,20 @@ class Main extends React.Component {
   filterIdeas(e) {
     if (e.target.name === '') {
       this.setState({
-        dropdown: 'dropdown'
+        dropdown: 'dropdown',
+        filterActive: 'Filter Status'
       });
       this.props.getSuggestion();
       this.props.getComments();
     } else {
       this.setState({
-        dropdown: 'dropdown'
+        dropdown: 'dropdown',
+        filterActive:
+          e.target.name === 'consideration'
+            ? 'Under Consideration'
+            : e.target.name === 'completed'
+            ? 'Completed'
+            : 'In Progress'
       });
       this.props.filterIdeas(e.target.name);
     }
@@ -213,7 +221,7 @@ class Main extends React.Component {
                     aria-controls="dropdown-menu3"
                     onClick={this.toggleDrop}
                   >
-                    <span>Filter Status</span>
+                    <span>{this.state.filterActive}</span>
                     <span className="icon is-small">
                       <i className="fas fa-angle-down" aria-hidden="true" />
                     </span>
