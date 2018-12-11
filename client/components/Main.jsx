@@ -7,7 +7,8 @@ import {
   addCommentAction,
   getCommentsAction,
   updateStatusAction,
-  filterIdeasAction
+  filterIdeasAction,
+  deleteIdeaAction
 } from '../actions/suggestions';
 import AddPage from './AddPage';
 
@@ -42,7 +43,8 @@ class Main extends React.Component {
       'filterIdeas',
       'toggleDropCat',
       'changeCategory',
-      'searchEntry'
+      'searchEntry',
+      'deleteIdea'
     ].forEach(method => {
       this[method] = this[method].bind(this);
     });
@@ -205,6 +207,11 @@ class Main extends React.Component {
     this.setState({
       searchEntry: e.target.value
     });
+  }
+
+  deleteIdea(id) {
+    console.log('deleting ' + id);
+    this.props.deleteIdea(id);
   }
 
   render() {
@@ -431,6 +438,15 @@ class Main extends React.Component {
                                     <option name="progress">In Progress</option>
                                     <option name="closed">Closed</option>
                                   </select>
+                                  <button
+                                    id="delBtn"
+                                    className="button is-danger"
+                                    onClick={() =>
+                                      this.deleteIdea(suggestion.id)
+                                    }
+                                  >
+                                    Delete
+                                  </button>
                                 </span>
                               )}
                               <br />
@@ -617,6 +633,13 @@ class Main extends React.Component {
                                   <option name="progress">In Progress</option>
                                   <option name="closed">Closed</option>
                                 </select>
+                                <button
+                                  id="delBtn"
+                                  className="button is-danger"
+                                  onClick={() => this.deleteIdea(suggestion.id)}
+                                >
+                                  Delete
+                                </button>
                               </span>
                             )}
                             <br />
@@ -808,6 +831,15 @@ class Main extends React.Component {
                                     <option name="progress">In Progress</option>
                                     <option name="closed">Closed</option>
                                   </select>
+                                  <button
+                                    id="delBtn"
+                                    className="button is-danger"
+                                    onClick={() =>
+                                      this.deleteIdea(suggestion.id)
+                                    }
+                                  >
+                                    Delete
+                                  </button>
                                 </span>
                               )}
                               <br />
@@ -982,6 +1014,13 @@ class Main extends React.Component {
                                   <option name="progress">In Progress</option>
                                   <option name="closed">Closed</option>
                                 </select>
+                                <button
+                                  id="delBtn"
+                                  className="button is-danger"
+                                  onClick={() => this.deleteIdea(suggestion.id)}
+                                >
+                                  Delete
+                                </button>
                               </span>
                             )}
                             <br />
@@ -1136,6 +1175,9 @@ function mapDispatchToProps(dispatch) {
     },
     filterIdeas: category => {
       dispatch(filterIdeasAction(category));
+    },
+    deleteIdea: id => {
+      dispatch(deleteIdeaAction(id));
     }
   };
 }

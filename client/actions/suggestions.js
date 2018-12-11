@@ -124,3 +124,12 @@ export function filterIdeasAction(status) {
     });
   };
 }
+
+export function deleteIdeaAction(id) {
+  return function(dispatch) {
+    dispatch(requestSuggestion());
+    return request('post', 'suggestion/delete', { id }).then(response => {
+      dispatch(receiveSuggestion(response.body));
+    });
+  };
+}

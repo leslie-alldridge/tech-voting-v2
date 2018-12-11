@@ -66,11 +66,21 @@ function updateStatus(status, id) {
     });
 }
 
+function deleteSuggestion(id) {
+  return db('ideas')
+    .where('id', id)
+    .del()
+    .then(data => {
+      return db('ideas');
+    });
+}
+
 module.exports = {
   getSuggestions,
   updateStatus,
   addSuggestions,
   upVote,
   addComment,
-  getComments
+  getComments,
+  deleteSuggestion
 };
