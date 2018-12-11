@@ -4,13 +4,11 @@ CX Tech Feedback
 
 ### Todo
 
-- Loading all results should be fine, but see if laurence wants a 'see more' option and only 10 or so to display
+- Loading all results should be fine, but see if Laurence wants a 'see more' option and only 10 or so to display
 - Do you want the search to be title only or include the description text?
 - Admin comments - do we want a badge to say an admin has commented?
 
 ### In progress
-
-- category selection styling needs to maintain when filtering by category (just need to add the ID) and also want to keep current filter as the 'active' dropdown item
 
 Notes: - denotes more work to do on the feature and \* denotes an untouched user story.
 
@@ -22,6 +20,7 @@ Notes: - denotes more work to do on the feature and \* denotes an untouched user
 
 ### Done
 
+- category selection styling needs to maintain when filtering by category (just need to add the ID) and also want to keep current filter as the 'active' dropdown item
 - search (starting by name -> looking into search across other features such as completed, in progress). Title search is completed.
 - one upvote per suggestion per user - i can use their unique id's for this (ideally not local cache)
 - categories for (process updates, new ideas, team improvements) - drop down filter -> popular ideas (top 5) will be the default (could have a link saying 'see more' than will then load up all results.)

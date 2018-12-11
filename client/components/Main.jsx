@@ -136,6 +136,8 @@ class Main extends React.Component {
       formattedText = 'consideration';
     } else if (e.target.value === 'Completed') {
       formattedText = 'completed';
+    } else if (e.target.value === 'Closed') {
+      formattedText = 'closed';
     } else {
       formattedText = 'progress';
     }
@@ -406,6 +408,8 @@ class Main extends React.Component {
                                     ? 'Completed'
                                     : suggestion.status == 'consideration'
                                     ? 'Under Consideration'
+                                    : suggestion.status == 'closed'
+                                    ? 'Closed'
                                     : 'In Progress'}
                                 </span>
                               )}
@@ -425,6 +429,7 @@ class Main extends React.Component {
                                       Under Consideration
                                     </option>
                                     <option name="progress">In Progress</option>
+                                    <option name="closed">Closed</option>
                                   </select>
                                 </span>
                               )}
@@ -590,6 +595,8 @@ class Main extends React.Component {
                                   ? 'Completed'
                                   : suggestion.status == 'consideration'
                                   ? 'Under Consideration'
+                                  : suggestion.status == 'closed'
+                                  ? 'Closed'
                                   : 'In Progress'}
                               </span>
                             )}
@@ -608,6 +615,7 @@ class Main extends React.Component {
                                     Under Consideration
                                   </option>
                                   <option name="progress">In Progress</option>
+                                  <option name="closed">Closed</option>
                                 </select>
                               </span>
                             )}
@@ -777,6 +785,8 @@ class Main extends React.Component {
                                     ? 'Completed'
                                     : suggestion.status == 'consideration'
                                     ? 'Under Consideration'
+                                    : suggestion.status == 'closed'
+                                    ? 'Closed'
                                     : 'In Progress'}
                                 </span>
                               )}
@@ -796,6 +806,7 @@ class Main extends React.Component {
                                       Under Consideration
                                     </option>
                                     <option name="progress">In Progress</option>
+                                    <option name="closed">Closed</option>
                                   </select>
                                 </span>
                               )}
@@ -949,6 +960,8 @@ class Main extends React.Component {
                                   ? 'Completed'
                                   : suggestion.status == 'consideration'
                                   ? 'Under Consideration'
+                                  : suggestion.status == 'closed'
+                                  ? 'Closed'
                                   : 'In Progress'}
                               </span>
                             )}
@@ -967,6 +980,7 @@ class Main extends React.Component {
                                     Under Consideration
                                   </option>
                                   <option name="progress">In Progress</option>
+                                  <option name="closed">Closed</option>
                                 </select>
                               </span>
                             )}

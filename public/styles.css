@@ -216,6 +216,18 @@ select:active {
   font-size: 0.7em;
 }
 
+/* Closed Styles */
+
+#closed:hover {
+  cursor: default;
+}
+
+#closed {
+  background-color: red;
+  margin-left: 5%;
+  font-size: 0.7em;
+}
+
 .tooltip {
   position: relative;
   /* display: inline-block;
