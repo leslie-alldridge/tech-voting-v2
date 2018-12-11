@@ -525,33 +525,22 @@ class Main extends React.Component {
                               >
                                 <div className="message-header">
                                   <p id="commentHead">
-                                    Posted by: {comment.user}
+                                    Posted by: <b>{comment.user}</b>
                                   </p>
-                                  <button
-                                    className="delete"
-                                    aria-label="delete"
-                                  />
                                 </div>
                                 <div className="message-body">
-                                  {comment.comment}
+                                  <i>{comment.comment}</i>
                                 </div>
                               </article>
-
-                              // <article key={comment.comment} className="media">
-                              //   <div className="media-content">
-                              //     <div className="content">
-                              //       <p>
-                              //         <strong>{comment.user}</strong>
-                              //         <br />
-                              //         {comment.comment}
-                              //         <br />
-                              //       </p>
-                              //     </div>
-                              //   </div>
-                              // </article>
                             );
                           }
                         })}
+                      {this.state.showComment &&
+                        this.state.id == suggestion.id && (
+                          <a id="topLink" href="#">
+                            Top
+                          </a>
+                        )}
                     </div>
                   );
                 }
@@ -717,16 +706,21 @@ class Main extends React.Component {
                             >
                               <div className="message-header">
                                 <p id="commentHead">
-                                  Posted by: {comment.user}
+                                  Posted by: <b>{comment.user}</b>
                                 </p>
                               </div>
                               <div className="message-body">
-                                {comment.comment}
+                                <i>{comment.comment}</i>
                               </div>
                             </article>
                           );
                         }
                       })}
+                    {this.state.showComment && this.state.id == suggestion.id && (
+                      <a id="topLink" href="#">
+                        Top
+                      </a>
+                    )}
                   </div>
                 );
               }
@@ -873,6 +867,7 @@ class Main extends React.Component {
                           </div>
                         </article>
                       )}
+
                       {this.state.showComment &&
                         this.state.id == suggestion.id &&
                         this.props.suggestions.comments &&
@@ -885,20 +880,22 @@ class Main extends React.Component {
                               >
                                 <div className="message-header">
                                   <p id="commentHead">
-                                    Posted by: {comment.user}
+                                    Posted by: <b>{comment.user}</b>
                                   </p>
-                                  <button
-                                    className="delete"
-                                    aria-label="delete"
-                                  />
                                 </div>
                                 <div className="message-body">
-                                  {comment.comment}
+                                  <i>{comment.comment}</i>
                                 </div>
                               </article>
                             );
                           }
                         })}
+                      {this.state.showComment &&
+                        this.state.id == suggestion.id && (
+                          <a id="topLink" href="#">
+                            Top
+                          </a>
+                        )}
                     </div>
                   );
                 }
@@ -1039,6 +1036,7 @@ class Main extends React.Component {
                         </div>
                       </article>
                     )}
+
                     {this.state.showComment &&
                       this.state.id == suggestion.id &&
                       this.props.suggestions.comments &&
@@ -1051,16 +1049,21 @@ class Main extends React.Component {
                             >
                               <div className="message-header">
                                 <p id="commentHead">
-                                  Posted by: {comment.user}
+                                  Posted by: <b>{comment.user}</b>
                                 </p>
                               </div>
                               <div className="message-body">
-                                {comment.comment}
+                                <i>{comment.comment}</i>
                               </div>
                             </article>
                           );
                         }
                       })}
+                    {this.state.showComment && this.state.id == suggestion.id && (
+                      <a id="topLink" href="#">
+                        Top
+                      </a>
+                    )}
                   </div>
                 );
               }

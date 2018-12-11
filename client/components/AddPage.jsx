@@ -37,25 +37,32 @@ class AddPage extends React.Component {
           Add a new improvement to the main page below.
         </p>
         <hr />
-        <form onSubmit={this.handleSubmit}>
-          <label>Main Title</label>
+        <form id="addForm" onSubmit={this.handleSubmit}>
+          <label id="addTitle">Main Title</label>
+          <br />
           <input
+            id="formInput"
             name="title"
             onChange={this.handleChange}
             placeholder="Enter Title"
             className="input"
             type="text"
           />
-          <label>Description</label>
+          <br />
+          <label id="addTitle">Description</label>
+          <br />
           <input
+            id="formInput"
             name="description"
             onChange={this.handleChange}
             placeholder="Enter Description"
             className="input"
             type="text"
           />
-          <label>Category</label>
-          <div className="field">
+          <br />
+          <label id="addTitle">Category</label>
+          <br />
+          <div id="formInput" className="field">
             <div className="control">
               <div className="select is-primary">
                 <select name="category" onChange={this.handleChange}>
@@ -70,11 +77,7 @@ class AddPage extends React.Component {
           {this.state.category !== 'none' &&
             this.state.title !== '' &&
             this.state.description !== 'none' && (
-              <input
-                className="button is-primary"
-                type="submit"
-                value="Submit"
-              />
+              <input className="button is-link" type="submit" value="Submit" />
             )}
         </form>
         <button
@@ -82,7 +85,7 @@ class AddPage extends React.Component {
           className="tooltip button is-link"
           onClick={this.props.togglePage}
         >
-          Back
+          <i id="backIcon" className="fas fa-angle-left" /> Back
           <span className="tooltiptext">To homepage</span>
         </button>
       </div>
