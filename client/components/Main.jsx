@@ -188,7 +188,7 @@ class Main extends React.Component {
       : suggestions == suggestions;
 
     return (
-      <div className="container">
+      <div id="main" className="container">
         {!this.state.addPage && (
           <div>
             <h2 id="title2" className="title is-2 has-text-centered">
@@ -240,7 +240,7 @@ class Main extends React.Component {
                   </div>
                 </div>
               </div>
-              <div className={this.state.dropdownCat}>
+              <div id="categoryDrop" className={this.state.dropdownCat}>
                 <div className="dropdown-trigger">
                   <button
                     className="button"
@@ -284,6 +284,7 @@ class Main extends React.Component {
                 </div>
               </div>
               <a
+                id="sendFeedback"
                 target="_blank"
                 href="https://confluence.teamxero.com/pages/viewpage.action?pageId=194813287"
                 className="button is-link is-rounded"
