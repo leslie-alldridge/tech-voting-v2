@@ -27,7 +27,8 @@ class Main extends React.Component {
       dropdownCat: 'dropdown',
       adminComment: [],
       searchEntry: '',
-      filterActive: 'Filter Status'
+      filterActive: 'Filter Status',
+      categoryAction: 'Category'
     };
     [
       'togglePage',
@@ -186,7 +187,15 @@ class Main extends React.Component {
   changeCategory(e) {
     this.setState({
       dropdownCat: 'dropdown',
-      category: e.target.name
+      category: e.target.name,
+      categoryAction:
+        e.target.name === 'idea'
+          ? 'New Ideas'
+          : e.target.name === 'improvement'
+          ? 'Process Updates'
+          : e.target.name === 'team'
+          ? 'Team Improvements'
+          : 'Category'
     });
   }
 
@@ -272,7 +281,7 @@ class Main extends React.Component {
                     aria-controls="dropdown-menu3"
                     onClick={this.toggleDropCat}
                   >
-                    <span>Category</span>
+                    <span>{this.state.categoryAction}</span>
                     <span className="icon is-small">
                       <i className="fas fa-angle-down" aria-hidden="true" />
                     </span>
