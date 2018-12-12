@@ -4,9 +4,10 @@ CX Tech Feedback
 
 ### Todo
 
-- Loading all results should be fine, but see if Laurence wants a 'see more' option and only 10 or so to display
-- Do you want the search to be title only or include the description text?
-- Admin comments - do we want a badge to say an admin has commented?
+- Color the comments box different for Laurence and Rob 
+- Leave trophy badge for admin comments
+- Spin up profile pictures so we can compare between no profile picture or with a profile picture
+- leave search for now, but we can always add it to search description too.
 
 ### In progress
 
