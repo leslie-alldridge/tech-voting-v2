@@ -54,7 +54,9 @@ select:active {
 }
 
 .message-body {
-  background-color: rgba(0, 163, 211, 0.15) !important;
+  /* background-color: rgba(0, 163, 211, 0.15) !important; 
+  not sure if I want to keep this shading or not, makes the colors look quite dark.
+  */
 }
 
 #addForm {
@@ -352,4 +354,8 @@ select:active {
   float: initial;
   text-align: center;
   margin-bottom: 4%;
+}
+
+#Laurence {
+  background-color: #ffd700 !important;
 }

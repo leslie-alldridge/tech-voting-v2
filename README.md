@@ -6,21 +6,17 @@ CX Tech Feedback
 
 - Color the comments box different for Laurence and Rob
 
-- Spin up profile pictures so we can compare between no profile picture or with a profile picture
-- leave search for now, but we can always add it to search description too.
-
 ### In progress
 
 Notes: - denotes more work to do on the feature and \* denotes an untouched user story.
 
 - decided to add badge, just need to change it so badges show on page load, instead of toggle
 
-* create a status for 'closed' and allow admins to delete the idea.
-
 * enhanced styling
 
 ### Done
 
+- create a status for 'closed' and allow admins to delete the idea.
 - Leave trophy badge for admin comments
 - fixed up navbar styling
 - category selection styling needs to maintain when filtering by category (just need to add the ID) and also want to keep current filter as the 'active' dropdown item
@@ -34,6 +30,11 @@ Notes: - denotes more work to do on the feature and \* denotes an untouched user
 - remove send feedback on the left (removed and placed with confluence link)
 - user login for comments (login completed and ideas take the current logged in users name)
 - link to confluence page for suggestions (done - just needs the right link)
+
+## Future Notes
+
+- leave search for now, but we can always add it to search description too.
+- Spin up profile pictures so we can compare between no profile picture or with a profile picture
 
 ## Setup
 

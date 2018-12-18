@@ -558,7 +558,7 @@ class Main extends React.Component {
                           if (comment.id === this.state.id) {
                             return (
                               <article
-                                id="commentList"
+                                id={comment.user}
                                 className="message is-success"
                               >
                                 <div className="message-header">
@@ -749,7 +749,7 @@ class Main extends React.Component {
                         if (comment.id === this.state.id) {
                           return (
                             <article
-                              id="commentList"
+                              id={comment.user}
                               className="message is-success"
                             >
                               <div className="message-header">
@@ -939,7 +939,7 @@ class Main extends React.Component {
                           if (comment.id === this.state.id) {
                             return (
                               <article
-                                id="commentList"
+                                id={comment.user}
                                 className="message is-success"
                               >
                                 <div className="message-header">
@@ -1118,7 +1118,7 @@ class Main extends React.Component {
                         if (comment.id === this.state.id) {
                           return (
                             <article
-                              id="commentList"
+                              id={comment.user}
                               className="message is-success"
                             >
                               <div className="message-header">
