@@ -4,7 +4,7 @@ CX Tech Feedback
 
 ### Todo
 
-- Color the comments box different for Laurence and Rob 
+- Color the comments box different for Laurence and Rob
 - Leave trophy badge for admin comments
 - Spin up profile pictures so we can compare between no profile picture or with a profile picture
 - leave search for now, but we can always add it to search description too.
@@ -21,6 +21,7 @@ Notes: - denotes more work to do on the feature and \* denotes an untouched user
 
 ### Done
 
+- fixed up navbar styling
 - category selection styling needs to maintain when filtering by category (just need to add the ID) and also want to keep current filter as the 'active' dropdown item
 - search (starting by name -> looking into search across other features such as completed, in progress). Title search is completed.
 - one upvote per suggestion per user - i can use their unique id's for this (ideally not local cache)
