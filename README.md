@@ -4,18 +4,19 @@ CX Tech Feedback
 
 ### Todo
 
-- Color the comments box different for Laurence and Rob
+- Deploy
+
+- decided to add badge, just need to change it so badges show on page load, instead of toggle
 
 ### In progress
 
 Notes: - denotes more work to do on the feature and \* denotes an untouched user story.
 
-- decided to add badge, just need to change it so badges show on page load, instead of toggle
-
-* enhanced styling
+- enhanced styling
 
 ### Done
 
+- Color the comments box different for Laurence and Rob
 - create a status for 'closed' and allow admins to delete the idea.
 - Leave trophy badge for admin comments
 - fixed up navbar styling
