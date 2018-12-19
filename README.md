@@ -7,6 +7,16 @@ CX Tech Feedback
 - Deploy
 
 - decided to add badge, just need to change it so badges show on page load, instead of toggle
+  to do this i'm thinking about having a seperate action to find admin comments and store them in props, then on render we can
+  say 'show this <i> badge if they exist in this.props.adminComment
+
+- tidy up test code in actions
+
+- style the admin dropdown
+
+- write admin functions to remove users by name (since there's no password reset)
+
+- when suggestion is removed, delete the comments as well (currently they stay)
 
 ### In progress
 

@@ -100,6 +100,17 @@ export function getCommentsAction() {
   return function(dispatch) {
     dispatch(requestSuggestion());
     return request('get', 'suggestion/comments').then(response => {
+      console.log(response);
+      response.body.map(comment => {
+        console.log('lol');
+
+        if (comment.user === 'Laurence') {
+          // this.setState({
+          //   adminComment: [...this.state.adminComment, id]
+          // });
+          console.log('found lauren');
+        }
+      });
       dispatch(receiveComments(response.body));
     });
   };

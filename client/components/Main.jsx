@@ -26,7 +26,7 @@ class Main extends React.Component {
       filter: '',
       category: 'all',
       dropdownCat: 'dropdown',
-      adminComment: [],
+      adminComment: [] || admincommenttest,
       searchEntry: '',
       filterActive: 'Filter Status',
       categoryAction: 'Category'
@@ -215,6 +215,7 @@ class Main extends React.Component {
   }
 
   render() {
+    const admincommenttest = 1;
     const suggestions = this.props.suggestions.suggestion;
 
     suggestions
