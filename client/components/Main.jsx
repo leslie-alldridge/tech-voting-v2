@@ -12,6 +12,7 @@ import { addCommentAction, getCommentsAction } from '../actions/comments';
 
 import AddPage from './AddPage';
 import StatusDropdown from './StatusDropdown';
+import CategoryDropdown from './CategoryDropdown';
 
 class Main extends React.Component {
   constructor(props) {
@@ -261,42 +262,7 @@ class Main extends React.Component {
                     </span>
                   </button>
                 </div>
-                <div className="dropdown-menu" id="dropdown-menu3" role="menu">
-                  <div className="dropdown-content">
-                    <a
-                      onClick={this.changeCategory}
-                      href="#"
-                      className="dropdown-item"
-                      name="improvement"
-                    >
-                      Process Updates
-                    </a>
-                    <a
-                      onClick={this.changeCategory}
-                      href="#"
-                      className="dropdown-item"
-                      name="team"
-                    >
-                      Team Improvements
-                    </a>
-                    <a
-                      onClick={this.changeCategory}
-                      href="#"
-                      className="dropdown-item"
-                      name="idea"
-                    >
-                      New Ideas
-                    </a>
-                    <a
-                      onClick={this.changeCategory}
-                      href="#"
-                      className="dropdown-item"
-                      name="all"
-                    >
-                      All
-                    </a>
-                  </div>
-                </div>
+                <CategoryDropdown changeCategory={this.changeCategory} />
               </div>
               <a
                 id="sendFeedback"
