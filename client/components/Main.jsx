@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import {
   getSuggestionAction,
   upVoteAction,
-  addCommentAction,
-  getCommentsAction,
   updateStatusAction,
   filterIdeasAction,
   deleteIdeaAction
 } from '../actions/suggestions';
+import { addCommentAction, getCommentsAction } from '../actions/comments';
+
 import AddPage from './AddPage';
 
 class Main extends React.Component {

@@ -36,25 +36,6 @@ export function receiveLike(data) {
   };
 }
 
-export function receiveComment(data) {
-  return {
-    type: 'ITEM_COMMENTED',
-    isFetching: false,
-    isAuthenticated: true,
-    data,
-    commented: true
-  };
-}
-
-export function receiveComments(data) {
-  return {
-    type: 'ALL_COMMENTS',
-    isFetching: false,
-    isAuthenticated: true,
-    data
-  };
-}
-
 //Reading suggestions from DB
 export function getSuggestionAction() {
   return function(dispatch) {
@@ -81,26 +62,6 @@ export function upVoteAction(id, name) {
     dispatch(requestSuggestion());
     return request('post', 'suggestion/upvote', { id, name }).then(response => {
       dispatch(receiveLike(response.body));
-    });
-  };
-}
-
-export function addCommentAction(comment, id, name) {
-  return function(dispatch) {
-    dispatch(requestSuggestion());
-    return request('post', 'suggestion/comment', { comment, id, name }).then(
-      response => {
-        dispatch(receiveComment(response.body));
-      }
-    );
-  };
-}
-
-export function getCommentsAction() {
-  return function(dispatch) {
-    dispatch(requestSuggestion());
-    return request('get', 'suggestion/comments').then(response => {
-      dispatch(receiveComments(response.body));
     });
   };
 }
