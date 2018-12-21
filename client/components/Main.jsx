@@ -14,6 +14,7 @@ import AddPage from './AddPage';
 import StatusDropdown from './StatusDropdown';
 import CategoryDropdown from './CategoryDropdown';
 import Search from './Search';
+import AdminStatusSelector from './AdminStatusSelector';
 
 class Main extends React.Component {
   constructor(props) {
@@ -29,7 +30,7 @@ class Main extends React.Component {
       filter: '',
       category: 'all',
       dropdownCat: 'dropdown',
-      adminComment: [] || admincommenttest,
+      adminComment: [],
       searchEntry: '',
       filterActive: 'Filter Status',
       categoryAction: 'Category'
@@ -54,8 +55,7 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getSuggestion();
-    this.props.getComments();
+    this.props.getBoth();
   }
 
   togglePage() {
@@ -107,8 +107,7 @@ class Main extends React.Component {
         this.state.id,
         this.props.auth.user.user_name
       );
-      this.props.getSuggestion();
-      this.props.getComments();
+      this.props.getBoth();
     }
   }
 
@@ -175,8 +174,7 @@ class Main extends React.Component {
         dropdown: 'dropdown',
         filterActive: 'Filter Status'
       });
-      this.props.getSuggestion();
-      this.props.getComments();
+      this.props.getBoth();
     } else {
       this.setState({
         dropdown: 'dropdown',
@@ -342,31 +340,11 @@ class Main extends React.Component {
                               {/* Laurence should have a selector to pick the right status */}
                               {this.props.auth.user.user_name ===
                                 'Laurence' && (
-                                <span>
-                                  Status: {suggestion.status}
-                                  <select
-                                    onChange={e =>
-                                      this.handleStatusUpdate(e, suggestion.id)
-                                    }
-                                  >
-                                    <option>Pick a new status</option>
-                                    <option name="completed">Completed</option>
-                                    <option name="consideration">
-                                      Under Consideration
-                                    </option>
-                                    <option name="progress">In Progress</option>
-                                    <option name="closed">Closed</option>
-                                  </select>
-                                  <button
-                                    id="delBtn"
-                                    className="button is-danger"
-                                    onClick={() =>
-                                      this.deleteIdea(suggestion.id)
-                                    }
-                                  >
-                                    Delete
-                                  </button>
-                                </span>
+                                <AdminStatusSelector
+                                  suggestion={suggestion}
+                                  handleStatusUpdate={this.handleStatusUpdate}
+                                  deleteIdea={this.deleteIdea}
+                                />
                               )}
                               <br />
                               <div id="desc">{suggestion.description}</div>
@@ -537,29 +515,11 @@ class Main extends React.Component {
                             )}
                             {/* Laurence should have a selector to pick the right status */}
                             {this.props.auth.user.user_name === 'Laurence' && (
-                              <span>
-                                Status: {suggestion.status}
-                                <select
-                                  onChange={e =>
-                                    this.handleStatusUpdate(e, suggestion.id)
-                                  }
-                                >
-                                  <option>Pick a new status</option>
-                                  <option name="completed">Completed</option>
-                                  <option name="consideration">
-                                    Under Consideration
-                                  </option>
-                                  <option name="progress">In Progress</option>
-                                  <option name="closed">Closed</option>
-                                </select>
-                                <button
-                                  id="delBtn"
-                                  className="button is-danger"
-                                  onClick={() => this.deleteIdea(suggestion.id)}
-                                >
-                                  Delete
-                                </button>
-                              </span>
+                              <AdminStatusSelector
+                                suggestion={suggestion}
+                                handleStatusUpdate={this.handleStatusUpdate}
+                                deleteIdea={this.deleteIdea}
+                              />
                             )}
                             <br />
                             <div id="desc">{suggestion.description}</div>
@@ -735,31 +695,11 @@ class Main extends React.Component {
                               {/* Laurence should have a selector to pick the right status */}
                               {this.props.auth.user.user_name ===
                                 'Laurence' && (
-                                <span>
-                                  Status: {suggestion.status}
-                                  <select
-                                    onChange={e =>
-                                      this.handleStatusUpdate(e, suggestion.id)
-                                    }
-                                  >
-                                    <option>Pick a new status</option>
-                                    <option name="completed">Completed</option>
-                                    <option name="consideration">
-                                      Under Consideration
-                                    </option>
-                                    <option name="progress">In Progress</option>
-                                    <option name="closed">Closed</option>
-                                  </select>
-                                  <button
-                                    id="delBtn"
-                                    className="button is-danger"
-                                    onClick={() =>
-                                      this.deleteIdea(suggestion.id)
-                                    }
-                                  >
-                                    Delete
-                                  </button>
-                                </span>
+                                <AdminStatusSelector
+                                  suggestion={suggestion}
+                                  handleStatusUpdate={this.handleStatusUpdate}
+                                  deleteIdea={this.deleteIdea}
+                                />
                               )}
                               <br />
                               <div id="desc">{suggestion.description}</div>
@@ -918,29 +858,11 @@ class Main extends React.Component {
                             )}
                             {/* Laurence should have a selector to pick the right status */}
                             {this.props.auth.user.user_name === 'Laurence' && (
-                              <span>
-                                Status: {suggestion.status}
-                                <select
-                                  onChange={e =>
-                                    this.handleStatusUpdate(e, suggestion.id)
-                                  }
-                                >
-                                  <option>Pick a new status</option>
-                                  <option name="completed">Completed</option>
-                                  <option name="consideration">
-                                    Under Consideration
-                                  </option>
-                                  <option name="progress">In Progress</option>
-                                  <option name="closed">Closed</option>
-                                </select>
-                                <button
-                                  id="delBtn"
-                                  className="button is-danger"
-                                  onClick={() => this.deleteIdea(suggestion.id)}
-                                >
-                                  Delete
-                                </button>
-                              </span>
+                              <AdminStatusSelector
+                                suggestion={suggestion}
+                                handleStatusUpdate={this.handleStatusUpdate}
+                                deleteIdea={this.deleteIdea}
+                              />
                             )}
                             <br />
                             <div id="desc">{suggestion.description}</div>
@@ -1097,6 +1019,10 @@ function mapDispatchToProps(dispatch) {
     },
     deleteIdea: id => {
       dispatch(deleteIdeaAction(id));
+    },
+    getBoth: () => {
+      dispatch(getSuggestionAction());
+      dispatch(getCommentsAction());
     }
   };
 }
