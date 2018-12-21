@@ -11,6 +11,7 @@ import {
 import { addCommentAction, getCommentsAction } from '../actions/comments';
 
 import AddPage from './AddPage';
+import StatusDropdown from './StatusDropdown';
 
 class Main extends React.Component {
   constructor(props) {
@@ -210,12 +211,10 @@ class Main extends React.Component {
   }
 
   deleteIdea(id) {
-    console.log('deleting ' + id);
     this.props.deleteIdea(id);
   }
 
   render() {
-    const admincommenttest = 1;
     const suggestions = this.props.suggestions.suggestion;
 
     suggestions
@@ -231,7 +230,7 @@ class Main extends React.Component {
             </h2>
             <hr />
 
-            <div id="buttons" className="container ">
+            <div id="buttons" className="container">
               <div className={this.state.dropdown}>
                 <div className="dropdown-trigger">
                   <button
@@ -246,42 +245,7 @@ class Main extends React.Component {
                     </span>
                   </button>
                 </div>
-                <div className="dropdown-menu" id="dropdown-menu3" role="menu">
-                  <div className="dropdown-content">
-                    <a
-                      onClick={this.filterIdeas}
-                      href="#"
-                      className="dropdown-item"
-                      name="consideration"
-                    >
-                      Under Consideration
-                    </a>
-                    <a
-                      onClick={this.filterIdeas}
-                      href="#"
-                      className="dropdown-item"
-                      name="progress"
-                    >
-                      In Progress
-                    </a>
-                    <a
-                      onClick={this.filterIdeas}
-                      href="#"
-                      className="dropdown-item"
-                      name="completed"
-                    >
-                      Completed
-                    </a>
-                    <a
-                      onClick={this.filterIdeas}
-                      href="#"
-                      className="dropdown-item"
-                      name=""
-                    >
-                      All
-                    </a>
-                  </div>
-                </div>
+                <StatusDropdown filterIdeas={this.filterIdeas} />
               </div>
               <div id="categoryDrop" className={this.state.dropdownCat}>
                 <div className="dropdown-trigger">

@@ -1,4 +1,5 @@
 import { requestSuggestion } from './suggestions';
+import request from '../utils/api';
 
 export function addCommentAction(comment, id, name) {
   return function(dispatch) {
