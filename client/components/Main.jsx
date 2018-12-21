@@ -13,6 +13,7 @@ import { addCommentAction, getCommentsAction } from '../actions/comments';
 import AddPage from './AddPage';
 import TopBar from './TopBar';
 import AdminStatusSelector from './AdminStatusSelector';
+import StatusPill from './StatusPill';
 
 class Main extends React.Component {
   constructor(props) {
@@ -267,20 +268,7 @@ class Main extends React.Component {
                               {/* Remove the statuses for Laurence */}
                               {this.props.auth.user.user_name !==
                                 'Laurence' && (
-                                <span
-                                  data-aos="zoom-in"
-                                  data-aos-duration="3000"
-                                  className="button is-primary is-rounded is-pulled-right"
-                                  id={suggestion.status}
-                                >
-                                  {suggestion.status == 'completed'
-                                    ? 'Completed'
-                                    : suggestion.status == 'consideration'
-                                    ? 'Under Consideration'
-                                    : suggestion.status == 'closed'
-                                    ? 'Closed'
-                                    : 'In Progress'}
-                                </span>
+                                <StatusPill suggestion={suggestion} />
                               )}
                               {/* Laurence should have a selector to pick the right status */}
                               {this.props.auth.user.user_name ===
@@ -443,20 +431,7 @@ class Main extends React.Component {
                             <strong id="ideaTitle">{suggestion.title}</strong>{' '}
                             {/* Remove the statuses for Laurence */}
                             {this.props.auth.user.user_name !== 'Laurence' && (
-                              <span
-                                data-aos="zoom-in"
-                                data-aos-duration="3000"
-                                className="button is-primary is-rounded is-pulled-right"
-                                id={suggestion.status}
-                              >
-                                {suggestion.status == 'completed'
-                                  ? 'Completed'
-                                  : suggestion.status == 'consideration'
-                                  ? 'Under Consideration'
-                                  : suggestion.status == 'closed'
-                                  ? 'Closed'
-                                  : 'In Progress'}
-                              </span>
+                              <StatusPill suggestion={suggestion} />
                             )}
                             {/* Laurence should have a selector to pick the right status */}
                             {this.props.auth.user.user_name === 'Laurence' && (
@@ -622,20 +597,7 @@ class Main extends React.Component {
                               {/* Remove the statuses for Laurence */}
                               {this.props.auth.user.user_name !==
                                 'Laurence' && (
-                                <span
-                                  data-aos="zoom-in"
-                                  data-aos-duration="3000"
-                                  className="button is-primary is-rounded is-pulled-right"
-                                  id={suggestion.status}
-                                >
-                                  {suggestion.status == 'completed'
-                                    ? 'Completed'
-                                    : suggestion.status == 'consideration'
-                                    ? 'Under Consideration'
-                                    : suggestion.status == 'closed'
-                                    ? 'Closed'
-                                    : 'In Progress'}
-                                </span>
+                                <StatusPill suggestion={suggestion} />
                               )}
                               {/* Laurence should have a selector to pick the right status */}
                               {this.props.auth.user.user_name ===
@@ -786,20 +748,7 @@ class Main extends React.Component {
                             <strong id="ideaTitle">{suggestion.title}</strong>{' '}
                             {/* Remove the statuses for Laurence */}
                             {this.props.auth.user.user_name !== 'Laurence' && (
-                              <span
-                                data-aos="zoom-in"
-                                data-aos-duration="3000"
-                                className="button is-primary is-rounded is-pulled-right"
-                                id={suggestion.status}
-                              >
-                                {suggestion.status == 'completed'
-                                  ? 'Completed'
-                                  : suggestion.status == 'consideration'
-                                  ? 'Under Consideration'
-                                  : suggestion.status == 'closed'
-                                  ? 'Closed'
-                                  : 'In Progress'}
-                              </span>
+                              <StatusPill suggestion={suggestion} />
                             )}
                             {/* Laurence should have a selector to pick the right status */}
                             {this.props.auth.user.user_name === 'Laurence' && (
