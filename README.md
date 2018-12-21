@@ -14,9 +14,7 @@ CX Tech Feedback
 
 - write admin functions to remove users by name (since there's no password reset)
 
-- when suggestion is removed, delete the comments as well (currently they stay)
-
-- Search is case sensitive at the moment
+- when suggestion is removed, delete the comments as well (currently they remain)
 
 ### In progress
 
@@ -26,6 +24,8 @@ Notes: - denotes more work to do on the feature and \* denotes an untouched user
 
 ### Done
 
+- Search is case sensitive at the moment
+- decided to include description search due to simplicity
 - filter status doesn't have the option to find 'closed'
 - refactored code by 700 lines in main
 - Color the comments box different for Laurence and Rob
