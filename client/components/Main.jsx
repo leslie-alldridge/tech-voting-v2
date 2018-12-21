@@ -12,9 +12,6 @@ import { addCommentAction, getCommentsAction } from '../actions/comments';
 
 import AddPage from './AddPage';
 import TopBar from './TopBar';
-import SuggestionArticle from './SuggestionArticle';
-import SingleComment from './SingleComment';
-import CommentEntry from './CommentEntry';
 import MainChildWrapper from './MainChildWrapper';
 
 class Main extends React.Component {

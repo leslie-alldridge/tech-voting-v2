@@ -32,6 +32,14 @@ const StatusDropdown = props => {
           onClick={props.filterIdeas}
           href="#"
           className="dropdown-item"
+          name="closed"
+        >
+          Closed
+        </a>
+        <a
+          onClick={props.filterIdeas}
+          href="#"
+          className="dropdown-item"
           name=""
         >
           All
