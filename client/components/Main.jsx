@@ -15,6 +15,7 @@ import TopBar from './TopBar';
 import SuggestionArticle from './SuggestionArticle';
 import SingleComment from './SingleComment';
 import CommentEntry from './CommentEntry';
+import MainChildWrapper from './MainChildWrapper';
 
 class Main extends React.Component {
   constructor(props) {
@@ -247,168 +248,88 @@ class Main extends React.Component {
               if (this.state.searchEntry !== '') {
                 if (suggestion.title.includes(this.state.searchEntry)) {
                   return (
-                    <div
-                      data-aos="zoom-in"
-                      data-aos-duration="6000"
-                      key={suggestion.id}
-                    >
-                      <SuggestionArticle
-                        suggestion={suggestion}
-                        username={this.props.auth.user.user_name}
-                        handleStatusUpdate={this.handleStatusUpdate}
-                        deleteIdea={this.deleteIdea}
-                        adminComment={this.state.adminComment}
-                        handleComment={this.handleComment}
-                        handleLike={this.handleLike}
-                        toggleComments={this.toggleComments}
-                      />
-                      {this.state.comment && this.state.id == suggestion.id && (
-                        <CommentEntry
-                          handleCommentEntry={this.handleCommentEntry}
-                          submitComment={this.submitComment}
-                          userComment={this.state.userComment}
-                        />
-                      )}
-                      {this.state.showComment &&
-                        this.state.id == suggestion.id &&
-                        this.props.suggestions.comments &&
-                        this.props.suggestions.comments.map(comment => {
-                          if (comment.id === this.state.id) {
-                            return <SingleComment comment={comment} />;
-                          }
-                        })}
-                      {this.state.showComment &&
-                        this.state.id == suggestion.id && (
-                          <a id="topLink" href="#">
-                            Top
-                          </a>
-                        )}
-                    </div>
-                  );
-                }
-              } else {
-                return (
-                  <div
-                    data-aos="zoom-in"
-                    data-aos-duration="6000"
-                    key={suggestion.id}
-                  >
-                    <SuggestionArticle
-                      suggestion={suggestion}
-                      username={this.props.auth.user.user_name}
+                    <MainChildWrapper
                       handleStatusUpdate={this.handleStatusUpdate}
                       deleteIdea={this.deleteIdea}
                       adminComment={this.state.adminComment}
                       handleComment={this.handleComment}
                       handleLike={this.handleLike}
                       toggleComments={this.toggleComments}
+                      username={this.props.auth.user.user_name}
+                      suggestion={suggestion}
+                      stateComment={this.state.comment}
+                      stateid={this.state.id}
+                      handleCommentEntry={this.handleCommentEntry}
+                      submitComment={this.submitComment}
+                      userComment={this.state.userComment}
+                      showComment={this.state.showComment}
+                      commentProps={this.props.suggestions.comments}
                     />
-                    {this.state.comment && this.state.id == suggestion.id && (
-                      <CommentEntry
-                        handleCommentEntry={this.handleCommentEntry}
-                        submitComment={this.submitComment}
-                        userComment={this.state.userComment}
-                      />
-                    )}
-                    {this.state.showComment &&
-                      this.state.id == suggestion.id &&
-                      this.props.suggestions.comments &&
-                      this.props.suggestions.comments.map(comment => {
-                        if (comment.id === this.state.id) {
-                          return <SingleComment comment={comment} />;
-                        }
-                      })}
-                    {this.state.showComment && this.state.id == suggestion.id && (
-                      <a id="topLink" href="#">
-                        Top
-                      </a>
-                    )}
-                  </div>
+                  );
+                }
+              } else {
+                return (
+                  <MainChildWrapper
+                    handleStatusUpdate={this.handleStatusUpdate}
+                    deleteIdea={this.deleteIdea}
+                    adminComment={this.state.adminComment}
+                    handleComment={this.handleComment}
+                    handleLike={this.handleLike}
+                    toggleComments={this.toggleComments}
+                    username={this.props.auth.user.user_name}
+                    suggestion={suggestion}
+                    stateComment={this.state.comment}
+                    stateid={this.state.id}
+                    handleCommentEntry={this.handleCommentEntry}
+                    submitComment={this.submitComment}
+                    userComment={this.state.userComment}
+                    showComment={this.state.showComment}
+                    commentProps={this.props.suggestions.comments}
+                  />
                 );
               }
             } else if (suggestion.category === this.state.category) {
               if (this.state.searchEntry !== '') {
                 if (suggestion.title.includes(this.state.searchEntry)) {
                   return (
-                    <div
-                      data-aos="zoom-in"
-                      data-aos-duration="6000"
-                      key={suggestion.id}
-                    >
-                      <SuggestionArticle
-                        suggestion={suggestion}
-                        username={this.props.auth.user.user_name}
-                        handleStatusUpdate={this.handleStatusUpdate}
-                        deleteIdea={this.deleteIdea}
-                        adminComment={this.state.adminComment}
-                        handleComment={this.handleComment}
-                        handleLike={this.handleLike}
-                        toggleComments={this.toggleComments}
-                      />
-                      {this.state.comment && this.state.id == suggestion.id && (
-                        <CommentEntry
-                          handleCommentEntry={this.handleCommentEntry}
-                          submitComment={this.submitComment}
-                          userComment={this.state.userComment}
-                        />
-                      )}
-
-                      {this.state.showComment &&
-                        this.state.id == suggestion.id &&
-                        this.props.suggestions.comments &&
-                        this.props.suggestions.comments.map(comment => {
-                          if (comment.id === this.state.id) {
-                            return <SingleComment comment={comment} />;
-                          }
-                        })}
-                      {this.state.showComment &&
-                        this.state.id == suggestion.id && (
-                          <a id="topLink" href="#">
-                            Top
-                          </a>
-                        )}
-                    </div>
-                  );
-                }
-              } else {
-                return (
-                  <div
-                    data-aos="zoom-in"
-                    data-aos-duration="6000"
-                    key={suggestion.id}
-                  >
-                    <SuggestionArticle
-                      suggestion={suggestion}
-                      username={this.props.auth.user.user_name}
+                    <MainChildWrapper
                       handleStatusUpdate={this.handleStatusUpdate}
                       deleteIdea={this.deleteIdea}
                       adminComment={this.state.adminComment}
                       handleComment={this.handleComment}
                       handleLike={this.handleLike}
                       toggleComments={this.toggleComments}
+                      username={this.props.auth.user.user_name}
+                      suggestion={suggestion}
+                      stateComment={this.state.comment}
+                      stateid={this.state.id}
+                      handleCommentEntry={this.handleCommentEntry}
+                      submitComment={this.submitComment}
+                      userComment={this.state.userComment}
+                      showComment={this.state.showComment}
+                      commentProps={this.props.suggestions.comments}
                     />
-                    {this.state.comment && this.state.id == suggestion.id && (
-                      <CommentEntry
-                        handleCommentEntry={this.handleCommentEntry}
-                        submitComment={this.submitComment}
-                        userComment={this.state.userComment}
-                      />
-                    )}
-
-                    {this.state.showComment &&
-                      this.state.id == suggestion.id &&
-                      this.props.suggestions.comments &&
-                      this.props.suggestions.comments.map(comment => {
-                        if (comment.id === this.state.id) {
-                          return <SingleComment comment={comment} />;
-                        }
-                      })}
-                    {this.state.showComment && this.state.id == suggestion.id && (
-                      <a id="topLink" href="#">
-                        Top
-                      </a>
-                    )}
-                  </div>
+                  );
+                }
+              } else {
+                return (
+                  <MainChildWrapper
+                    handleStatusUpdate={this.handleStatusUpdate}
+                    deleteIdea={this.deleteIdea}
+                    adminComment={this.state.adminComment}
+                    handleComment={this.handleComment}
+                    handleLike={this.handleLike}
+                    toggleComments={this.toggleComments}
+                    username={this.props.auth.user.user_name}
+                    suggestion={suggestion}
+                    stateComment={this.state.comment}
+                    stateid={this.state.id}
+                    handleCommentEntry={this.handleCommentEntry}
+                    submitComment={this.submitComment}
+                    userComment={this.state.userComment}
+                    showComment={this.state.showComment}
+                    commentProps={this.props.suggestions.comments}
+                  />
                 );
               }
             }

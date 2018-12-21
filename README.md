@@ -10,8 +10,6 @@ CX Tech Feedback
   to do this i'm thinking about having a seperate action to find admin comments and store them in props, then on render we can
   say 'show this <i> badge if they exist in this.props.adminComment
 
-- tidy up test code in actions
-
 - style the admin dropdown
 
 - write admin functions to remove users by name (since there's no password reset)
@@ -19,6 +17,8 @@ CX Tech Feedback
 - when suggestion is removed, delete the comments as well (currently they stay)
 
 - Search is case sensitive at the moment
+
+- filter status doesn't have the option to find 'closed'
 
 ### In progress
 
@@ -28,6 +28,7 @@ Notes: - denotes more work to do on the feature and \* denotes an untouched user
 
 ### Done
 
+- refactored code by 700 lines in main
 - Color the comments box different for Laurence and Rob
 - create a status for 'closed' and allow admins to delete the idea.
 - Leave trophy badge for admin comments
