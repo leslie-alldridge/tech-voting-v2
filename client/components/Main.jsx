@@ -12,8 +12,7 @@ import { addCommentAction, getCommentsAction } from '../actions/comments';
 
 import AddPage from './AddPage';
 import TopBar from './TopBar';
-import AdminStatusSelector from './AdminStatusSelector';
-import StatusPill from './StatusPill';
+import SuggestionArticle from './SuggestionArticle';
 
 class Main extends React.Component {
   constructor(props) {
@@ -251,106 +250,16 @@ class Main extends React.Component {
                       data-aos-duration="6000"
                       key={suggestion.id}
                     >
-                      <article
-                        id="rowIdea"
-                        key={suggestion.id}
-                        className="media"
-                      >
-                        <figure className="media-left">
-                          <p className="image is-64x64">
-                            <img src={`/${suggestion.category}.png`} />
-                          </p>
-                        </figure>
-                        <div className="media-content">
-                          <div className="content">
-                            <p>
-                              <strong id="ideaTitle">{suggestion.title}</strong>{' '}
-                              {/* Remove the statuses for Laurence */}
-                              {this.props.auth.user.user_name !==
-                                'Laurence' && (
-                                <StatusPill suggestion={suggestion} />
-                              )}
-                              {/* Laurence should have a selector to pick the right status */}
-                              {this.props.auth.user.user_name ===
-                                'Laurence' && (
-                                <AdminStatusSelector
-                                  suggestion={suggestion}
-                                  handleStatusUpdate={this.handleStatusUpdate}
-                                  deleteIdea={this.deleteIdea}
-                                />
-                              )}
-                              <br />
-                              <div id="desc">{suggestion.description}</div>
-                            </p>
-                          </div>
-                          <nav className="level is-mobile">
-                            <div className="level-left">
-                              {this.state.adminComment.includes(
-                                suggestion.id
-                              ) && (
-                                <a
-                                  id="secondIcon"
-                                  name={suggestion.id}
-                                  className="level-item"
-                                >
-                                  <span className="icon is-medium">
-                                    <i id="admin" className="fas fa-trophy" />{' '}
-                                  </span>
-                                </a>
-                              )}
-                              <a
-                                onClick={e =>
-                                  this.handleComment(suggestion.id, e)
-                                }
-                                id="secondIcon"
-                                name={suggestion.id}
-                                className="level-item"
-                              >
-                                <span className="icon is-medium tooltip">
-                                  <span className="tooltiptext">
-                                    Add Comment
-                                  </span>
-                                  <i className="fas fa-reply " />
-                                </span>
-                              </a>
-                              <a
-                                onClick={e => this.handleLike(suggestion.id, e)}
-                                id="secondIcon"
-                                name={suggestion.id}
-                                className="level-item"
-                              >
-                                <span className="icon is-medium tooltip">
-                                  <span className="tooltiptext">Add Vote</span>
-                                  <i id="like" className="fas fa-heart" />
-                                  <strong id="votes">{suggestion.votes}</strong>
-                                </span>
-                              </a>
-                              <a
-                                onClick={e =>
-                                  this.toggleComments(suggestion.id, e)
-                                }
-                                id="secondIcon"
-                                name={suggestion.id}
-                                className="level-item"
-                              >
-                                <span className="icon is-medium tooltip">
-                                  <span className="tooltiptext">
-                                    All Comments
-                                  </span>
-                                  <i id="like" className="fas fa-comments" />
-                                  <strong id="votes">
-                                    {suggestion.commentcount}
-                                  </strong>
-                                </span>
-                              </a>
-                            </div>
-                            <p>
-                              <i id="submittedBy">Submitted by:</i>{' '}
-                              <b id="submittedBy">{suggestion.user}</b>
-                            </p>
-                          </nav>
-                        </div>
-                      </article>
+                      <SuggestionArticle
+                        suggestion={suggestion}
+                        username={this.props.auth.user.user_name}
+                        handleStatusUpdate={this.handleStatusUpdate}
+                        deleteIdea={this.deleteIdea}
+                        adminComment={this.state.adminComment}
+                        handleComment={this.handleComment}
+                        handleLike={this.handleLike}
+                        toggleComments={this.toggleComments}
+                      />
                       {this.state.comment && this.state.id == suggestion.id && (
                         <article className="media">
                           <div className="media-content">
@@ -419,98 +328,16 @@ class Main extends React.Component {
                     data-aos-duration="6000"
                     key={suggestion.id}
                   >
-                    <article id="rowIdea" key={suggestion.id} className="media">
-                      <figure className="media-left">
-                        <p className="image is-64x64">
-                          <img src={`/${suggestion.category}.png`} />
-                        </p>
-                      </figure>
-                      <div className="media-content">
-                        <div className="content">
-                          <p>
-                            <strong id="ideaTitle">{suggestion.title}</strong>{' '}
-                            {/* Remove the statuses for Laurence */}
-                            {this.props.auth.user.user_name !== 'Laurence' && (
-                              <StatusPill suggestion={suggestion} />
-                            )}
-                            {/* Laurence should have a selector to pick the right status */}
-                            {this.props.auth.user.user_name === 'Laurence' && (
-                              <AdminStatusSelector
-                                suggestion={suggestion}
-                                handleStatusUpdate={this.handleStatusUpdate}
-                                deleteIdea={this.deleteIdea}
-                              />
-                            )}
-                            <br />
-                            <div id="desc">{suggestion.description}</div>
-                          </p>
-                        </div>
-                        <nav className="level is-mobile">
-                          <div className="level-left">
-                            {this.state.adminComment.includes(
-                              suggestion.id
-                            ) && (
-                              <a
-                                id="secondIcon"
-                                name={suggestion.id}
-                                className="level-item"
-                              >
-                                <span className="icon is-medium">
-                                  <i id="admin" className="fas fa-trophy" />{' '}
-                                </span>
-                              </a>
-                            )}
-                            <a
-                              onClick={e =>
-                                this.handleComment(suggestion.id, e)
-                              }
-                              id="secondIcon"
-                              name={suggestion.id}
-                              className="level-item"
-                            >
-                              <span className="icon is-medium tooltip">
-                                <span className="tooltiptext">Add Comment</span>
-                                <i className="fas fa-reply " />
-                              </span>
-                            </a>
-                            <a
-                              onClick={e => this.handleLike(suggestion.id, e)}
-                              id="secondIcon"
-                              name={suggestion.id}
-                              className="level-item"
-                            >
-                              <span className="icon is-medium tooltip">
-                                <span className="tooltiptext">Add Vote</span>
-                                <i id="like" className="fas fa-heart" />
-                                <strong id="votes">{suggestion.votes}</strong>
-                              </span>
-                            </a>
-                            <a
-                              onClick={e =>
-                                this.toggleComments(suggestion.id, e)
-                              }
-                              id="secondIcon"
-                              name={suggestion.id}
-                              className="level-item"
-                            >
-                              <span className="icon is-medium tooltip">
-                                <span className="tooltiptext">
-                                  All Comments
-                                </span>
-                                <i id="like" className="fas fa-comments" />
-                                <strong id="votes">
-                                  {suggestion.commentcount}
-                                </strong>
-                              </span>
-                            </a>
-                          </div>
-                          <p>
-                            <i id="submittedBy">Submitted by:</i>{' '}
-                            <b id="submittedBy">{suggestion.user}</b>
-                          </p>
-                        </nav>
-                      </div>
-                    </article>
+                    <SuggestionArticle
+                      suggestion={suggestion}
+                      username={this.props.auth.user.user_name}
+                      handleStatusUpdate={this.handleStatusUpdate}
+                      deleteIdea={this.deleteIdea}
+                      adminComment={this.state.adminComment}
+                      handleComment={this.handleComment}
+                      handleLike={this.handleLike}
+                      toggleComments={this.toggleComments}
+                    />
                     {this.state.comment && this.state.id == suggestion.id && (
                       <article className="media">
                         <div className="media-content">
@@ -580,93 +407,16 @@ class Main extends React.Component {
                       data-aos-duration="6000"
                       key={suggestion.id}
                     >
-                      <article
-                        id="rowIdea"
-                        key={suggestion.id}
-                        className="media"
-                      >
-                        <figure className="media-left">
-                          <p className="image is-64x64">
-                            <img src={`/${suggestion.category}.png`} />
-                          </p>
-                        </figure>
-                        <div className="media-content">
-                          <div className="content">
-                            <p>
-                              <strong id="ideaTitle">{suggestion.title}</strong>{' '}
-                              {/* Remove the statuses for Laurence */}
-                              {this.props.auth.user.user_name !==
-                                'Laurence' && (
-                                <StatusPill suggestion={suggestion} />
-                              )}
-                              {/* Laurence should have a selector to pick the right status */}
-                              {this.props.auth.user.user_name ===
-                                'Laurence' && (
-                                <AdminStatusSelector
-                                  suggestion={suggestion}
-                                  handleStatusUpdate={this.handleStatusUpdate}
-                                  deleteIdea={this.deleteIdea}
-                                />
-                              )}
-                              <br />
-                              <div id="desc">{suggestion.description}</div>
-                            </p>
-                          </div>
-                          <nav className="level is-mobile">
-                            <div className="level-left">
-                              <a
-                                onClick={e =>
-                                  this.handleComment(suggestion.id, e)
-                                }
-                                id="secondIcon"
-                                name={suggestion.id}
-                                className="level-item"
-                              >
-                                <span className="icon is-medium tooltip">
-                                  <span className="tooltiptext">
-                                    Add Comment
-                                  </span>
-                                  <i className="fas fa-reply " />
-                                </span>
-                              </a>
-                              <a
-                                onClick={e => this.handleLike(suggestion.id, e)}
-                                id="secondIcon"
-                                name={suggestion.id}
-                                className="level-item"
-                              >
-                                <span className="icon is-medium tooltip">
-                                  <span className="tooltiptext">Add Vote</span>
-                                  <i id="like" className="fas fa-heart" />
-                                  <strong id="votes">{suggestion.votes}</strong>
-                                </span>
-                              </a>
-                              <a
-                                onClick={e =>
-                                  this.toggleComments(suggestion.id, e)
-                                }
-                                id="secondIcon"
-                                name={suggestion.id}
-                                className="level-item"
-                              >
-                                <span className="icon is-medium tooltip">
-                                  <span className="tooltiptext">
-                                    All Comments
-                                  </span>
-                                  <i id="like" className="fas fa-comments" />
-                                  <strong id="votes">
-                                    {suggestion.commentcount}
-                                  </strong>
-                                </span>
-                              </a>
-                            </div>
-                            <p>
-                              <i id="submittedBy">Submitted by:</i>{' '}
-                              <b id="submittedBy">{suggestion.user}</b>
-                            </p>
-                          </nav>
-                        </div>
-                      </article>
+                      <SuggestionArticle
+                        suggestion={suggestion}
+                        username={this.props.auth.user.user_name}
+                        handleStatusUpdate={this.handleStatusUpdate}
+                        deleteIdea={this.deleteIdea}
+                        adminComment={this.state.adminComment}
+                        handleComment={this.handleComment}
+                        handleLike={this.handleLike}
+                        toggleComments={this.toggleComments}
+                      />
                       {this.state.comment && this.state.id == suggestion.id && (
                         <article className="media">
                           <div className="media-content">
@@ -736,85 +486,16 @@ class Main extends React.Component {
                     data-aos-duration="6000"
                     key={suggestion.id}
                   >
-                    <article id="rowIdea" key={suggestion.id} className="media">
-                      <figure className="media-left">
-                        <p className="image is-64x64">
-                          <img src={`/${suggestion.category}.png`} />
-                        </p>
-                      </figure>
-                      <div className="media-content">
-                        <div className="content">
-                          <p>
-                            <strong id="ideaTitle">{suggestion.title}</strong>{' '}
-                            {/* Remove the statuses for Laurence */}
-                            {this.props.auth.user.user_name !== 'Laurence' && (
-                              <StatusPill suggestion={suggestion} />
-                            )}
-                            {/* Laurence should have a selector to pick the right status */}
-                            {this.props.auth.user.user_name === 'Laurence' && (
-                              <AdminStatusSelector
-                                suggestion={suggestion}
-                                handleStatusUpdate={this.handleStatusUpdate}
-                                deleteIdea={this.deleteIdea}
-                              />
-                            )}
-                            <br />
-                            <div id="desc">{suggestion.description}</div>
-                          </p>
-                        </div>
-                        <nav className="level is-mobile">
-                          <div className="level-left">
-                            <a
-                              onClick={e =>
-                                this.handleComment(suggestion.id, e)
-                              }
-                              id="secondIcon"
-                              name={suggestion.id}
-                              className="level-item"
-                            >
-                              <span className="icon is-medium tooltip">
-                                <span className="tooltiptext">Add Comment</span>
-                                <i className="fas fa-reply " />
-                              </span>
-                            </a>
-                            <a
-                              onClick={e => this.handleLike(suggestion.id, e)}
-                              id="secondIcon"
-                              name={suggestion.id}
-                              className="level-item"
-                            >
-                              <span className="icon is-medium tooltip">
-                                <span className="tooltiptext">Add Vote</span>
-                                <i id="like" className="fas fa-heart" />
-                                <strong id="votes">{suggestion.votes}</strong>
-                              </span>
-                            </a>
-                            <a
-                              onClick={e =>
-                                this.toggleComments(suggestion.id, e)
-                              }
-                              id="secondIcon"
-                              name={suggestion.id}
-                              className="level-item"
-                            >
-                              <span className="icon is-medium tooltip">
-                                <span className="tooltiptext">
-                                  All Comments
-                                </span>
-                                <i id="like" className="fas fa-comments" />
-                                <strong id="votes">
-                                  {suggestion.commentcount}
-                                </strong>
-                              </span>
-                            </a>
-                          </div>
-                          <p>
-                            <i id="submittedBy">Submitted by:</i>{' '}
-                            <b id="submittedBy">{suggestion.user}</b>
-                          </p>
-                        </nav>
-                      </div>
-                    </article>
+                    <SuggestionArticle
+                      suggestion={suggestion}
+                      username={this.props.auth.user.user_name}
+                      handleStatusUpdate={this.handleStatusUpdate}
+                      deleteIdea={this.deleteIdea}
+                      adminComment={this.state.adminComment}
+                      handleComment={this.handleComment}
+                      handleLike={this.handleLike}
+                      toggleComments={this.toggleComments}
+                    />
                     {this.state.comment && this.state.id == suggestion.id && (
                       <article className="media">
                         <div className="media-content">
