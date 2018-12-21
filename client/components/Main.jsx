@@ -13,6 +13,7 @@ import { addCommentAction, getCommentsAction } from '../actions/comments';
 import AddPage from './AddPage';
 import StatusDropdown from './StatusDropdown';
 import CategoryDropdown from './CategoryDropdown';
+import Search from './Search';
 
 class Main extends React.Component {
   constructor(props) {
@@ -278,20 +279,7 @@ class Main extends React.Component {
               >
                 Add Improvement
               </a>
-              <div
-                id="search"
-                className="control has-icons-left has-icons-right"
-              >
-                <input
-                  className="input"
-                  type="email"
-                  placeholder="Search here.."
-                  onChange={this.searchEntry}
-                />
-                <span className="icon is-small is-left">
-                  <i className="fas fa-search" />
-                </span>
-              </div>
+              <Search searchEntry={this.searchEntry} />
             </div>
             <hr />
             {this.props.suggestions.liked && (

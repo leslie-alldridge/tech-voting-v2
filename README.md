@@ -18,6 +18,8 @@ CX Tech Feedback
 
 - when suggestion is removed, delete the comments as well (currently they stay)
 
+- Search is case sensitive at the moment
+
 ### In progress
 
 Notes: - denotes more work to do on the feature and \* denotes an untouched user story.
