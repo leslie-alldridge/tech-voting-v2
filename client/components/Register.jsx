@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { registerUserRequest } from '../actions/register';
-import { loginError } from '../actions/login';
+import { registerUserRequest } from '../actions/auth/register';
+import { loginError } from '../actions/auth/login';
 
 class Register extends React.Component {
   constructor(props) {
