@@ -13,6 +13,8 @@ import { addCommentAction, getCommentsAction } from '../actions/comments';
 import AddPage from './AddPage';
 import TopBar from './TopBar';
 import SuggestionArticle from './SuggestionArticle';
+import SingleComment from './SingleComment';
+import CommentEntry from './CommentEntry';
 
 class Main extends React.Component {
   constructor(props) {
@@ -261,55 +263,18 @@ class Main extends React.Component {
                         toggleComments={this.toggleComments}
                       />
                       {this.state.comment && this.state.id == suggestion.id && (
-                        <article className="media">
-                          <div className="media-content">
-                            <div className="field">
-                              <p className="control">
-                                <textarea
-                                  onChange={this.handleCommentEntry}
-                                  className="textarea"
-                                  placeholder="Add a comment..."
-                                />
-                              </p>
-                            </div>
-                            {this.state.userComment !== '' && (
-                              <nav className="level">
-                                <div className="level-left">
-                                  <div className="level-item">
-                                    <a
-                                      onClick={this.submitComment}
-                                      className="button is-link"
-                                      id="commentBtn"
-                                    >
-                                      Submit
-                                    </a>
-                                  </div>
-                                </div>
-                              </nav>
-                            )}
-                          </div>
-                        </article>
+                        <CommentEntry
+                          handleCommentEntry={this.handleCommentEntry}
+                          submitComment={this.submitComment}
+                          userComment={this.state.userComment}
+                        />
                       )}
                       {this.state.showComment &&
                         this.state.id == suggestion.id &&
                         this.props.suggestions.comments &&
                         this.props.suggestions.comments.map(comment => {
                           if (comment.id === this.state.id) {
-                            return (
-                              <article
-                                id={comment.user}
-                                className="message is-success"
-                              >
-                                <div className="message-header">
-                                  <p id="commentHead">
-                                    Posted by: <b>{comment.user}</b>
-                                  </p>
-                                </div>
-                                <div className="message-body">
-                                  <i>{comment.comment}</i>
-                                </div>
-                              </article>
-                            );
+                            return <SingleComment comment={comment} />;
                           }
                         })}
                       {this.state.showComment &&
@@ -339,55 +304,18 @@ class Main extends React.Component {
                       toggleComments={this.toggleComments}
                     />
                     {this.state.comment && this.state.id == suggestion.id && (
-                      <article className="media">
-                        <div className="media-content">
-                          <div className="field">
-                            <p className="control">
-                              <textarea
-                                onChange={this.handleCommentEntry}
-                                className="textarea"
-                                placeholder="Add a comment..."
-                              />
-                            </p>
-                          </div>
-                          {this.state.userComment !== '' && (
-                            <nav className="level">
-                              <div className="level-left">
-                                <div className="level-item">
-                                  <a
-                                    onClick={this.submitComment}
-                                    className="button is-link"
-                                    id="commentBtn"
-                                  >
-                                    Submit
-                                  </a>
-                                </div>
-                              </div>
-                            </nav>
-                          )}
-                        </div>
-                      </article>
+                      <CommentEntry
+                        handleCommentEntry={this.handleCommentEntry}
+                        submitComment={this.submitComment}
+                        userComment={this.state.userComment}
+                      />
                     )}
                     {this.state.showComment &&
                       this.state.id == suggestion.id &&
                       this.props.suggestions.comments &&
                       this.props.suggestions.comments.map(comment => {
                         if (comment.id === this.state.id) {
-                          return (
-                            <article
-                              id={comment.user}
-                              className="message is-success"
-                            >
-                              <div className="message-header">
-                                <p id="commentHead">
-                                  Posted by: <b>{comment.user}</b>
-                                </p>
-                              </div>
-                              <div className="message-body">
-                                <i>{comment.comment}</i>
-                              </div>
-                            </article>
-                          );
+                          return <SingleComment comment={comment} />;
                         }
                       })}
                     {this.state.showComment && this.state.id == suggestion.id && (
@@ -418,34 +346,11 @@ class Main extends React.Component {
                         toggleComments={this.toggleComments}
                       />
                       {this.state.comment && this.state.id == suggestion.id && (
-                        <article className="media">
-                          <div className="media-content">
-                            <div className="field">
-                              <p className="control">
-                                <textarea
-                                  onChange={this.handleCommentEntry}
-                                  className="textarea"
-                                  placeholder="Add a comment..."
-                                />
-                              </p>
-                            </div>
-                            {this.state.userComment !== '' && (
-                              <nav className="level">
-                                <div className="level-left">
-                                  <div className="level-item">
-                                    <a
-                                      onClick={this.submitComment}
-                                      className="button is-link"
-                                      id="commentBtn"
-                                    >
-                                      Submit
-                                    </a>
-                                  </div>
-                                </div>
-                              </nav>
-                            )}
-                          </div>
-                        </article>
+                        <CommentEntry
+                          handleCommentEntry={this.handleCommentEntry}
+                          submitComment={this.submitComment}
+                          userComment={this.state.userComment}
+                        />
                       )}
 
                       {this.state.showComment &&
@@ -453,21 +358,7 @@ class Main extends React.Component {
                         this.props.suggestions.comments &&
                         this.props.suggestions.comments.map(comment => {
                           if (comment.id === this.state.id) {
-                            return (
-                              <article
-                                id={comment.user}
-                                className="message is-success"
-                              >
-                                <div className="message-header">
-                                  <p id="commentHead">
-                                    Posted by: <b>{comment.user}</b>
-                                  </p>
-                                </div>
-                                <div className="message-body">
-                                  <i>{comment.comment}</i>
-                                </div>
-                              </article>
-                            );
+                            return <SingleComment comment={comment} />;
                           }
                         })}
                       {this.state.showComment &&
@@ -497,34 +388,11 @@ class Main extends React.Component {
                       toggleComments={this.toggleComments}
                     />
                     {this.state.comment && this.state.id == suggestion.id && (
-                      <article className="media">
-                        <div className="media-content">
-                          <div className="field">
-                            <p className="control">
-                              <textarea
-                                onChange={this.handleCommentEntry}
-                                className="textarea"
-                                placeholder="Add a comment..."
-                              />
-                            </p>
-                          </div>
-                          {this.state.userComment !== '' && (
-                            <nav className="level">
-                              <div className="level-left">
-                                <div className="level-item">
-                                  <a
-                                    onClick={this.submitComment}
-                                    className="button is-link"
-                                    id="commentBtn"
-                                  >
-                                    Submit
-                                  </a>
-                                </div>
-                              </div>
-                            </nav>
-                          )}
-                        </div>
-                      </article>
+                      <CommentEntry
+                        handleCommentEntry={this.handleCommentEntry}
+                        submitComment={this.submitComment}
+                        userComment={this.state.userComment}
+                      />
                     )}
 
                     {this.state.showComment &&
@@ -532,21 +400,7 @@ class Main extends React.Component {
                       this.props.suggestions.comments &&
                       this.props.suggestions.comments.map(comment => {
                         if (comment.id === this.state.id) {
-                          return (
-                            <article
-                              id={comment.user}
-                              className="message is-success"
-                            >
-                              <div className="message-header">
-                                <p id="commentHead">
-                                  Posted by: <b>{comment.user}</b>
-                                </p>
-                              </div>
-                              <div className="message-body">
-                                <i>{comment.comment}</i>
-                              </div>
-                            </article>
-                          );
+                          return <SingleComment comment={comment} />;
                         }
                       })}
                     {this.state.showComment && this.state.id == suggestion.id && (
