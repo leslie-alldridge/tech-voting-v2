@@ -11,9 +11,7 @@ import {
 import { addCommentAction, getCommentsAction } from '../actions/comments';
 
 import AddPage from './AddPage';
-import StatusDropdown from './StatusDropdown';
-import CategoryDropdown from './CategoryDropdown';
-import Search from './Search';
+import TopBar from './TopBar';
 import AdminStatusSelector from './AdminStatusSelector';
 
 class Main extends React.Component {
@@ -224,73 +222,20 @@ class Main extends React.Component {
     return (
       <div id="main" className="container">
         {!this.state.addPage && (
-          <div>
-            <h2 id="title2" className="title is-2 has-text-centered">
-              Popular Improvements
-            </h2>
-            <hr />
-
-            <div id="buttons" className="container">
-              <div className={this.state.dropdown}>
-                <div className="dropdown-trigger">
-                  <button
-                    className="button"
-                    aria-haspopup="true"
-                    aria-controls="dropdown-menu3"
-                    onClick={this.toggleDrop}
-                  >
-                    <span>{this.state.filterActive}</span>
-                    <span className="icon is-small">
-                      <i className="fas fa-angle-down" aria-hidden="true" />
-                    </span>
-                  </button>
-                </div>
-                <StatusDropdown filterIdeas={this.filterIdeas} />
-              </div>
-              <div id="categoryDrop" className={this.state.dropdownCat}>
-                <div className="dropdown-trigger">
-                  <button
-                    className="button"
-                    aria-haspopup="true"
-                    aria-controls="dropdown-menu3"
-                    onClick={this.toggleDropCat}
-                  >
-                    <span>{this.state.categoryAction}</span>
-                    <span className="icon is-small">
-                      <i className="fas fa-angle-down" aria-hidden="true" />
-                    </span>
-                  </button>
-                </div>
-                <CategoryDropdown changeCategory={this.changeCategory} />
-              </div>
-              <a
-                id="sendFeedback"
-                target="_blank"
-                href="https://confluence.teamxero.com/pages/viewpage.action?pageId=194813287"
-                className="button is-link is-rounded"
-              >
-                Send Feedback
-              </a>
-              <a
-                onClick={this.togglePage}
-                className="button is-link is-rounded"
-              >
-                Add Improvement
-              </a>
-              <Search searchEntry={this.searchEntry} />
-            </div>
-            <hr />
-            {this.props.suggestions.liked && (
-              <p className="likeMessage animated3" id="likeMessage">
-                Item Liked! Thanks for your feedback.
-              </p>
-            )}
-            {this.props.suggestions.commented && (
-              <p className="likeMessage animated3" id="likeMessage">
-                Comment Saved! Thanks for your feedback.
-              </p>
-            )}
-          </div>
+          <TopBar
+            dropdown={this.state.dropdown}
+            toggleDrop={this.toggleDrop}
+            filterActive={this.state.filterActive}
+            filterIdeas={this.filterIdeas}
+            dropdownCat={this.state.dropdownCat}
+            toggleDropCat={this.toggleDropCat}
+            categoryAction={this.state.categoryAction}
+            changeCategory={this.changeCategory}
+            togglePage={this.togglePage}
+            searchEntry={this.searchEntry}
+            liked={this.props.suggestions.liked}
+            commented={this.props.suggestions.commented}
+          />
         )}
         {suggestions.length === 0 ? <p>No results</p> : null}
         {this.props.suggestions.suggestion &&
