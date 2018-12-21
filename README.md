@@ -18,8 +18,6 @@ CX Tech Feedback
 
 - Search is case sensitive at the moment
 
-- filter status doesn't have the option to find 'closed'
-
 ### In progress
 
 Notes: - denotes more work to do on the feature and \* denotes an untouched user story.
@@ -28,6 +26,7 @@ Notes: - denotes more work to do on the feature and \* denotes an untouched user
 
 ### Done
 
+- filter status doesn't have the option to find 'closed'
 - refactored code by 700 lines in main
 - Color the comments box different for Laurence and Rob
 - create a status for 'closed' and allow admins to delete the idea.

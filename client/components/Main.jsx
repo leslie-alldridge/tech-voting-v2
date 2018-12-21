@@ -243,7 +243,14 @@ class Main extends React.Component {
           suggestions.map(suggestion => {
             if (this.state.category === 'all') {
               if (this.state.searchEntry !== '') {
-                if (suggestion.title.includes(this.state.searchEntry)) {
+                if (
+                  suggestion.title
+                    .toLowerCase()
+                    .includes(this.state.searchEntry.toLowerCase()) ||
+                  suggestion.description
+                    .toLowerCase()
+                    .includes(this.state.searchEntry.toLowerCase())
+                ) {
                   return (
                     <MainChildWrapper
                       handleStatusUpdate={this.handleStatusUpdate}
@@ -287,7 +294,14 @@ class Main extends React.Component {
               }
             } else if (suggestion.category === this.state.category) {
               if (this.state.searchEntry !== '') {
-                if (suggestion.title.includes(this.state.searchEntry)) {
+                if (
+                  suggestion.title
+                    .toLowerCase()
+                    .includes(this.state.searchEntry.toLowerCase()) ||
+                  suggestion.description
+                    .toLowerCase()
+                    .includes(this.state.searchEntry.toLowerCase())
+                ) {
                   return (
                     <MainChildWrapper
                       handleStatusUpdate={this.handleStatusUpdate}
