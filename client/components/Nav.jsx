@@ -46,33 +46,43 @@ class Nav extends React.Component {
             className={`navbar-menu ${showBurger ? 'is-active' : ''}`}
           >
             <div className="navbar-end">
-              {auth.isAuthenticated ? (
-                <Link
-                  id="loggedInText"
-                  to="/"
-                  className="navbar-item"
-                  onClick={() => logout()}
-                >
-                  <b>Logout</b>
-                </Link>
-              ) : (
-                [
-                  <Link
-                    onClick={this.toggleBurger}
-                    className="navbar-item is-large"
-                    to="/login"
-                  >
-                    Login
-                  </Link>,
-                  <Link
-                    onClick={this.toggleBurger}
-                    className="navbar-item"
-                    to="/register"
-                  >
-                    Register
-                  </Link>
-                ]
-              )}
+              {auth.isAuthenticated
+                ? [
+                    <Link
+                      id="loggedInText"
+                      to="/"
+                      className="navbar-item"
+                      onClick={() => logout()}
+                    >
+                      <b>Logout</b>
+                    </Link>,
+                    <Link className="navbar-item" id="loggedInText" to="/help">
+                      <b>Help</b>
+                    </Link>
+                  ]
+                : [
+                    <Link
+                      onClick={this.toggleBurger}
+                      className="navbar-item is-large"
+                      to="/login"
+                    >
+                      Login
+                    </Link>,
+                    <Link
+                      onClick={this.toggleBurger}
+                      className="navbar-item"
+                      to="/register"
+                    >
+                      Register
+                    </Link>,
+                    <Link
+                      onClick={this.toggleBurger}
+                      className="navbar-item"
+                      to="/help"
+                    >
+                      Help
+                    </Link>
+                  ]}
             </div>
           </div>
         </div>
