@@ -359,3 +359,12 @@ select:active {
 #Laurence {
   background-color: #ffd700 !important;
 }
+
+#helpTitle {
+  margin-bottom: 2.5%;
+}
+
+#footerHelp {
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
+}
