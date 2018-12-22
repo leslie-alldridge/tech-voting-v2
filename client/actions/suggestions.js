@@ -36,7 +36,6 @@ export function receiveLike(data) {
   };
 }
 
-//Reading suggestions from DB
 export function getSuggestionAction() {
   return function(dispatch) {
     dispatch(requestSuggestion());
@@ -46,7 +45,6 @@ export function getSuggestionAction() {
   };
 }
 
-//Adding suggestions to DB
 export function addSuggestionAction(data) {
   return function(dispatch) {
     dispatch(requestSuggestion());
@@ -56,7 +54,6 @@ export function addSuggestionAction(data) {
   };
 }
 
-//Up voting suggestion
 export function upVoteAction(id, name) {
   return function(dispatch) {
     dispatch(requestSuggestion());
