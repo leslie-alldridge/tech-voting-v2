@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 const Help = props => {
   return (
     <div>
@@ -95,6 +95,12 @@ const Help = props => {
             </div>
           </div>
         </div>
+        <br />
+        <Link className="button" to="/">
+          <b>
+            <i className="fas fa-arrow-left" /> Home
+          </b>
+        </Link>
         <br />
         <p className="has-text-centered" id="footerHelp">
           Created 2018 - Leslie Alldridge CX-Tech
