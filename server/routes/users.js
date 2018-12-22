@@ -4,7 +4,7 @@ let { getUsers } = require('../db/users');
 
 router.get('/all', (req, res) => {
   getUsers().then(data => {
-    console.log(data);
+    res.json(data);
   });
 });
 

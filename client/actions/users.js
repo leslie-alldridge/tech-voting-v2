@@ -1,6 +1,6 @@
 import request from '../utils/api';
 
-export function getSuggestionAction() {
+export function getUsersAction() {
   return function(dispatch) {
     dispatch(requestUsers());
     return request('get', 'users/all').then(response => {
@@ -22,6 +22,6 @@ export function receiveUsers(data) {
     type: 'GOT_USERS',
     isFetching: false,
     isAuthenticated: true,
-    data
+    usersList: data
   };
 }

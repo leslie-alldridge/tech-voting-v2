@@ -12,6 +12,10 @@ class AdminPanel extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.props.getUsers();
+  }
+
   render() {
     return (
       <div>
@@ -23,6 +27,20 @@ class AdminPanel extends React.Component {
           Delete Users
         </h2>
         <br />
+        Current Users:
+        <div className="content">
+          <ul>
+            {this.props.suggestions.usersList &&
+              this.props.suggestions.usersList.map(user => {
+                return (
+                  <li>
+                    {user.user_name}{' '}
+                    <button className="button is-danger">Delete</button>
+                  </li>
+                );
+              })}
+          </ul>
+        </div>
         <div className="has-text-centered">
           <Link className="button has-text-centered" to="/">
             <b>
@@ -37,7 +55,7 @@ class AdminPanel extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    auth: state.auth
+    suggestions: state.suggestions
   };
 };
 

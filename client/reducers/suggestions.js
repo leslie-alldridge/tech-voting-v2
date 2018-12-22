@@ -53,6 +53,19 @@ export default function auth(state = initialState, action) {
         isAuthenticated: true,
         comments: action.data
       };
+    case 'GET_USERS':
+      return {
+        ...state,
+        isFetching: true,
+        isAuthenticated: true
+      };
+    case 'GOT_USERS':
+      return {
+        ...state,
+        isFetching: false,
+        isAuthenticated: true,
+        usersList: action.usersList
+      };
     default:
       return state;
   }
