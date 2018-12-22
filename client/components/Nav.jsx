@@ -58,7 +58,16 @@ class Nav extends React.Component {
                     </Link>,
                     <Link className="navbar-item" id="loggedInText" to="/help">
                       <b>Help</b>
-                    </Link>
+                    </Link>,
+                    auth.user.user_name === 'Laurence' ? (
+                      <Link
+                        className="navbar-item"
+                        id="loggedInText"
+                        to="/adminpanel"
+                      >
+                        <b>Admin</b>
+                      </Link>
+                    ) : null
                   ]
                 : [
                     <Link
