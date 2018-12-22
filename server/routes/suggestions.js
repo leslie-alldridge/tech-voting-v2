@@ -67,9 +67,12 @@ router.get('/comments', (req, res) => {
 router.post('/status', (req, res) => {
   updateStatus(req.body.status, req.body.id).then(data => {
     getSuggestions().then(response => {
-      res.json(response);
+      let ideaData = response;
+      getComments().then(resp => {
+        ideaData = formatData(resp, ideaData);
+        res.json(ideaData);
+      });
     });
-    //might need to retrieve comments here too, haven't tested yet
   });
 });
 
