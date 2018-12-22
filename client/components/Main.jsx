@@ -31,7 +31,9 @@ class Main extends React.Component {
       adminComment: [],
       searchEntry: '',
       filterActive: 'Filter Status',
-      categoryAction: 'Category'
+      categoryAction: 'Category',
+      confirmDelete: 0,
+      itemToDelete: ''
     };
     [
       'togglePage',
@@ -209,7 +211,18 @@ class Main extends React.Component {
   }
 
   deleteIdea(id) {
-    this.props.deleteIdea(id);
+    if (this.state.confirmDelete === 1 && id === this.state.itemToDelete) {
+      this.props.deleteIdea(id);
+      this.setState({
+        confirmDelete: 0,
+        itemToDelete: ''
+      });
+    } else {
+      this.setState({
+        confirmDelete: 1,
+        itemToDelete: id
+      });
+    }
   }
 
   render() {
@@ -255,6 +268,8 @@ class Main extends React.Component {
                     <MainChildWrapper
                       handleStatusUpdate={this.handleStatusUpdate}
                       deleteIdea={this.deleteIdea}
+                      confirmDelete={this.state.confirmDelete}
+                      itemToDelete={this.state.itemToDelete}
                       adminComment={this.state.adminComment}
                       handleComment={this.handleComment}
                       handleLike={this.handleLike}
@@ -276,6 +291,8 @@ class Main extends React.Component {
                   <MainChildWrapper
                     handleStatusUpdate={this.handleStatusUpdate}
                     deleteIdea={this.deleteIdea}
+                    confirmDelete={this.state.confirmDelete}
+                    itemToDelete={this.state.itemToDelete}
                     adminComment={this.state.adminComment}
                     handleComment={this.handleComment}
                     handleLike={this.handleLike}
@@ -306,6 +323,8 @@ class Main extends React.Component {
                     <MainChildWrapper
                       handleStatusUpdate={this.handleStatusUpdate}
                       deleteIdea={this.deleteIdea}
+                      confirmDelete={this.state.confirmDelete}
+                      itemToDelete={this.state.itemToDelete}
                       adminComment={this.state.adminComment}
                       handleComment={this.handleComment}
                       handleLike={this.handleLike}
@@ -327,6 +346,8 @@ class Main extends React.Component {
                   <MainChildWrapper
                     handleStatusUpdate={this.handleStatusUpdate}
                     deleteIdea={this.deleteIdea}
+                    confirmDelete={this.state.confirmDelete}
+                    itemToDelete={this.state.itemToDelete}
                     adminComment={this.state.adminComment}
                     handleComment={this.handleComment}
                     handleLike={this.handleLike}

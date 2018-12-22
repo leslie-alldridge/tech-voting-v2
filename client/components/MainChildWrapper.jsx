@@ -12,6 +12,8 @@ const MainChildWrapper = props => {
         username={props.username}
         handleStatusUpdate={props.handleStatusUpdate}
         deleteIdea={props.deleteIdea}
+        confirmDelete={props.confirmDelete}
+        itemToDelete={props.itemToDelete}
         adminComment={props.adminComment}
         handleComment={props.handleComment}
         handleLike={props.handleLike}

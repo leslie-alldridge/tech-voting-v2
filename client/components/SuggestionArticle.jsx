@@ -25,6 +25,8 @@ const SuggestionArticle = props => {
                 suggestion={props.suggestion}
                 handleStatusUpdate={props.handleStatusUpdate}
                 deleteIdea={props.deleteIdea}
+                confirmDelete={props.confirmDelete}
+                itemToDelete={props.itemToDelete}
               />
             )}
             <br />

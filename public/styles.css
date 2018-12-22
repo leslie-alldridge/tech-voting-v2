@@ -367,3 +367,9 @@ select:active {
 #footerHelp {
   margin-bottom: 1.75%;
 }
+
+#adminSelect {
+  margin-left: 3%;
+  padding-left: 1%;
+  font-style: inherit;
+}

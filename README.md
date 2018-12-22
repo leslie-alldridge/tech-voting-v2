@@ -4,13 +4,13 @@ CX Tech Feedback
 
 ### Todo
 
-- Deploy
+- Deploy (done 23/12/2018)
 
 - decided to add badge, just need to change it so badges show on page load, instead of toggle
   to do this i'm thinking about having a seperate action to find admin comments and store them in props, then on render we can
   say 'show this <i> badge if they exist in this.props.adminComment
 
-- style the admin dropdown
+- confirmation before deleting in case of missclick
 
 - write admin functions to remove users by name (since there's no password reset)
 
@@ -24,6 +24,7 @@ Notes: - denotes more work to do on the feature and \* denotes an untouched user
 
 ### Done
 
+- style the admin dropdown
 - help page completed and added to nav bar
 - Search is case sensitive at the moment
 - decided to include description search due to simplicity
