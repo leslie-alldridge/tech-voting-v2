@@ -24,6 +24,7 @@ Notes: - denotes more work to do on the feature and \* denotes an untouched user
 
 ### Done
 
+- help page completed and added to nav bar
 - Search is case sensitive at the moment
 - decided to include description search due to simplicity
 - filter status doesn't have the option to find 'closed'
