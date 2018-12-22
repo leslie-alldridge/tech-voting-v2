@@ -71,7 +71,12 @@ function deleteSuggestion(id) {
     .where('id', id)
     .del()
     .then(data => {
-      return db('ideas');
+      return db('comments')
+        .where('id', id)
+        .del()
+        .then(data => {
+          return db('ideas');
+        });
     });
 }
 
