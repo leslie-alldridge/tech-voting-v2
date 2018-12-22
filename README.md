@@ -10,11 +10,7 @@ CX Tech Feedback
   to do this i'm thinking about having a seperate action to find admin comments and store them in props, then on render we can
   say 'show this <i> badge if they exist in this.props.adminComment
 
-- confirmation before deleting in case of missclick
-
-- write admin functions to remove users by name (since there's no password reset)
-
-- when suggestion is removed, delete the comments as well (currently they remain)
+* write admin functions to remove users by name (since there's no password reset)
 
 ### In progress
 
@@ -24,6 +20,8 @@ Notes: - denotes more work to do on the feature and \* denotes an untouched user
 
 ### Done
 
+- confirmation before deleting in case of missclick
+- when suggestion is removed, delete the comments as well (currently they remain)
 - style the admin dropdown
 - help page completed and added to nav bar
 - Search is case sensitive at the moment
