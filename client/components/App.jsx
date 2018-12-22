@@ -7,6 +7,7 @@ import Register from './Register';
 import Nav from './Nav';
 import Main from './Main';
 import Help from './Help';
+import AdminPanel from './AdminPanel';
 
 const App = ({ auth }) => (
   <Router>
@@ -23,12 +24,13 @@ const App = ({ auth }) => (
           </div>
         </div>
       </div>
-      <div className="">
+      <div>
         {!auth.isAuthenticated && <Route exact path="/" component={Login} />}
         {auth.isAuthenticated && <Route exact path="/" component={Main} />}
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <Route path="/help" component={Help} />
+        <Route path="/adminpanel" component={AdminPanel} />
       </div>
     </div>
   </Router>
