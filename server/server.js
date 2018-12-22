@@ -14,5 +14,6 @@ server.use(express.static(path.join(__dirname, '../public')));
 
 server.use('/api/auth', require('./routes/auth'));
 server.use('/api/suggestion', require('./routes/suggestions'));
+server.use('/api/users', require('./routes/users'));
 
 module.exports = server;
