@@ -12,6 +12,10 @@ CX Tech Feedback
 
 * write admin functions to remove users by name (since there's no password reset)
 
+- need to change to bcryptjs dependency for hashing passwords 
+
+- add password reset email, token and logic
+
 ### In progress
 
 Notes: - denotes more work to do on the feature and \* denotes an untouched user story.
