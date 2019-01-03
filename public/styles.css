@@ -380,5 +380,6 @@ select:active {
 
 #home {
   max-width: 30%;
-  text-align: center;
+  margin-top: 1%;
+  margin-bottom: 1%;
 }

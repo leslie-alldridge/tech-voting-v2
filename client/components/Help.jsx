@@ -99,15 +99,17 @@ const Help = props => {
 
         <br />
       </section>
-      <Link
-        className="has-text-centered button is-link is-rounded"
-        id="home"
-        to="/"
-      >
-        <b>
-          <i className="fas fa-arrow-left" /> Home
-        </b>
-      </Link>
+      <div className="has-text-centered">
+        <Link
+          className="has-text-centered button is-link is-rounded"
+          id="home"
+          to="/"
+        >
+          <b>
+            <i className="fas fa-arrow-left" /> Home
+          </b>
+        </Link>
+      </div>
       <div className="footer">
         <p className="has-text-centered" id="footerHelp">
           Created 2018 - Leslie Alldridge CX-Tech

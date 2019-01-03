@@ -10,9 +10,9 @@ CX Tech Feedback
   to do this i'm thinking about having a seperate action to find admin comments and store them in props, then on render we can
   say 'show this <i> badge if they exist in this.props.adminComment
 
-* write admin functions to remove users by name (since there's no password reset)
+* write admin functions to remove users by name (since there's no password reset) or add in password reset
 
-- need to change to bcryptjs dependency for hashing passwords 
+- need to change to bcryptjs dependency for hashing passwords
 
 - add password reset email, token and logic
 
@@ -20,6 +20,8 @@ CX Tech Feedback
 
 Notes: - denotes more work to do on the feature and \* denotes an untouched user story.
 
+- media queries so search doesn't wrap when screen is made smaller
+- home link visible in nav for end users
 - enhanced styling
 
 ### Done
