@@ -307,7 +307,7 @@ select:active {
 }
 
 #bgTitle {
-  background-image: url('/bg.jpg');
+  background-image: url("/bg.jpg");
 }
 
 #techHub {
@@ -372,4 +372,8 @@ select:active {
   margin-left: 3%;
   padding-left: 1%;
   font-style: inherit;
+}
+
+#formContainer {
+  margin-top: 3%;
 }

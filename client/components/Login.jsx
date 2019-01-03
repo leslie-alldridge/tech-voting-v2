@@ -1,19 +1,19 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { loginUser, loginError } from '../actions/auth/login';
+import React from "react";
+import { connect } from "react-redux";
+import { loginUser, loginError } from "../actions/auth/login";
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user_name: '',
-      password: ''
+      user_name: "",
+      password: ""
     };
     this.updateDetails = this.updateDetails.bind(this);
     this.submit = this.submit.bind(this);
   }
   componentDidMount() {
-    this.props.dispatch(loginError(''));
+    this.props.dispatch(loginError(""));
   }
   updateDetails(e) {
     this.setState({ [e.target.name]: e.target.value });
@@ -26,50 +26,52 @@ class Login extends React.Component {
   render() {
     const { auth } = this.props;
     return (
-      <form className="form box" onSubmit={this.submit}>
-        <h1 className="title is-2">Login</h1>
-        <hr />
-        {auth.errorMessage && (
-          <span className="has-text-danger is-large">{auth.errorMessage}</span>
-        )}
-        <label className="label is-large has-text-centered ">
-          Username
-          <div className="control has-icons-left">
-            <input
-              required
-              className="input has-text-centered is-large is-fullwidth "
-              placeholder="User Name"
-              type="text"
-              name="user_name"
-              onChange={this.updateDetails}
-            />
-            <span className="icon is-small is-left">
-              <i className="fas fa-user" />
+      <div className="container" id="formContainer">
+        <form className="form box" onSubmit={this.submit}>
+          <h1 className="title is-2 has-text-centered">Login</h1>
+          <hr />
+          {auth.errorMessage && (
+            <span className="has-text-danger is-large">
+              {auth.errorMessage}
             </span>
-          </div>
-        </label>
-        <label className="label is-large has-text-centered">
-          Password
-          <div className="control has-icons-left">
-            <input
-              required
-              className="input has-text-centered is-large is-fullwidth"
-              placeholder="Password"
-              type="password"
-              name="password"
-              onChange={this.updateDetails}
-            />
-            <span className="icon is-small is-left">
-              <i className="fas fa-lock" />
-            </span>
-          </div>
-        </label>
-        <input
-          className="button is-large is-fullwidth is-success"
-          value="Login"
-          type="submit"
-        />
-      </form>
+          )}
+          <label className="label is-large has-text-centered ">
+            Username
+            <div className="control has-icons-left">
+              <input
+                required
+                className="input is-rounded has-text-centered is-large is-fullwidth "
+                type="text"
+                name="user_name"
+                onChange={this.updateDetails}
+              />
+              <span className="icon is-small is-left">
+                <i className="fas fa-user" />
+              </span>
+            </div>
+          </label>
+          <label className="label is-large has-text-centered">
+            Password
+            <div className="control has-icons-left">
+              <input
+                required
+                className="input is-rounded has-text-centered is-large is-fullwidth"
+                type="password"
+                name="password"
+                onChange={this.updateDetails}
+              />
+              <span className="icon is-small is-left">
+                <i className="fas fa-lock" />
+              </span>
+            </div>
+          </label>
+          <input
+            className="button is-rounded is-large is-fullwidth is-success"
+            value="Login"
+            type="submit"
+          />
+        </form>
+      </div>
     );
   }
 }
