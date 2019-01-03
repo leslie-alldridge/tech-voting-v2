@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 const Help = props => {
   return (
     <div>
@@ -96,16 +96,23 @@ const Help = props => {
           </div>
         </div>
         <br />
-        <Link className="button" to="/">
-          <b>
-            <i className="fas fa-arrow-left" /> Home
-          </b>
-        </Link>
+
         <br />
+      </section>
+      <Link
+        className="has-text-centered button is-link is-rounded"
+        id="home"
+        to="/"
+      >
+        <b>
+          <i className="fas fa-arrow-left" /> Home
+        </b>
+      </Link>
+      <div className="footer">
         <p className="has-text-centered" id="footerHelp">
           Created 2018 - Leslie Alldridge CX-Tech
         </p>
-      </section>
+      </div>
     </div>
   );
 };

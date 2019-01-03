@@ -365,7 +365,7 @@ select:active {
 }
 
 #footerHelp {
-  margin-bottom: 1.75%;
+  color: blue;
 }
 
 #adminSelect {
@@ -376,4 +376,9 @@ select:active {
 
 #formContainer {
   margin-top: 3%;
+}
+
+#home {
+  max-width: 30%;
+  text-align: center;
 }
