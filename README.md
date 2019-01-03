@@ -12,8 +12,6 @@ CX Tech Feedback
 
 * write admin functions to remove users by name (since there's no password reset) or add in password reset
 
-- need to change to bcryptjs dependency for hashing passwords
-
 - add password reset email, token and logic
 
 ### In progress
@@ -21,11 +19,12 @@ CX Tech Feedback
 Notes: - denotes more work to do on the feature and \* denotes an untouched user story.
 
 - media queries so search doesn't wrap when screen is made smaller
-- home link visible in nav for end users
 - enhanced styling
 
 ### Done
 
+- home link visible in nav for end users
+- single email for sign up only
 - confirmation before deleting in case of missclick
 - when suggestion is removed, delete the comments as well (currently they remain)
 - style the admin dropdown
