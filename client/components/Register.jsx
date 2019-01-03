@@ -9,7 +9,8 @@ class Register extends React.Component {
     this.state = {
       user_name: "",
       password: "",
-      confirm_password: ""
+      confirm_password: "",
+      email: ""
     };
     this.updateDetails = this.updateDetails.bind(this);
     this.submit = this.submit.bind(this);
@@ -23,7 +24,7 @@ class Register extends React.Component {
   submit(e) {
     e.preventDefault();
     e.target.reset();
-    let { user_name, password, confirm_password } = this.state;
+    let { password, confirm_password } = this.state;
     if (confirm_password != password)
       return this.props.dispatch(loginError("Passwords don't match"));
     this.props.dispatch(registerUserRequest(this.state));
@@ -40,21 +41,38 @@ class Register extends React.Component {
               {auth.errorMessage}
             </span>
           )}
-          <label className="column is-6 is-offset-one-quarter label is-large has-text-centered">
-            Username
-            <div className="control has-icons-left">
-              <input
-                required
-                className="input is-rounded is-large has-text-centered is-fullwidth"
-                type="text"
-                name="user_name"
-                onChange={this.updateDetails}
-              />
-              <span className="icon is-small is-left">
-                <i className="fas fa-user" />
-              </span>
-            </div>
-          </label>
+          <div className="columns">
+            <label className="column is-6 label is-large has-text-centered">
+              Username
+              <div className="control has-icons-left">
+                <input
+                  required
+                  className="input is-rounded is-large has-text-centered is-fullwidth"
+                  type="text"
+                  name="user_name"
+                  onChange={this.updateDetails}
+                />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-user" />
+                </span>
+              </div>
+            </label>
+            <label className="column is-6 label is-large has-text-centered">
+              Email Address
+              <div className="control has-icons-left">
+                <input
+                  required
+                  className="input is-rounded is-large has-text-centered is-fullwidth"
+                  type="email"
+                  name="email"
+                  onChange={this.updateDetails}
+                />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-envelope" />
+                </span>
+              </div>
+            </label>
+          </div>
           <br />
           <div className="columns">
             <label className="column is-6 label is-large has-text-centered">
@@ -94,6 +112,9 @@ class Register extends React.Component {
             type="submit"
           />
         </form>
+        <p>
+          Forgot password? <a href="/forgot">Click here</a>
+        </p>
       </div>
     );
   }
