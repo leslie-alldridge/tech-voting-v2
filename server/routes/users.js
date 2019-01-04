@@ -1,8 +1,17 @@
 let router = require("express").Router();
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
+const bcrypt = require("bcrypt");
+const BCRYPT_SALT_ROUNDS = 12;
 
-let { getUsers, emailExists, userResetReq } = require("../db/users");
+let {
+  getUsers,
+  emailExists,
+  userResetReq,
+  findToken,
+  userExists,
+  updateUserPassword
+} = require("../db/users");
 
 router.get("/all", (req, res) => {
   getUsers().then(data => {
@@ -58,10 +67,41 @@ router.post("/forgot", (req, res) => {
 
 router.post("/password", (req, res) => {
   console.log(req.body);
+  userExists(req.body.user).then(user => {
+    if (user != null) {
+      console.log("user exists in db");
+      bcrypt
+        .hash(req.body.password, BCRYPT_SALT_ROUNDS)
+        .then(hashedPassword => {
+          updateUserPassword(req.body.user, hashedPassword);
+        })
+        .then(data => {
+          console.log("password updated");
+          console.log(data);
+
+          res.status(200).send({ message: "password updated" });
+        });
+    } else {
+      console.log("no user exists in db to update");
+      res.status(404).json("no user exists in db to update");
+    }
+  });
 });
 
 router.get("/reset", (req, res) => {
-  console.log(req.query);
+  findToken(req.query.resetPasswordToken).then(user => {
+    if (user == null) {
+      console.log("password reset link is invalid or has expired");
+      res.json("password reset link is invalid or has expired");
+    } else {
+      console.log("good link");
+
+      res.status(200).send({
+        username: user.user_name,
+        message: "password reset link a-ok"
+      });
+    }
+  });
 });
 
 module.exports = router;

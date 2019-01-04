@@ -51,7 +51,7 @@ class ForgotPassword extends React.Component {
     e.preventDefault();
     console.log(this.state);
     console.log("hit");
-    this.props.newPassword(this.state.password, this.props.match.params.token);
+    this.props.newPassword(this.state.password, this.state.username);
   }
 
   render() {
@@ -94,8 +94,8 @@ const mapStateToProps = ({ auth }) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    newPassword: (pw, token) => {
-      dispatch(newPasswordAction(pw, token));
+    newPassword: (pw, user) => {
+      dispatch(newPasswordAction(pw, user));
     }
   };
 };

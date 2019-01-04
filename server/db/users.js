@@ -45,11 +45,34 @@ function userResetReq(email, token, date) {
     .then(data => console.log(data));
 }
 
+function findToken(token) {
+  return db("users")
+    .where("resetPasswordToken", token)
+    .first();
+}
+
+function updateUserPassword(username, hash) {
+  console.log("updating password and token");
+  console.log(username);
+  console.log(hash);
+
+  return db("users")
+    .where("user_name", username)
+    .update({
+      hash,
+      resetPasswordToken: null,
+      resetPasswordExpires: null
+    })
+    .then(data => console.log(data));
+}
+
 module.exports = {
   createUser,
   userExists,
   getUserByName,
   getUsers,
   emailExists,
-  userResetReq
+  userResetReq,
+  findToken,
+  updateUserPassword
 };

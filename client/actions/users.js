@@ -35,10 +35,10 @@ export function resetPasswordAction(email) {
   };
 }
 
-export function newPasswordAction(password, token) {
+export function newPasswordAction(password, user) {
   return function(dispatch) {
     dispatch(requestUsers());
-    return request("post", "users/password", { password, token }).then(
+    return request("post", "users/password", { password, user }).then(
       response => {
         dispatch(receiveUsers(response.body));
       }
