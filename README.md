@@ -51,7 +51,6 @@ Notes: - denotes more work to do on the feature and \* denotes an untouched user
 
 ## Future Notes
 
-- leave search for now, but we can always add it to search description too.
 - Spin up profile pictures so we can compare between no profile picture or with a profile picture
 
 ## Setup
