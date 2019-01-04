@@ -14,7 +14,9 @@ router.post("/forgot", (req, res) => {
   console.log(req.body);
 
   emailExists(req.body.email).then(user => {
-    if (user === null) {
+    console.log(user);
+
+    if (user === undefined) {
       console.log("email not in database");
       res.json("email not in db");
     } else {
