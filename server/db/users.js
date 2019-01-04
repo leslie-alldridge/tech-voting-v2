@@ -35,10 +35,22 @@ function emailExists(email) {
     .first();
 }
 
+function userResetReq(email, token, date, testDb) {
+  const connection = testDb || knex;
+  return connection("users")
+    .where("email", email)
+    .update({
+      resetPasswordToken: token,
+      resetPasswordExpires: date
+    })
+    .then(data => console.log(data));
+}
+
 module.exports = {
   createUser,
   userExists,
   getUserByName,
   getUsers,
-  emailExists
+  emailExists,
+  userResetReq
 };

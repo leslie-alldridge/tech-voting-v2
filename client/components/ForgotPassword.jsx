@@ -1,5 +1,6 @@
 import React from "react";
-
+import { connect } from "react-redux";
+import { resetPasswordAction } from "../actions/users";
 class ForgotPassword extends React.Component {
   constructor(props) {
     super(props);
@@ -18,6 +19,7 @@ class ForgotPassword extends React.Component {
     e.preventDefault();
     console.log(this.state);
     console.log("hit");
+    this.props.resetPassword(this.state.email);
   }
 
   render() {
@@ -37,7 +39,7 @@ class ForgotPassword extends React.Component {
                 onChange={this.updateDetails}
               />
               <span className="icon is-small is-left">
-                <i className="fas fa-user" />
+                <i className="fas fa-envelope" />
               </span>
             </div>
           </label>
@@ -52,4 +54,21 @@ class ForgotPassword extends React.Component {
   }
 }
 
-export default ForgotPassword;
+const mapStateToProps = ({ auth }) => {
+  return {
+    auth
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    resetPassword: email => {
+      dispatch(resetPasswordAction(email));
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ForgotPassword);
