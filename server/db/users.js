@@ -35,9 +35,8 @@ function emailExists(email) {
     .first();
 }
 
-function userResetReq(email, token, date, testDb) {
-  const connection = testDb || knex;
-  return connection("users")
+function userResetReq(email, token, date) {
+  return db("users")
     .where("email", email)
     .update({
       resetPasswordToken: token,
