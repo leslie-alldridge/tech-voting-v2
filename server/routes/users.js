@@ -1,11 +1,13 @@
-let router = require('express').Router();
+let router = require("express").Router();
 
-let { getUsers } = require('../db/users');
+let { getUsers } = require("../db/users");
 
-router.get('/all', (req, res) => {
+router.get("/all", (req, res) => {
   getUsers().then(data => {
     res.json(data);
   });
 });
+
+router.get("/forgot", (req, res) => {});
 
 module.exports = router;

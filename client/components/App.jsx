@@ -1,13 +1,14 @@
-import React from 'react';
-import { HashRouter as Router, Route, Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React from "react";
+import { HashRouter as Router, Route, Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-import Login from './Login';
-import Register from './Register';
-import Nav from './Nav';
-import Main from './Main';
-import Help from './Help';
-import AdminPanel from './AdminPanel';
+import Login from "./Login";
+import Register from "./Register";
+import Nav from "./Nav";
+import Main from "./Main";
+import Help from "./Help";
+import AdminPanel from "./AdminPanel";
+import ForgotPassword from "./ForgotPassword";
 
 const App = ({ auth }) => (
   <Router>
@@ -31,6 +32,7 @@ const App = ({ auth }) => (
         <Route path="/register" component={Register} />
         <Route path="/help" component={Help} />
         <Route path="/adminpanel" component={AdminPanel} />
+        <Route path="/forgot" component={ForgotPassword} />
       </div>
     </div>
   </Router>
