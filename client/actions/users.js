@@ -34,3 +34,14 @@ export function resetPasswordAction(email) {
     });
   };
 }
+
+export function newPasswordAction(password, token) {
+  return function(dispatch) {
+    dispatch(requestUsers());
+    return request("post", "users/password", { password, token }).then(
+      response => {
+        dispatch(receiveUsers(response.body));
+      }
+    );
+  };
+}

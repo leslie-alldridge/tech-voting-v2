@@ -56,4 +56,8 @@ router.post("/forgot", (req, res) => {
   });
 });
 
+router.post("/password", (req, res) => {
+  console.log(req.body);
+});
+
 module.exports = router;

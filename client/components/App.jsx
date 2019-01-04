@@ -9,6 +9,7 @@ import Main from "./Main";
 import Help from "./Help";
 import AdminPanel from "./AdminPanel";
 import ForgotPassword from "./ForgotPassword";
+import ResetPassword from "./ResetPassword";
 
 const App = ({ auth }) => (
   <Router>
@@ -33,6 +34,7 @@ const App = ({ auth }) => (
         <Route path="/help" component={Help} />
         <Route path="/adminpanel" component={AdminPanel} />
         <Route path="/forgot" component={ForgotPassword} />
+        <Route path="/reset" component={ResetPassword} />
       </div>
     </div>
   </Router>
