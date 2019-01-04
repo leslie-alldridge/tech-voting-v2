@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import axios from "axios";
 import { newPasswordAction } from "../actions/users";
 class ForgotPassword extends React.Component {
   constructor(props) {
@@ -7,6 +8,37 @@ class ForgotPassword extends React.Component {
     this.state = { password: "" };
     this.updateDetails = this.updateDetails.bind(this);
     this.submit = this.submit.bind(this);
+  }
+
+  async componentDidMount() {
+    console.log(this.props.match);
+
+    await axios
+      .get("/api/users/reset", {
+        params: {
+          resetPasswordToken: this.props.match.params.token
+        }
+      })
+      .then(response => {
+        console.log(response);
+        if (response.data.message === "password reset link a-ok") {
+          this.setState({
+            username: response.data.username,
+            update: false,
+            isLoading: false,
+            error: false
+          });
+        } else {
+          this.setState({
+            update: false,
+            isLoading: false,
+            error: true
+          });
+        }
+      })
+      .catch(error => {
+        console.log(error.data);
+      });
   }
 
   updateDetails(e) {

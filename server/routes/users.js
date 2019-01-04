@@ -60,4 +60,8 @@ router.post("/password", (req, res) => {
   console.log(req.body);
 });
 
+router.get("/reset", (req, res) => {
+  console.log(req.query);
+});
+
 module.exports = router;
