@@ -1,26 +1,26 @@
-import React from 'react';
+import React from "react";
 
-import AdminStatusSelector from './AdminStatusSelector';
-import StatusPill from './StatusPill';
+import AdminStatusSelector from "./AdminStatusSelector";
+import StatusPill from "./StatusPill";
 
 const SuggestionArticle = props => {
   return (
     <article id="rowIdea" key={props.suggestion.id} className="media">
-      <figure className="media-left">
+      <figure id="articleImg" className="media-left">
         <p className="image is-64x64">
-          <img src={`/${props.suggestion.category}.png`} />
+          <img id="articleImg" src={`/${props.suggestion.category}.png`} />
         </p>
       </figure>
       <div className="media-content">
         <div className="content">
           <p>
-            <strong id="ideaTitle">{props.suggestion.title}</strong>{' '}
+            <strong id="ideaTitle">{props.suggestion.title}</strong>{" "}
             {/* Remove the statuses for Laurence */}
-            {props.username !== 'Laurence' && (
+            {props.username !== "Laurence" && (
               <StatusPill suggestion={props.suggestion} />
             )}
             {/* Laurence should have a selector to pick the right status */}
-            {props.username === 'Laurence' && (
+            {props.username === "Laurence" && (
               <AdminStatusSelector
                 suggestion={props.suggestion}
                 handleStatusUpdate={props.handleStatusUpdate}
@@ -42,7 +42,7 @@ const SuggestionArticle = props => {
                 className="level-item"
               >
                 <span className="icon is-medium">
-                  <i id="admin" className="fas fa-trophy" />{' '}
+                  <i id="admin" className="fas fa-trophy" />{" "}
                 </span>
               </a>
             )}
@@ -83,7 +83,7 @@ const SuggestionArticle = props => {
             </a>
           </div>
           <p>
-            <i id="submittedBy">Submitted by:</i>{' '}
+            <i id="submittedBy">Submitted by:</i>{" "}
             <b id="submittedBy">{props.suggestion.user}</b>
           </p>
         </nav>

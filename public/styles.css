@@ -247,6 +247,16 @@ select:active {
   }
 }
 
+@media only screen and (max-width: 500px) {
+  #secondIcon {
+    margin: 10px;
+  }
+  #articleImg {
+    max-width: 32px !important;
+    margin: 0 !important;
+  }
+}
+
 /* Tooltip text */
 .tooltip .tooltiptext {
   visibility: hidden;
