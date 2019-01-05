@@ -241,6 +241,10 @@ select:active {
   .hero.is-primary .navbar-menu {
     background-color: #4e8ef3 !important;
   }
+  #articleDiv {
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+  }
 }
 
 /* Tooltip text */
@@ -337,7 +341,7 @@ select:active {
 }
 
 #title2 {
-  margin-top: 2%;
+  /* margin-top: 2%; */
   padding: 2%;
   color: #2b3b4c;
 }

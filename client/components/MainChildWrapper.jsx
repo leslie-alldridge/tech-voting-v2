@@ -1,12 +1,17 @@
-import React from 'react';
+import React from "react";
 
-import SuggestionArticle from './SuggestionArticle';
-import CommentEntry from './CommentEntry';
-import SingleComment from './SingleComment';
+import SuggestionArticle from "./SuggestionArticle";
+import CommentEntry from "./CommentEntry";
+import SingleComment from "./SingleComment";
 
 const MainChildWrapper = props => {
   return (
-    <div data-aos="zoom-in" data-aos-duration="6000" key={props.suggestion.id}>
+    <div
+      id="articleDiv"
+      data-aos="zoom-in"
+      data-aos-duration="6000"
+      key={props.suggestion.id}
+    >
       <SuggestionArticle
         suggestion={props.suggestion}
         username={props.username}
