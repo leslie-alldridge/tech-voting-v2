@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import StatusDropdown from './StatusDropdown';
-import CategoryDropdown from './CategoryDropdown';
-import Search from './Search';
+import StatusDropdown from "./StatusDropdown";
+import CategoryDropdown from "./CategoryDropdown";
+import Search from "./Search";
 
 const TopBar = props => {
   return (
