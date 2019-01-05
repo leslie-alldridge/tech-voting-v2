@@ -2,13 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 const Help = props => {
   return (
-    <div>
+    <div className="">
       <section className="hero is-info">
         <div className="hero-body">
           <div className="container">
             <h1 className="title has-text-centered" id="helpTitle">
               Help Page
             </h1>
+            <br />
             <h2 className="subtitle has-text-centered">
               If you cannot find the answer please contact Leslie
             </h2>
@@ -19,7 +20,7 @@ const Help = props => {
             <div className="container ">
               <div className="columns">
                 <div className="column">
-                  <article className="media">
+                  <article id="contentHelp" className="media">
                     <div className="media-left">
                       <i className="fas fa-info-circle fa-4x" />
                     </div>
@@ -36,7 +37,7 @@ const Help = props => {
                       </div>
                     </div>
                   </article>
-                  <article className="media">
+                  <article id="contentHelp" className="media">
                     <div className="media-left">
                       <i className="fab fa-empire fa-4x" />
                     </div>
@@ -55,7 +56,7 @@ const Help = props => {
                   </article>
                 </div>
                 <div className="column">
-                  <article className="media">
+                  <article id="contentHelp" className="media">
                     <div className="media-left">
                       <i className="fab fa-ravelry fa-4x" />
                     </div>
@@ -72,7 +73,7 @@ const Help = props => {
                       </div>
                     </div>
                   </article>
-                  <article className="media">
+                  <article id="contentHelp" className="media">
                     <div className="media-left">
                       <i className="fas fa-ban fa-4x" />
                     </div>

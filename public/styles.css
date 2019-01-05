@@ -383,3 +383,7 @@ select:active {
   margin-top: 1%;
   margin-bottom: 1%;
 }
+
+#contentHelp {
+  padding: 15px;
+}

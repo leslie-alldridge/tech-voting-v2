@@ -71,7 +71,7 @@ class ForgotPassword extends React.Component {
                 onChange={this.updateDetails}
               />
               <span className="icon is-small is-left">
-                <i className="fas fa-envelope" />
+                <i className="fas fa-lock" />
               </span>
             </div>
           </label>
