@@ -53,14 +53,7 @@ select:active {
   background-color: rgb(0, 163, 211) !important;
 }
 
-.message-body {
-  /* background-color: rgba(0, 163, 211, 0.15) !important; 
-  not sure if I want to keep this shading or not, makes the colors look quite dark.
-  */
-}
-
 #addForm {
-  /* display: flex; */
   float: left;
   width: 100%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -257,6 +250,13 @@ select:active {
   }
 }
 
+@media only screen and (max-width: 1218px) {
+  #buttons a {
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+  }
+}
+
 /* Tooltip text */
 .tooltip .tooltiptext {
   visibility: hidden;
@@ -407,4 +407,32 @@ select:active {
   margin-left: 10%;
   margin-top: 1%;
   margin-bottom: 3%;
+}
+
+@media only screen and (max-width: 840px) {
+  #categoryDrop {
+    margin-left: 1%;
+    margin-right: 1%;
+  }
+}
+
+@media only screen and (max-width: 730px) {
+  #buttons {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+  }
+  /* .dropdown-trigger {
+    min-width: 100% !important;
+    float: right;
+  } */
+  #search {
+    width: 95%;
+    margin-left: 2.5%;
+    margin-top: 1%;
+  }
+  #buttons a {
+    margin-top: 1%;
+  }
 }
