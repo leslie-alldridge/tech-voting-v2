@@ -10,7 +10,7 @@ CX Tech Feedback
   to do this i'm thinking about having a seperate action to find admin comments and store them in props, then on render we can
   say 'show this <i> badge if they exist in this.props.adminComment
 
-- deploy app and test password reset functionality
+- deploy app and test password reset functionality on heroku
 
 - write code so error msgs are temporarily displayed in to to say (user alr exists etc)
 
