@@ -2,6 +2,8 @@
 
 CX Tech Feedback
 
+
+
 ### Todo
 
 - Deploy (done 23/12/2018)
@@ -55,6 +57,17 @@ Notes: - denotes more work to do on the feature and \* denotes an untouched user
 ## Future Notes
 
 - Spin up profile pictures so we can compare between no profile picture or with a profile picture
+
+trophy displaying on page load
+
+renaming send feeback and add improvement button links
+-- Tech Improvement --   ||  --  Wider Business Improvement --
+
+notification for completed ideas -- something like animation a completed idea 
+
+mobile views to be better 
+
+
 
 ## Setup
 
