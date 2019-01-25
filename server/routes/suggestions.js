@@ -1,4 +1,4 @@
-let router = require('express').Router();
+let router = require("express").Router();
 
 let {
   addSuggestions,
@@ -7,12 +7,13 @@ let {
   addComment,
   getComments,
   updateStatus,
-  deleteSuggestion
-} = require('../db/suggestions');
+  deleteSuggestion,
+  delComment
+} = require("../db/suggestions");
 
-let { formatDataFilter, formatData } = require('./formatData');
+let { formatDataFilter, formatData } = require("./formatData");
 
-router.get('/all', (req, res) => {
+router.get("/all", (req, res) => {
   getSuggestions().then(response => {
     let ideaData = response;
     getComments().then(resp => {
@@ -22,7 +23,7 @@ router.get('/all', (req, res) => {
   });
 });
 
-router.post('/add', (req, res) => {
+router.post("/add", (req, res) => {
   const { title, description, category, user } = req.body;
   let data = {
     title,
@@ -31,14 +32,14 @@ router.post('/add', (req, res) => {
     category,
     user,
     commentcount: 0,
-    status: 'consideration'
+    status: "consideration"
   };
   addSuggestions(data).then(response => {
     res.json(response);
   });
 });
 
-router.post('/upvote', (req, res) => {
+router.post("/upvote", (req, res) => {
   const { id, name } = req.body;
   upVote(id, name).then(response2 => {
     getSuggestions().then(response => {
@@ -51,20 +52,26 @@ router.post('/upvote', (req, res) => {
   });
 });
 
-router.post('/comment', (req, res) => {
+router.post("/comment", (req, res) => {
   const { comment, id, name } = req.body;
   addComment(comment, id, name).then(response => {
     res.json(response);
   });
 });
 
-router.get('/comments', (req, res) => {
+router.get("/comments", (req, res) => {
   getComments().then(response => {
     res.json(response);
   });
 });
 
-router.post('/status', (req, res) => {
+router.post("/comments/delete", (req, res) => {
+  delComment(req.body).then(response => {
+    res.json(response);
+  });
+});
+
+router.post("/status", (req, res) => {
   updateStatus(req.body.status, req.body.id).then(data => {
     getSuggestions().then(response => {
       let ideaData = response;
@@ -76,7 +83,7 @@ router.post('/status', (req, res) => {
   });
 });
 
-router.get('/status', (req, res) => {
+router.get("/status", (req, res) => {
   getSuggestions().then(response => {
     let ideaData = response;
     getComments().then(resp => {
@@ -86,7 +93,7 @@ router.get('/status', (req, res) => {
   });
 });
 
-router.post('/delete', (req, res) => {
+router.post("/delete", (req, res) => {
   deleteSuggestion(req.body.id).then(data => {
     getSuggestions().then(response => {
       let ideaData = response;

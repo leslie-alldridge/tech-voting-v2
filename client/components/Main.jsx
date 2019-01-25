@@ -70,8 +70,8 @@ class Main extends React.Component {
   }
 
   handleDeleteComment(data) {
-    console.log(data);
     this.props.deleteComment(data);
+    this.props.getBoth();
   }
 
   handleLike(id, e) {

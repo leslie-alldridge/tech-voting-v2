@@ -41,8 +41,6 @@ export function receiveComments(data) {
 }
 
 export function deleteCommentAction(data) {
-  console.log(data);
-
   return function(dispatch) {
     dispatch(requestSuggestion());
     return request("post", "suggestion/comments/delete", data).then(
