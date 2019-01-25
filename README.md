@@ -51,15 +51,13 @@ Notes: - denotes more work to do on the feature and \* denotes an untouched user
 * remove send feedback on the left (removed and placed with confluence link)
 * user login for comments (login completed and ideas take the current logged in users name)
 * link to confluence page for suggestions (done - just needs the right link)
+* renaming send feeback and add improvement button links -- Tech Improvement -- || -- Wider Business Improvement --
 
 ## Future Notes
 
 - Spin up profile pictures so we can compare between no profile picture or with a profile picture
 
 trophy displaying on page load
-
-<!-- renaming send feeback and add improvement button links
--- Tech Improvement -- || -- Wider Business Improvement -- -->
 
 notification for completed ideas -- something like animation a completed idea
 
