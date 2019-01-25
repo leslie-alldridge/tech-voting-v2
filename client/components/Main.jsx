@@ -122,11 +122,15 @@ class Main extends React.Component {
   }
 
   toggleComments(id, e) {
-    e.preventDefault();
+    // e.preventDefault();
     this.props.suggestions.comments.map(comment => {
       if (comment.id === id && comment.user === "Laurence") {
+        let newArr = this.state.adminComment;
+        newArr.push(id);
+        console.log(newArr);
+
         this.setState({
-          adminComment: [...this.state.adminComment, id]
+          adminComment: newArr
         });
       }
     });
