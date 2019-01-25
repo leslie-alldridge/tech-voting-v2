@@ -14,6 +14,8 @@ CX Tech Feedback
 
 - write code so error msgs are temporarily displayed in to to say (user alr exists etc)
 
+- admin should be able to delete comments
+
 ### In progress
 
 Notes: - denotes more work to do on the feature and \* denotes an untouched user story.

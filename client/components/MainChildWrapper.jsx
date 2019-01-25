@@ -36,7 +36,13 @@ const MainChildWrapper = props => {
         props.commentProps &&
         props.commentProps.map(comment => {
           if (comment.id === props.stateid) {
-            return <SingleComment comment={comment} />;
+            return (
+              <SingleComment
+                deleteComment={props.deleteComment}
+                comment={comment}
+                username={props.username}
+              />
+            );
           }
         })}
       {props.showComment && props.stateid == props.suggestion.id && (

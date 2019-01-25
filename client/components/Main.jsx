@@ -1,5 +1,5 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 
 import {
   getSuggestionAction,
@@ -7,48 +7,53 @@ import {
   updateStatusAction,
   filterIdeasAction,
   deleteIdeaAction
-} from '../actions/suggestions';
-import { addCommentAction, getCommentsAction } from '../actions/comments';
+} from "../actions/suggestions";
+import {
+  addCommentAction,
+  getCommentsAction,
+  deleteCommentAction
+} from "../actions/comments";
 
-import AddPage from './AddPage';
-import TopBar from './TopBar';
-import MainChildWrapper from './MainChildWrapper';
+import AddPage from "./AddPage";
+import TopBar from "./TopBar";
+import MainChildWrapper from "./MainChildWrapper";
 
 class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       addPage: false,
-      id: '',
+      id: "",
       comment: false,
-      userComment: '',
+      userComment: "",
       showComment: false,
       commentData: [] || suggestions.comments,
-      dropdown: 'dropdown',
-      filter: '',
-      category: 'all',
-      dropdownCat: 'dropdown',
+      dropdown: "dropdown",
+      filter: "",
+      category: "all",
+      dropdownCat: "dropdown",
       adminComment: [],
-      searchEntry: '',
-      filterActive: 'Filter Status',
-      categoryAction: 'Category',
+      searchEntry: "",
+      filterActive: "Filter Status",
+      categoryAction: "Category",
       confirmDelete: 0,
-      itemToDelete: ''
+      itemToDelete: ""
     };
     [
-      'togglePage',
-      'handleComment',
-      'handleLike',
-      'submitComment',
-      'handleCommentEntry',
-      'toggleComments',
-      'handleStatusUpdate',
-      'toggleDrop',
-      'filterIdeas',
-      'toggleDropCat',
-      'changeCategory',
-      'searchEntry',
-      'deleteIdea'
+      "togglePage",
+      "handleComment",
+      "handleLike",
+      "submitComment",
+      "handleCommentEntry",
+      "toggleComments",
+      "handleStatusUpdate",
+      "toggleDrop",
+      "filterIdeas",
+      "toggleDropCat",
+      "changeCategory",
+      "searchEntry",
+      "deleteIdea",
+      "handleDeleteComment"
     ].forEach(method => {
       this[method] = this[method].bind(this);
     });
@@ -62,6 +67,11 @@ class Main extends React.Component {
     this.setState({
       addPage: !this.state.addPage
     });
+  }
+
+  handleDeleteComment(data) {
+    console.log(data);
+    this.props.deleteComment(data);
   }
 
   handleLike(id, e) {
@@ -96,7 +106,7 @@ class Main extends React.Component {
 
   submitComment() {
     if (this.state.userComment[0].length < 5) {
-      alert('Please enter a suitable comment.');
+      alert("Please enter a suitable comment.");
     } else {
       this.setState({
         showComment: false,
@@ -114,7 +124,7 @@ class Main extends React.Component {
   toggleComments(id, e) {
     e.preventDefault();
     this.props.suggestions.comments.map(comment => {
-      if (comment.id === id && comment.user === 'Laurence') {
+      if (comment.id === id && comment.user === "Laurence") {
         this.setState({
           adminComment: [...this.state.adminComment, id]
         });
@@ -135,55 +145,55 @@ class Main extends React.Component {
   }
 
   handleStatusUpdate(e, id) {
-    let formattedText = '';
-    if (e.target.value === 'Under Consideration') {
-      formattedText = 'consideration';
-    } else if (e.target.value === 'Completed') {
-      formattedText = 'completed';
-    } else if (e.target.value === 'Closed') {
-      formattedText = 'closed';
+    let formattedText = "";
+    if (e.target.value === "Under Consideration") {
+      formattedText = "consideration";
+    } else if (e.target.value === "Completed") {
+      formattedText = "completed";
+    } else if (e.target.value === "Closed") {
+      formattedText = "closed";
     } else {
-      formattedText = 'progress';
+      formattedText = "progress";
     }
     this.props.updateStatus(formattedText, id);
   }
 
   toggleDrop() {
-    this.state.dropdown === 'dropdown'
+    this.state.dropdown === "dropdown"
       ? this.setState({
-          dropdown: 'dropdown is-active'
+          dropdown: "dropdown is-active"
         })
       : this.setState({
-          dropdown: 'dropdown'
+          dropdown: "dropdown"
         });
   }
 
   toggleDropCat() {
-    this.state.dropdownCat === 'dropdown'
+    this.state.dropdownCat === "dropdown"
       ? this.setState({
-          dropdownCat: 'dropdown is-active'
+          dropdownCat: "dropdown is-active"
         })
       : this.setState({
-          dropdownCat: 'dropdown'
+          dropdownCat: "dropdown"
         });
   }
 
   filterIdeas(e) {
-    if (e.target.name === '') {
+    if (e.target.name === "") {
       this.setState({
-        dropdown: 'dropdown',
-        filterActive: 'Filter Status'
+        dropdown: "dropdown",
+        filterActive: "Filter Status"
       });
       this.props.getBoth();
     } else {
       this.setState({
-        dropdown: 'dropdown',
+        dropdown: "dropdown",
         filterActive:
-          e.target.name === 'consideration'
-            ? 'Under Consideration'
-            : e.target.name === 'completed'
-            ? 'Completed'
-            : 'In Progress'
+          e.target.name === "consideration"
+            ? "Under Consideration"
+            : e.target.name === "completed"
+            ? "Completed"
+            : "In Progress"
       });
       this.props.filterIdeas(e.target.name);
     }
@@ -191,16 +201,16 @@ class Main extends React.Component {
 
   changeCategory(e) {
     this.setState({
-      dropdownCat: 'dropdown',
+      dropdownCat: "dropdown",
       category: e.target.name,
       categoryAction:
-        e.target.name === 'idea'
-          ? 'New Ideas'
-          : e.target.name === 'improvement'
-          ? 'Process Updates'
-          : e.target.name === 'team'
-          ? 'Team Improvements'
-          : 'Category'
+        e.target.name === "idea"
+          ? "New Ideas"
+          : e.target.name === "improvement"
+          ? "Process Updates"
+          : e.target.name === "team"
+          ? "Team Improvements"
+          : "Category"
     });
   }
 
@@ -215,7 +225,7 @@ class Main extends React.Component {
       this.props.deleteIdea(id);
       this.setState({
         confirmDelete: 0,
-        itemToDelete: ''
+        itemToDelete: ""
       });
     } else {
       this.setState({
@@ -254,8 +264,8 @@ class Main extends React.Component {
         {this.props.suggestions.suggestion &&
           !this.state.addPage &&
           suggestions.map(suggestion => {
-            if (this.state.category === 'all') {
-              if (this.state.searchEntry !== '') {
+            if (this.state.category === "all") {
+              if (this.state.searchEntry !== "") {
                 if (
                   suggestion.title
                     .toLowerCase()
@@ -266,6 +276,7 @@ class Main extends React.Component {
                 ) {
                   return (
                     <MainChildWrapper
+                      deleteComment={this.handleDeleteComment}
                       handleStatusUpdate={this.handleStatusUpdate}
                       deleteIdea={this.deleteIdea}
                       confirmDelete={this.state.confirmDelete}
@@ -289,6 +300,7 @@ class Main extends React.Component {
               } else {
                 return (
                   <MainChildWrapper
+                    deleteComment={this.handleDeleteComment}
                     handleStatusUpdate={this.handleStatusUpdate}
                     deleteIdea={this.deleteIdea}
                     confirmDelete={this.state.confirmDelete}
@@ -310,7 +322,7 @@ class Main extends React.Component {
                 );
               }
             } else if (suggestion.category === this.state.category) {
-              if (this.state.searchEntry !== '') {
+              if (this.state.searchEntry !== "") {
                 if (
                   suggestion.title
                     .toLowerCase()
@@ -322,6 +334,7 @@ class Main extends React.Component {
                   return (
                     <MainChildWrapper
                       handleStatusUpdate={this.handleStatusUpdate}
+                      deleteComment={this.handleDeleteComment}
                       deleteIdea={this.deleteIdea}
                       confirmDelete={this.state.confirmDelete}
                       itemToDelete={this.state.itemToDelete}
@@ -344,6 +357,7 @@ class Main extends React.Component {
               } else {
                 return (
                   <MainChildWrapper
+                    deleteComment={this.handleDeleteComment}
                     handleStatusUpdate={this.handleStatusUpdate}
                     deleteIdea={this.deleteIdea}
                     confirmDelete={this.state.confirmDelete}
@@ -405,6 +419,9 @@ function mapDispatchToProps(dispatch) {
     getBoth: () => {
       dispatch(getSuggestionAction());
       dispatch(getCommentsAction());
+    },
+    deleteComment: data => {
+      dispatch(deleteCommentAction(data));
     }
   };
 }

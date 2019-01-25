@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const SingleComment = props => {
   return (
@@ -10,6 +10,15 @@ const SingleComment = props => {
       </div>
       <div className="message-body">
         <i>{props.comment.comment}</i>
+        {props.username == "Laurence" && (
+          <button
+            onClick={() => {
+              props.deleteComment(props.comment);
+            }}
+          >
+            Delete
+          </button>
+        )}
       </div>
     </article>
   );

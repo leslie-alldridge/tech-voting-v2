@@ -355,7 +355,6 @@ select:active {
 }
 
 #title2 {
-  /* margin-top: 2%; */
   padding: 2%;
   color: #2b3b4c;
 }
@@ -427,10 +426,6 @@ select:active {
     height: 100%;
     width: 100%;
   }
-  /* .dropdown-trigger {
-    min-width: 100% !important;
-    float: right;
-  } */
   #search {
     width: 95%;
     margin-left: 2.5%;
