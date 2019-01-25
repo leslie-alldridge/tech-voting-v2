@@ -32,7 +32,8 @@ class ForgotPassword extends React.Component {
           this.setState({
             update: false,
             isLoading: false,
-            error: true
+            error: true,
+            details: response.data
           });
         }
       })
@@ -81,6 +82,12 @@ class ForgotPassword extends React.Component {
             type="submit"
           />
         </form>
+        {this.state.error == true && (
+          <p>
+            <b>There was an error: </b>
+            {this.state.details}
+          </p>
+        )}
       </div>
     );
   }
