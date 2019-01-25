@@ -1,6 +1,8 @@
 import React from "react";
+
 import { connect } from "react-redux";
 import { resetPasswordAction } from "../actions/users";
+
 class ForgotPassword extends React.Component {
   constructor(props) {
     super(props);
@@ -17,9 +19,10 @@ class ForgotPassword extends React.Component {
 
   submit(e) {
     e.preventDefault();
-    console.log(this.state);
-    console.log("hit");
     this.props.resetPassword(this.state.email);
+    this.setState({
+      pwSaved: true
+    });
   }
 
   render() {

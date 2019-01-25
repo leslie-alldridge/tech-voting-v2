@@ -5,7 +5,7 @@ import { newPasswordAction } from "../actions/users";
 class ForgotPassword extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { password: "" };
+    this.state = { password: "", pwSaved: false };
     this.updateDetails = this.updateDetails.bind(this);
     this.submit = this.submit.bind(this);
   }
@@ -26,7 +26,8 @@ class ForgotPassword extends React.Component {
             username: response.data.username,
             update: false,
             isLoading: false,
-            error: false
+            error: false,
+            pwSaved: true
           });
         } else {
           this.setState({
@@ -50,8 +51,7 @@ class ForgotPassword extends React.Component {
 
   submit(e) {
     e.preventDefault();
-    console.log(this.state);
-    console.log("hit");
+
     this.props.newPassword(this.state.password, this.state.username);
   }
 
@@ -87,6 +87,19 @@ class ForgotPassword extends React.Component {
             <b>There was an error: </b>
             {this.state.details}
           </p>
+        )}
+        {this.state.pwSaved && (
+          <div className="has-text-centered">
+            <Link
+              className="has-text-centered button is-link is-rounded"
+              id="home"
+              to="/"
+            >
+              <b>
+                <i className="fas fa-arrow-left" /> Home
+              </b>
+            </Link>
+          </div>
         )}
       </div>
     );
