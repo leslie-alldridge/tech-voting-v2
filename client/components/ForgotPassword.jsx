@@ -6,7 +6,7 @@ import { resetPasswordAction } from "../actions/users";
 class ForgotPassword extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { email: "" };
+    this.state = { email: "", emailSent: false };
     this.updateDetails = this.updateDetails.bind(this);
     this.submit = this.submit.bind(this);
   }
@@ -21,7 +21,7 @@ class ForgotPassword extends React.Component {
     e.preventDefault();
     this.props.resetPassword(this.state.email);
     this.setState({
-      pwSaved: true
+      emailSent: true
     });
   }
 
@@ -52,6 +52,7 @@ class ForgotPassword extends React.Component {
             type="submit"
           />
         </form>
+        {this.state.emailSent && <p>Email sent...please check your inbox</p>}
       </div>
     );
   }

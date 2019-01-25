@@ -2,17 +2,15 @@
 
 CX Tech Feedback
 
-
-
 ### Todo
 
-- Deploy (done 23/12/2018)
+- Deploy (done 26/01/2018)
 
 - decided to add badge, just need to change it so badges show on page load, instead of toggle
   to do this i'm thinking about having a seperate action to find admin comments and store them in props, then on render we can
   say 'show this <i> badge if they exist in this.props.adminComment
 
-- deploy app and test password reset functionality on heroku
+- deploy app and test password reset functionality on heroku (in progress)
 
 - write code so error msgs are temporarily displayed in to to say (user alr exists etc)
 
@@ -60,14 +58,12 @@ Notes: - denotes more work to do on the feature and \* denotes an untouched user
 
 trophy displaying on page load
 
-renaming send feeback and add improvement button links
--- Tech Improvement --   ||  --  Wider Business Improvement --
+<!-- renaming send feeback and add improvement button links
+-- Tech Improvement -- || -- Wider Business Improvement -- -->
 
-notification for completed ideas -- something like animation a completed idea 
+notification for completed ideas -- something like animation a completed idea
 
-mobile views to be better 
-
-
+mobile views to be better
 
 ## Setup
 

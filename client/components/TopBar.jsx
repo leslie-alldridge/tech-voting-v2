@@ -51,10 +51,10 @@ const TopBar = props => {
           href="https://confluence.teamxero.com/pages/viewpage.action?pageId=194813287"
           className="button is-link is-rounded"
         >
-          Send Feedback
+          Business Improvement
         </a>
         <a onClick={props.togglePage} className="button is-link is-rounded">
-          Add Improvement
+          Tech Improvement
         </a>
         <Search searchEntry={props.searchEntry} />
       </div>

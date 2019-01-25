@@ -1,7 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import axios from "axios";
+
 import { newPasswordAction } from "../actions/users";
+
 class ForgotPassword extends React.Component {
   constructor(props) {
     super(props);
@@ -26,8 +29,7 @@ class ForgotPassword extends React.Component {
             username: response.data.username,
             update: false,
             isLoading: false,
-            error: false,
-            pwSaved: true
+            error: false
           });
         } else {
           this.setState({
@@ -51,8 +53,10 @@ class ForgotPassword extends React.Component {
 
   submit(e) {
     e.preventDefault();
-
     this.props.newPassword(this.state.password, this.state.username);
+    this.setState({
+      pwSaved: true
+    });
   }
 
   render() {
@@ -99,6 +103,7 @@ class ForgotPassword extends React.Component {
                 <i className="fas fa-arrow-left" /> Home
               </b>
             </Link>
+            <p>Password has been saved</p>
           </div>
         )}
       </div>
