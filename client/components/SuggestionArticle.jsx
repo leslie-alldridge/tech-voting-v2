@@ -50,7 +50,8 @@ class SuggestionArticle extends Component {
                   name={this.props.suggestion.id}
                   className="level-item"
                 >
-                  <span className="icon is-medium">
+                  <span className="icon is-medium tooltip">
+                    <span className="tooltiptext">Admin Commented</span>
                     <i id="admin" className="fas fa-trophy" />{" "}
                   </span>
                 </a>

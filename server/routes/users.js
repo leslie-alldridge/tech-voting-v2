@@ -71,8 +71,6 @@ router.post("/password", (req, res) => {
         })
         .then(data => {
           console.log("password updated");
-          console.log(data);
-
           res.status(200).send({ message: "password updated" });
         });
     } else {
