@@ -429,9 +429,15 @@ select:active {
   #search {
     width: 95%;
     margin-left: 2.5%;
-    margin-top: 1%;
+    margin-top: 4%;
   }
   #buttons a {
     margin-top: 1%;
+  }
+  #categoryDrop {
+    margin-top: 2%;
+  }
+  #filterdrop {
+    margin-left: 1%;
   }
 }

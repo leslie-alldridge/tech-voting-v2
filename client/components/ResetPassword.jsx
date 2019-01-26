@@ -14,8 +14,6 @@ class ForgotPassword extends React.Component {
   }
 
   async componentDidMount() {
-    console.log(this.props.match);
-
     await axios
       .get("/api/users/reset", {
         params: {
@@ -23,7 +21,6 @@ class ForgotPassword extends React.Component {
         }
       })
       .then(response => {
-        console.log(response);
         if (response.data.message === "password reset link a-ok") {
           this.setState({
             username: response.data.username,

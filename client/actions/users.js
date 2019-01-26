@@ -30,8 +30,17 @@ export function resetPasswordAction(email) {
   return function(dispatch) {
     dispatch(requestUsers());
     return request("post", "users/forgot", { email }).then(response => {
-      dispatch(receiveUsers(response.body));
+      dispatch(receiveEmail(response.body));
     });
+  };
+}
+
+export function receiveEmail(data) {
+  return {
+    type: "GOT_EMAIL",
+    isFetching: false,
+    isAuthenticated: true,
+    res: data
   };
 }
 

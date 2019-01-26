@@ -49,6 +49,7 @@ class Nav extends React.Component {
               {auth.isAuthenticated
                 ? [
                     <Link
+                      key="logout"
                       id="loggedInText"
                       to="/"
                       className="navbar-item"
@@ -56,14 +57,25 @@ class Nav extends React.Component {
                     >
                       <b>Logout</b>
                     </Link>,
-                    <Link className="navbar-item" id="loggedInText" to="/help">
+                    <Link
+                      key="help"
+                      className="navbar-item"
+                      id="loggedInText"
+                      to="/help"
+                    >
                       <b>Help</b>
                     </Link>,
-                    <Link className="navbar-item" id="loggedInText" to="/">
+                    <Link
+                      key="home"
+                      className="navbar-item"
+                      id="loggedInText"
+                      to="/"
+                    >
                       <b>Home</b>
                     </Link>,
                     auth.user.user_name === "Laurence" ? (
                       <Link
+                        key="admin"
                         className="navbar-item"
                         id="loggedInText"
                         to="/adminpanel"
@@ -77,10 +89,12 @@ class Nav extends React.Component {
                       onClick={this.toggleBurger}
                       className="navbar-item is-large"
                       to="/login"
+                      key="login"
                     >
                       Login
                     </Link>,
                     <Link
+                      key="register"
                       onClick={this.toggleBurger}
                       className="navbar-item"
                       to="/register"
@@ -88,6 +102,7 @@ class Nav extends React.Component {
                       Register
                     </Link>,
                     <Link
+                      key="help"
                       onClick={this.toggleBurger}
                       className="navbar-item"
                       to="/help"

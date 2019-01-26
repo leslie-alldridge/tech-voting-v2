@@ -13,7 +13,7 @@ const TopBar = props => {
       <hr />
 
       <div id="buttons" className="container">
-        <div className={props.dropdown}>
+        <div id="filterdrop" className={props.dropdown}>
           <div className="dropdown-trigger">
             <button
               className="button"

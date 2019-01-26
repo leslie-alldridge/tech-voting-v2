@@ -53,7 +53,8 @@ class Main extends React.Component {
       "changeCategory",
       "searchEntry",
       "deleteIdea",
-      "handleDeleteComment"
+      "handleDeleteComment",
+      "commentsLoad"
     ].forEach(method => {
       this[method] = this[method].bind(this);
     });
@@ -121,14 +122,24 @@ class Main extends React.Component {
     }
   }
 
+  commentsLoad(id, e) {
+    this.props.suggestions.comments.map(comment => {
+      if (comment.id === id && comment.user === "Laurence") {
+        let newArr = this.state.adminComment;
+        newArr.push(id);
+        this.setState({
+          adminComment: newArr
+        });
+      }
+    });
+  }
+
   toggleComments(id, e) {
     // e.preventDefault();
     this.props.suggestions.comments.map(comment => {
       if (comment.id === id && comment.user === "Laurence") {
         let newArr = this.state.adminComment;
         newArr.push(id);
-        console.log(newArr);
-
         this.setState({
           adminComment: newArr
         });
@@ -280,6 +291,8 @@ class Main extends React.Component {
                 ) {
                   return (
                     <MainChildWrapper
+                      key={suggestion.id}
+                      commentsLoad={this.commentsLoad}
                       deleteComment={this.handleDeleteComment}
                       handleStatusUpdate={this.handleStatusUpdate}
                       deleteIdea={this.deleteIdea}
@@ -304,6 +317,8 @@ class Main extends React.Component {
               } else {
                 return (
                   <MainChildWrapper
+                    key={suggestion.id}
+                    commentsLoad={this.commentsLoad}
                     deleteComment={this.handleDeleteComment}
                     handleStatusUpdate={this.handleStatusUpdate}
                     deleteIdea={this.deleteIdea}
@@ -337,6 +352,8 @@ class Main extends React.Component {
                 ) {
                   return (
                     <MainChildWrapper
+                      key={suggestion.id}
+                      commentsLoad={this.commentsLoad}
                       handleStatusUpdate={this.handleStatusUpdate}
                       deleteComment={this.handleDeleteComment}
                       deleteIdea={this.deleteIdea}
@@ -361,6 +378,8 @@ class Main extends React.Component {
               } else {
                 return (
                   <MainChildWrapper
+                    key={suggestion.id}
+                    commentsLoad={this.commentsLoad}
                     deleteComment={this.handleDeleteComment}
                     handleStatusUpdate={this.handleStatusUpdate}
                     deleteIdea={this.deleteIdea}

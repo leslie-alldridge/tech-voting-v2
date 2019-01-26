@@ -41,6 +41,7 @@ class Login extends React.Component {
               <input
                 required
                 className="input is-rounded has-text-centered is-large is-fullwidth "
+                autoComplete="username"
                 type="text"
                 name="user_name"
                 onChange={this.updateDetails}
@@ -55,6 +56,7 @@ class Login extends React.Component {
             <div className="control has-icons-left">
               <input
                 required
+                autoComplete="current-password"
                 className="input is-rounded has-text-centered is-large is-fullwidth"
                 type="password"
                 name="password"

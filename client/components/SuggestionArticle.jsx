@@ -8,7 +8,7 @@ class SuggestionArticle extends Component {
     super(props);
   }
   componentDidMount = () => {
-    this.props.toggleComments(this.props.suggestion.id);
+    this.props.commentsLoad(this.props.suggestion.id);
   };
 
   render() {
@@ -24,25 +24,23 @@ class SuggestionArticle extends Component {
         </figure>
         <div className="media-content">
           <div className="content">
-            <p>
-              <strong id="ideaTitle">{this.props.suggestion.title}</strong>{" "}
-              {/* Remove the statuses for Laurence */}
-              {this.props.username !== "Laurence" && (
-                <StatusPill suggestion={this.props.suggestion} />
-              )}
-              {/* Laurence should have a selector to pick the right status */}
-              {this.props.username === "Laurence" && (
-                <AdminStatusSelector
-                  suggestion={this.props.suggestion}
-                  handleStatusUpdate={this.props.handleStatusUpdate}
-                  deleteIdea={this.props.deleteIdea}
-                  confirmDelete={this.props.confirmDelete}
-                  itemToDelete={this.props.itemToDelete}
-                />
-              )}
-              <br />
-              <div id="desc">{this.props.suggestion.description}</div>
-            </p>
+            <strong id="ideaTitle">{this.props.suggestion.title}</strong>{" "}
+            {/* Remove the statuses for Laurence */}
+            {this.props.username !== "Laurence" && (
+              <StatusPill suggestion={this.props.suggestion} />
+            )}
+            {/* Laurence should have a selector to pick the right status */}
+            {this.props.username === "Laurence" && (
+              <AdminStatusSelector
+                suggestion={this.props.suggestion}
+                handleStatusUpdate={this.props.handleStatusUpdate}
+                deleteIdea={this.props.deleteIdea}
+                confirmDelete={this.props.confirmDelete}
+                itemToDelete={this.props.itemToDelete}
+              />
+            )}
+            <br />
+            <div id="desc">{this.props.suggestion.description}</div>
           </div>
           <nav className="level is-mobile">
             <div className="level-left">

@@ -22,8 +22,7 @@ router.get("/all", (req, res) => {
 router.post("/forgot", (req, res) => {
   emailExists(req.body.email).then(user => {
     if (user === undefined) {
-      console.log("email not in database");
-      res.json("email not in db");
+      res.json("email not in database");
     } else {
       const token = crypto.randomBytes(20).toString("hex");
       userResetReq(req.body.email, token, Date.now() + 360000);

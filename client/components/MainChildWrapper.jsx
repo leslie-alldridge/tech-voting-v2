@@ -13,6 +13,7 @@ const MainChildWrapper = props => {
       key={props.suggestion.id}
     >
       <SuggestionArticle
+        commentsLoad={props.commentsLoad}
         suggestion={props.suggestion}
         username={props.username}
         handleStatusUpdate={props.handleStatusUpdate}
@@ -38,6 +39,7 @@ const MainChildWrapper = props => {
           if (comment.id === props.stateid) {
             return (
               <SingleComment
+                key={comment.commentid}
                 deleteComment={props.deleteComment}
                 comment={comment}
                 username={props.username}

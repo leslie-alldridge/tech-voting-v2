@@ -52,15 +52,16 @@ class ForgotPassword extends React.Component {
             type="submit"
           />
         </form>
-        {this.state.emailSent && <p>Email sent...please check your inbox</p>}
+        {this.state.emailSent && <p id="msg">{this.props.suggestions.res}</p>}
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ auth }) => {
+const mapStateToProps = ({ auth, suggestions }) => {
   return {
-    auth
+    auth,
+    suggestions
   };
 };
 

@@ -63,7 +63,8 @@ export default function auth(state = initialState, action) {
       return {
         ...state,
         isFetching: true,
-        isAuthenticated: true
+        isAuthenticated: true,
+        res: ""
       };
     case "GOT_USERS":
       return {
@@ -71,6 +72,13 @@ export default function auth(state = initialState, action) {
         isFetching: false,
         isAuthenticated: true,
         usersList: action.usersList
+      };
+    case "GOT_EMAIL":
+      return {
+        ...state,
+        isFetching: false,
+        isAuthenticated: true,
+        res: action.res
       };
     default:
       return state;
