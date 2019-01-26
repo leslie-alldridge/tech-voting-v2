@@ -5,24 +5,22 @@ CX Tech Feedback
 ### Todo
 
 - Deploy (done 26/01/2018)
-
-- decided to add badge, just need to change it so badges show on page load, instead of toggle
-  to do this i'm thinking about having a seperate action to find admin comments and store them in props, then on render we can
-  say 'show this <i> badge if they exist in this.props.adminComment
-
 - deploy app and test password reset functionality on heroku (in progress)
-
-- write code so error msgs are temporarily displayed in to to say (user alr exists etc)
+- mobile views to be better
 
 ### In progress
 
 Notes: - denotes more work to do on the feature and \* denotes an untouched user story.
 
-- media queries so search doesn't wrap when screen is made smaller
 - enhanced styling
 
 ### Done
 
+- media queries so search doesn't wrap when screen is made smaller
+- write code so error msgs are temporarily displayed in to to say (user alr exists etc)
+- decided to add badge, just need to change it so badges show on page load, instead of toggle
+  to do this i'm thinking about having a seperate action to find admin comments and store them in props, then on render we can
+  say 'show this <i> badge if they exist in this.props.adminComment
 - write admin functions to remove users by name (since there's no password reset) or add in password reset
 - admin should be able to delete comments
 - add password reset email, token and logic
@@ -57,11 +55,7 @@ Notes: - denotes more work to do on the feature and \* denotes an untouched user
 
 - Spin up profile pictures so we can compare between no profile picture or with a profile picture
 
-trophy displaying on page load
-
-notification for completed ideas -- something like animation a completed idea
-
-mobile views to be better
+- notification for completed ideas -- something like animation a completed idea
 
 ## Setup
 
