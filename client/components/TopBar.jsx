@@ -45,6 +45,9 @@ const TopBar = props => {
           </div>
           <CategoryDropdown changeCategory={props.changeCategory} />
         </div>
+        <a onClick={props.togglePage} className="button is-link is-rounded">
+          Tech Improvement
+        </a>
         <a
           id="sendFeedback"
           target="_blank"
@@ -53,9 +56,7 @@ const TopBar = props => {
         >
           Business Improvement
         </a>
-        <a onClick={props.togglePage} className="button is-link is-rounded">
-          Tech Improvement
-        </a>
+       
         <Search searchEntry={props.searchEntry} />
       </div>
       <hr />
