@@ -12,6 +12,8 @@ const SingleComment = props => {
         <i>{props.comment.comment}</i>
         {props.username == "Laurence" && (
           <button
+          id="delBtn"
+          className="button is-danger"
             onClick={() => {
               props.deleteComment(props.comment);
             }}

@@ -107,7 +107,7 @@ class Main extends React.Component {
 
   submitComment() {
     if (this.state.userComment[0].length < 5) {
-      alert("Please enter a suitable comment.");
+      alert("Please enter a suitable comment above five characters in length.");
     } else {
       this.setState({
         showComment: false,

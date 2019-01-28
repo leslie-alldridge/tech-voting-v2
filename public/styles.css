@@ -375,7 +375,7 @@ select:active {
 }
 
 #Laurence {
-  background-color: #ffd700 !important;
+  background-color: #85cbfaa4 !important;
 }
 
 #helpTitle {
@@ -440,4 +440,14 @@ select:active {
   #filterdrop {
     margin-left: 1%;
   }
+}
+
+#adminBox {
+  margin-left: 15px;
+}
+
+#delUser{
+  margin-left: 3px;
+  margin-bottom: 3px;
+  padding: none !important;
 }

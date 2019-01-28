@@ -45,7 +45,8 @@ class AdminPanel extends React.Component {
           Delete Users
         </h2>
         <br />
-        Current Users:
+        <div id="adminBox">
+        <b>Current Users:</b>
         <div className="content">
           <ul>
             {this.props.suggestions.usersList &&
@@ -55,6 +56,7 @@ class AdminPanel extends React.Component {
                     {user.user_name}{" "}
                     {this.state.confirm == 0 && (
                       <button
+                      id="delUser"
                         onClick={() => {
                           this.confirm(user);
                         }}
@@ -89,6 +91,7 @@ class AdminPanel extends React.Component {
                 );
               })}
           </ul>
+        </div>
         </div>
         <div className="has-text-centered">
           <Link className="button has-text-centered" to="/">
