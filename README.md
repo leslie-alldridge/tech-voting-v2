@@ -3,10 +3,8 @@
 CX Tech Feedback
 
 ### Todo
-
-- Deploy (done 26/01/2018)
-- deploy app and test password reset functionality on heroku (in progress)
-- mobile views to be better
+- check out reporting options to Excel
+- send doc to mandy
 
 ### In progress
 
@@ -15,7 +13,9 @@ Notes: - denotes more work to do on the feature and \* denotes an untouched user
 - enhanced styling
 
 ### Done
-
+- Deploy (done 26/01/2018)
+- deploy app and test password reset functionality on heroku (in progress)
+- mobile views to be better
 - media queries so search doesn't wrap when screen is made smaller
 - write code so error msgs are temporarily displayed in to to say (user alr exists etc)
 - decided to add badge, just need to change it so badges show on page load, instead of toggle
