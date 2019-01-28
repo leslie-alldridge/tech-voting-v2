@@ -8,7 +8,8 @@ class AdminPanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      confirm: 0
+      confirm: 0,
+      user: ""
     };
     this.deleteUser = this.deleteUser.bind(this);
     this.confirm = this.confirm.bind(this);
@@ -18,16 +19,18 @@ class AdminPanel extends React.Component {
     this.props.getUsers();
   }
 
-  confirm() {
+  confirm(user) {
     this.setState({
-      confirm: 1
+      confirm: 1,
+      user: user
     });
   }
 
   deleteUser(user) {
     this.props.deleteUser(user);
     this.setState({
-      confirm: 0
+      confirm: 0,
+      user: ""
     });
   }
 
@@ -48,26 +51,40 @@ class AdminPanel extends React.Component {
             {this.props.suggestions.usersList &&
               this.props.suggestions.usersList.map(user => {
                 return (
-                  <li>
+                  <li key={user.user_name}>
                     {user.user_name}{" "}
                     {this.state.confirm == 0 && (
                       <button
-                        onClick={this.confirm}
+                        onClick={() => {
+                          this.confirm(user);
+                        }}
                         className="button is-danger"
                       >
                         Delete
                       </button>
                     )}
-                    {this.state.confirm == 1 && (
-                      <button
-                        onClick={() => {
-                          this.deleteUser(user.user_name);
-                        }}
-                        className="button is-danger"
-                      >
-                        Confirm
-                      </button>
-                    )}
+                    {this.state.confirm == 1 &&
+                      this.state.user.user_name == user.user_name && (
+                        <button
+                          onClick={() => {
+                            this.deleteUser(user.user_name);
+                          }}
+                          className="button is-danger"
+                        >
+                          Confirm
+                        </button>
+                      )}
+                    {this.state.confirm == 1 &&
+                      this.state.user.user_name !== user.user_name && (
+                        <button
+                          onClick={() => {
+                            this.confirm(user);
+                          }}
+                          className="button is-danger"
+                        >
+                          Delete
+                        </button>
+                      )}
                   </li>
                 );
               })}
