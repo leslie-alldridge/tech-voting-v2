@@ -54,3 +54,12 @@ export function newPasswordAction(password, user) {
     );
   };
 }
+
+export function deleteUserAction(user) {
+  return function(dispatch) {
+    dispatch(requestUsers());
+    return request("post", "users/delete", { user }).then(response => {
+      dispatch(receiveUsers(response.body));
+    });
+  };
+}

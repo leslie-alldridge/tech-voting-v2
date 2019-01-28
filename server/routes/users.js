@@ -10,7 +10,8 @@ let {
   userResetReq,
   findToken,
   userExists,
-  updateUserPassword
+  updateUserPassword,
+  removeUser
 } = require("../db/users");
 
 router.get("/all", (req, res) => {
@@ -94,6 +95,12 @@ router.get("/reset", (req, res) => {
       });
     }
   });
+});
+
+router.post("/delete", (req, res) => {
+  console.log(req.body);
+
+  removeUser(req.body.user).then(data => res.json(data));
 });
 
 module.exports = router;

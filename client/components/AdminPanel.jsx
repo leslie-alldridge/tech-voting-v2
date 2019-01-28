@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-import { getUsersAction } from '../actions/users';
+import { getUsersAction, deleteUserAction } from "../actions/users";
 
 class AdminPanel extends React.Component {
   constructor(props) {
@@ -10,10 +10,25 @@ class AdminPanel extends React.Component {
     this.state = {
       confirm: 0
     };
+    this.deleteUser = this.deleteUser.bind(this);
+    this.confirm = this.confirm.bind(this);
   }
 
   componentDidMount() {
     this.props.getUsers();
+  }
+
+  confirm() {
+    this.setState({
+      confirm: 1
+    });
+  }
+
+  deleteUser(user) {
+    this.props.deleteUser(user);
+    this.setState({
+      confirm: 0
+    });
   }
 
   render() {
@@ -34,8 +49,25 @@ class AdminPanel extends React.Component {
               this.props.suggestions.usersList.map(user => {
                 return (
                   <li>
-                    {user.user_name}{' '}
-                    <button className="button is-danger">Delete</button>
+                    {user.user_name}{" "}
+                    {this.state.confirm == 0 && (
+                      <button
+                        onClick={this.confirm}
+                        className="button is-danger"
+                      >
+                        Delete
+                      </button>
+                    )}
+                    {this.state.confirm == 1 && (
+                      <button
+                        onClick={() => {
+                          this.deleteUser(user.user_name);
+                        }}
+                        className="button is-danger"
+                      >
+                        Confirm
+                      </button>
+                    )}
                   </li>
                 );
               })}
@@ -63,6 +95,9 @@ function mapDispatchToProps(dispatch) {
   return {
     getUsers: () => {
       dispatch(getUsersAction());
+    },
+    deleteUser: user => {
+      dispatch(deleteUserAction(user));
     }
   };
 }

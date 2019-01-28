@@ -52,10 +52,6 @@ function findToken(token) {
 }
 
 function updateUserPassword(username, hash) {
-  console.log("updating password and token");
-  console.log(username);
-  console.log(hash);
-
   return db("users")
     .where("user_name", username)
     .update({
@@ -66,6 +62,15 @@ function updateUserPassword(username, hash) {
     .then(data => console.log(data));
 }
 
+function removeUser(user) {
+  return db("users")
+    .where("user_name", user)
+    .del()
+    .then(data => {
+      return db("users").select();
+    });
+}
+
 module.exports = {
   createUser,
   userExists,
@@ -74,5 +79,6 @@ module.exports = {
   emailExists,
   userResetReq,
   findToken,
-  updateUserPassword
+  updateUserPassword,
+  removeUser
 };
