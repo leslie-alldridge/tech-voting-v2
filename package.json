@@ -1,7 +1,7 @@
 {
   "name": "boilerplate-react-webpack",
   "version": "0.1.1",
-  "description": "A webpack React starter",
+  "description": "Tech voting",
   "main": "server/index.js",
   "scripts": {
     "postinstall": "webpack",
@@ -19,8 +19,6 @@
     "require": "babel-register",
     "babel": "inherit"
   },
-  "author": "EDA",
-  "license": "ISC",
   "devDependencies": {
     "ava": "^0.19.1",
     "enzyme": "^2.8.2",
